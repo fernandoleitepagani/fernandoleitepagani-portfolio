@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  overflow-x: hidden;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.link { color: var(--ink); }
+.link:hover { color: var(--link-hover); }

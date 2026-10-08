@@ -1,0 +1,43 @@
+:root[data-theme='crt'] body {
+  background: radial-gradient(ellipse at center, #061806 0%, #031003 55%, #020702 100%);
+}
+:root[data-theme='crt'] #root {
+  text-shadow: 0 0 1px var(--ink), 0 0 3px var(--ink), 0 0 8px rgba(82, 255, 47, 0.35);
+  animation: crt-flicker 5s infinite;
+}
+:root[data-theme='crt'] .card,
+:root[data-theme='crt'] .photo {
+  box-shadow: 0 0 5px rgba(82, 255, 47, 0.2), 0 0 14px rgba(82, 255, 47, 0.08), inset 0 0 12px rgba(82, 255, 47, 0.05);
+}
+:root[data-theme='crt'] .photo {
+  filter: saturate(0.75) contrast(1.08) brightness(0.88);
+}
+
+:root[data-theme='crt'] body::before,
+:root[data-theme='crt'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+:root[data-theme='crt'] body::before {
+  z-index: 9998;
+  background:
+    repeating-linear-gradient(to bottom, rgba(82, 255, 47, 0.055) 0, rgba(82, 255, 47, 0.055) 1px, rgba(0, 0, 0, 0.18) 2px, rgba(0, 0, 0, 0.18) 4px),
+    radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.1) 57%, rgba(0, 0, 0, 0.42) 76%, rgba(0, 0, 0, 0.82) 100%);
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.75);
+}
+:root[data-theme='crt'] body::after {
+  z-index: 9999;
+  background: radial-gradient(ellipse at 50% -15%, rgba(255, 255, 255, 0.06) 0%, transparent 48%);
+  mix-blend-mode: screen;
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  49% { opacity: 0.978; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='crt'] #root { animation: none; }
+}

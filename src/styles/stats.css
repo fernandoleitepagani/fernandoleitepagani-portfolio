@@ -1,0 +1,5 @@
+.stats-card {
+  border: 1px solid var(--separator);
+  background: var(--bg);
+  width: 100%;
+}

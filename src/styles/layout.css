@@ -1,0 +1,40 @@
+.mobile-header { display: flex; align-items: center; gap: 12px; }
+
+.card {
+  background: var(--bg);
+  color: var(--ink);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.subcard {
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--separator);
+  border-radius: 10px;
+}
+
+.page-title { font-size: 22px; font-weight: 400; letter-spacing: 2px; }
+
+.photo { border: 1px solid var(--border); }
+
+.tag {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--separator);
+  text-transform: none;
+  font-weight: 400;
+}
+
+.btn,
+.btn:hover {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--separator);
+  font-weight: 400;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+}
+.btn:hover { border-color: var(--border); color: var(--link-hover); }

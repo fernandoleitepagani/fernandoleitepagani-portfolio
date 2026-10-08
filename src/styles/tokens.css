@@ -1,0 +1,28 @@
+/* ---------- Theme tokens (switched by <html data-theme="...">) ---------- */
+:root {
+  --ink: #fff;
+  --ink-dim: #8a8368;
+  --bg: #000;
+  --border: #fff;
+  --separator: #2a2a2a;
+  --link-hover: #fff;
+  --button-hover-bg: #fff;
+  --button-hover-text: #000;
+}
+:root[data-theme='matrix'] {
+  --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;
+  --separator: #003b00; --link-hover: #39ff14; --button-hover-bg: #00ff41; --button-hover-text: #000;
+}
+:root[data-theme='crt'] {
+  --ink: #52ff2f; --ink-dim: #247d18; --bg: #031003; --border: #52ff2f;
+  --separator: #0b350b; --link-hover: #baffaa; --button-hover-bg: #52ff2f; --button-hover-text: #031003;
+}
+
+/* Point Mantine's own variables at our tokens */
+:root[data-mantine-color-scheme] {
+  --mantine-color-body: var(--bg);
+  --mantine-color-text: var(--ink);
+  --mantine-color-dimmed: var(--ink-dim);
+  --mantine-color-anchor: var(--ink);
+  --mantine-color-default-border: var(--separator);
+}

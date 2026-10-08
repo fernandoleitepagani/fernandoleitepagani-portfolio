@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { MantineProvider, createTheme } from '@mantine/core';
 import '@fontsource/jetbrains-mono/400.css';
 import '@mantine/core/styles.css';
-import './index.css';
+import './styles/index.css';
 import App from './App';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';

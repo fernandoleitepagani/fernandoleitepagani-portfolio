@@ -1,0 +1,13 @@
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--separator);
+}
+.timeline-row:last-child { border-bottom: none; }
+.timeline-period { font-size: 13px; }
+@media (max-width: 36em) {
+  .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+}
