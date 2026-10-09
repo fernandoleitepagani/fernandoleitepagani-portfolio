@@ -131,3 +131,10 @@
   border-color: var(--border);
   color: var(--link-hover);
 }
+
+/* Partial-success warning inside the success block */
+.contact-success-warning {
+  width: 100%;
+  max-width: 420px;
+  text-align: left;
+}

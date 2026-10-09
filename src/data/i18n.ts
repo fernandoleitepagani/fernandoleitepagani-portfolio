@@ -84,6 +84,7 @@ export const content: Record<Lang, Content> = {
       formSent: "Thanks — I'll get back to you soon.",
       formSendAnother: 'Send another email',
       formError: 'Could not send. Please try again or email me directly.',
+      formPartial: 'Your message was delivered, but the automatic confirmation could not be sent.',
     },
   },
   pt: {
@@ -169,6 +170,7 @@ export const content: Record<Lang, Content> = {
       formSent: 'Obrigado — retornarei em breve.',
       formSendAnother: 'Enviar outro email',
       formError: 'Não foi possível enviar. Tente de novo ou me escreva diretamente.',
+      formPartial: 'Sua mensagem foi entregue, mas a confirmação automática não pôde ser enviada.',
     },
   },
 };

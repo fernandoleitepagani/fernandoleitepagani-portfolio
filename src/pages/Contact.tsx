@@ -26,7 +26,7 @@ import EMAILJS_CONFIG from '../config/emailjs';
 import { useLanguage } from '../context/LanguageContext';
 import { profile } from '../data/content';
 
-type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
+type FormStatus = 'idle' | 'sending' | 'sent' | 'partial' | 'error';
 
 export default function Contact() {
   const { contact } = useLanguage().t;
@@ -50,9 +50,9 @@ export default function Contact() {
     { href: `mailto:${profile.emailWork}`, icon: IconMail, label: 'Email' },
   ];
 
-  const sendEmail = (e: React.FormEvent) => {
+  const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.current) return;
+    if (!form.current || status === 'sending') return;
 
     setStatus('sending');
     const formData = new FormData(form.current);
@@ -61,37 +61,38 @@ export default function Contact() {
     const message = formData.get('message') as string;
     const time = new Date().toLocaleString();
 
-    emailjs
-      .send(
+    // 1st call: notify me — if this fails nothing was delivered, so it is a real error.
+    try {
+      await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID_FOR_ME,
         { name, email, message, time, title: `Portfolio contact — ${name}` },
         EMAILJS_CONFIG.PUBLIC_KEY,
-      )
-      .then(
-        () => {
-          emailjs
-            .send(
-              EMAILJS_CONFIG.SERVICE_ID,
-              EMAILJS_CONFIG.TEMPLATE_ID_FOR_SENDER,
-              { name, email, message, time, title: 'Thanks for your message' },
-              EMAILJS_CONFIG.PUBLIC_KEY,
-            )
-            .then(
-              () => {
-                setStatus('sent');
-              },
-              (err) => {
-                console.error('Error sending auto-reply:', err);
-                setStatus('error');
-              },
-            );
-        },
-        (err) => {
-          console.error('Error sending notification:', err);
-          setStatus('error');
-        },
       );
+    } catch (err) {
+      console.error('Error sending notification:', err);
+      setStatus('error');
+      return;
+    }
+
+    // 2nd call: auto-reply to the visitor — failing here is only partial success.
+    try {
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID_FOR_SENDER,
+        { name, email, message, time, title: 'Thanks for your message' },
+        EMAILJS_CONFIG.PUBLIC_KEY,
+      );
+      setStatus('sent');
+    } catch (err) {
+      console.error('Error sending auto-reply:', err);
+      setStatus('partial');
+    }
+  };
+
+  const resetForm = () => {
+    form.current?.reset();
+    setStatus('idle');
   };
 
   return (
@@ -122,17 +123,25 @@ export default function Contact() {
       </PageCard>
 
       <PageCard>
-        {status === 'sent' ? (
+        {status === 'sent' || status === 'partial' ? (
           <div className="contact-success">
             <div className="contact-success-icon">
               <IconCheck size={38} stroke={2.5} />
             </div>
             <h2 className="contact-success-title">{contact.formSentTitle}</h2>
             <p className="contact-success-text">{contact.formSent}</p>
-            <UnstyledButton
-              className="contact-success-btn"
-              onClick={() => window.location.reload()}
-            >
+            {status === 'partial' && (
+              <Alert
+                variant="outline"
+                color="orange"
+                className="contact-success-warning"
+                icon={<IconAlertCircle size={18} stroke={1.5} />}
+                aria-live="polite"
+              >
+                {contact.formPartial}
+              </Alert>
+            )}
+            <UnstyledButton className="contact-success-btn" onClick={resetForm}>
               <IconRefresh size={16} stroke={1.8} />
               {contact.formSendAnother}
             </UnstyledButton>
