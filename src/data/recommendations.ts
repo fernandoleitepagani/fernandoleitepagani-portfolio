@@ -5,7 +5,7 @@ export const recommendations: Recommendation[] = [
     id: 'rec-joao-paulo-aramuni',
     name: 'João Paulo Aramuni',
     year: 2026,
-    avatar: '/linkedin/rec-joaopauloaramuni.jpg',
+    avatar: '/linkedin/aramuni-profile.jpeg',
     relationship: {
       en: "Professor, CTO and tech consultant — was Fernando's mentor at PUC Minas",
       pt: 'Professor, CTO e consultor de tecnologia — foi mentor do Fernando na PUC Minas',
