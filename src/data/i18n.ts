@@ -35,7 +35,14 @@ export const content: Record<Lang, Content> = {
         },
       ],
     },
-    projects: { title: 'Projects', viewAll: 'View all' },
+    projects: {
+      title: 'Projects',
+      viewAll: 'View all',
+      subtitle:
+        "A collection of projects I've worked on — from personal experiments to open-source contributions.",
+      live: 'Live',
+      sourceCode: 'Source Code',
+    },
     tools: {
       title: 'Tools',
       groups: [
@@ -113,7 +120,14 @@ export const content: Record<Lang, Content> = {
         },
       ],
     },
-    projects: { title: 'Projetos', viewAll: 'Ver todos' },
+    projects: {
+      title: 'Projetos',
+      viewAll: 'Ver todos',
+      subtitle:
+        'Uma coleção de projetos em que trabalhei — de experimentos pessoais a contribuições open-source.',
+      live: 'Ver online',
+      sourceCode: 'Código-fonte',
+    },
     tools: {
       title: 'Ferramentas',
       groups: [

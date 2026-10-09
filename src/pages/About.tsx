@@ -78,7 +78,7 @@ export default function About() {
           </Group>
           <SimpleGrid cols={{ base: 1, sm: 2 }}>
             {featured.map((p) => (
-              <ProjectCard key={p.name} project={p} />
+              <ProjectCard key={p.name} project={p} variant="compact" />
             ))}
           </SimpleGrid>
         </Stack>
