@@ -25,7 +25,7 @@ export default function Layout() {
     >
       <AppShell.Header hiddenFrom="sm" px="md" className="mobile-header">
         <Burger opened={opened} onClick={toggle} size="sm" color="var(--ink)" aria-label={t.a11y.menu} />
-        <Text>{profile.name}</Text>
+        <Text className="logo">{profile.name}</Text>
       </AppShell.Header>
 
       <AppShell.Navbar p={0}>

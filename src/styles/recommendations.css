@@ -10,26 +10,26 @@
 .recommendation-name {
   color: var(--ink);
   font-weight: 500;
-  font-size: 15px;
+  font-size: var(--text-body);
   letter-spacing: 0.5px;
 }
 
 .recommendation-relationship {
   color: var(--ink-dim);
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-style: italic;
   line-height: 1.4;
 }
 
 .recommendation-text {
   color: var(--ink);
-  font-size: 14px;
+  font-size: var(--text-sm);
   line-height: 1.55;
 }
 
 .recommendation-link {
   color: var(--ink);
-  font-size: 13px;
+  font-size: var(--text-xs);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -38,3 +38,12 @@
   transition: color 0.15s ease;
 }
 .recommendation-link:hover { color: var(--link-hover); }
+
+/* Empty state — same footprint and rhythm as a real recommendation card. */
+.recommendations-empty {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

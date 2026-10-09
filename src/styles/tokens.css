@@ -12,13 +12,20 @@
   --dot-red: #ff5f56;
   --dot-yellow: #ffbd2e;
   --dot-green: #27c93f;
+
+  /* Type scale — theme-independent, shared by all three themes */
+  --text-title: 22px;
+  --text-body: 15px;
+  --text-sm: 14px;
+  --text-xs: 13px;
+  --text-2xs: 12px;
 }
 :root[data-theme='matrix'] {
   --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;
   --separator: #003b00; --link-hover: #39ff14; --button-hover-bg: #00ff41; --button-hover-text: #000;
 }
 :root[data-theme='crt'] {
-  --ink: #52ff2f; --ink-dim: #247d18; --bg: #031003; --border: #52ff2f;
+  --ink: #52ff2f; --ink-dim: #35921f; --bg: #031003; --border: #52ff2f;
   --separator: #0b350b; --link-hover: #baffaa; --button-hover-bg: #52ff2f; --button-hover-text: #031003;
 }
 

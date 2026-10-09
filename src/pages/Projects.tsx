@@ -8,7 +8,7 @@ export default function Projects() {
   const { projects: text } = useLanguage().t;
 
   return (
-    <Stack gap="lg">
+    <Stack gap="xl">
       <PageCard>
         <Stack gap="xs">
           <Title order={1} className="page-title">
@@ -18,7 +18,7 @@ export default function Projects() {
         </Stack>
       </PageCard>
 
-      <Stack gap="lg" className="projects-list">
+      <Stack gap="xl" className="projects-list">
         {projects.map((p) => (
           <ProjectCard key={p.name} project={p} />
         ))}

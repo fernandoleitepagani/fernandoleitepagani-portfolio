@@ -98,7 +98,7 @@ export default function Contact() {
   return (
     <Stack gap="xl">
       <PageCard>
-        <Stack gap="lg">
+        <Stack gap="md">
           <Title order={1} className="page-title">
             {contact.title}
           </Title>
