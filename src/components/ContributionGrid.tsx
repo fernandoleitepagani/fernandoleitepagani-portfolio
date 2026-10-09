@@ -3,14 +3,8 @@ import { useLanguage } from '../context/LanguageContext';
 import type { GitHubCalendarDay } from '../data/types';
 
 const MAX_LEVEL = 4;
-/** Rows labelled Monday, Wednesday and Friday — exactly like github.com. */
 const WEEKDAY_ROWS = [1, 3, 5];
 
-/**
- * GitHub's contribution calendar, re-skinned with the site tokens.
- * Days arrive column-by-column (week 0 starts on Sunday), which is the same
- * order the grid renders them, so no reshuffling is needed.
- */
 export default function ContributionGrid({ days }: { days: GitHubCalendarDay[] }) {
   const { t, lang } = useLanguage();
   const { about } = t;
@@ -31,7 +25,6 @@ export default function ContributionGrid({ days }: { days: GitHubCalendarDay[] }
     return template.replace('{count}', String(day.count)).replace('{date}', formatDay(day.date));
   };
 
-  // One slot per week column: the month name only where the month changes.
   const monthFormatter = new Intl.DateTimeFormat(locale, { month: 'short' });
   const months: (string | null)[] = [];
   let previousMonth = -1;
@@ -41,7 +34,6 @@ export default function ContributionGrid({ days }: { days: GitHubCalendarDay[] }
     previousMonth = date.getMonth();
   }
 
-  // Every first day in the array is a Sunday, so the weekday names come free.
   const weekdayFormatter = new Intl.DateTimeFormat(locale, { weekday: 'short' });
   const firstSunday = days.length > 0 ? new Date(`${days[0].date}T00:00:00`) : null;
   const weekdayLabels = WEEKDAY_ROWS.map((row) =>

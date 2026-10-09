@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "node --env-file-if-exists=.env.local scripts/dev-api.mjs",
+    "dev:local": "DEV_API_PROXY=http://127.0.0.1:8787 vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "check:api": "node scripts/check-github-api.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -1,28 +1,15 @@
-import type { GitHubCalendarDay, GitHubStats } from '../src/data/types';
+import type { GitHubCalendarDay, GitHubRepo, GitHubStats } from '../src/data/types';
 
-/**
- * `GET /api/github` — the only place that talks to api.github.com.
- *
- * The browser never sees `GITHUB_TOKEN`: it is read here, at runtime, from the
- * Vercel environment. Responses are cached by Vercel's CDN for 5 minutes, so
- * real traffic costs roughly one upstream call per interval (5000/h quota).
- */
-
-/** Only this account is served, otherwise the route becomes an open proxy. */
 const OWNER = 'fernandoleitepagani';
-
 const CACHE_SECONDS = 300;
 const STALE_SECONDS = 3600;
 
 const GRAPHQL_ENDPOINT = 'https://api.github.com/graphql';
 const REST_USER_ENDPOINT = `https://api.github.com/users/${OWNER}`;
 
-/**
- * One query for everything the stats section renders:
- * the contribution calendar (GitHub's own heatmap data), the counters and the
- * language bytes summed across every public repository.
- */
-const USER_QUERY = /* GraphQL */ `
+const HIDDEN_LANGUAGES = new Set(['Assembly', 'HTML', 'CSS']);
+
+const USER_QUERY = `
   query ($login: String!) {
     user(login: $login) {
       contributionsCollection {
@@ -36,16 +23,38 @@ const USER_QUERY = /* GraphQL */ `
           }
         }
         totalCommitContributions
+        totalIssueContributions
         totalPullRequestContributions
+        totalPullRequestReviewContributions
+        restrictedContributionsCount
       }
       repositories(
         first: 100
         ownerAffiliations: [OWNER]
         privacy: PUBLIC
-        orderBy: { field: NAME, direction: ASC }
+        orderBy: { field: PUSHED_AT, direction: DESC }
       ) {
         totalCount
         nodes {
+          name
+          description
+          url
+          homepageUrl
+          stargazerCount
+          forkCount
+          pushedAt
+          isFork
+          isArchived
+          primaryLanguage {
+            name
+          }
+          repositoryTopics(first: 20) {
+            nodes {
+              topic {
+                name
+              }
+            }
+          }
           languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
             edges {
               size
@@ -60,7 +69,21 @@ const USER_QUERY = /* GraphQL */ `
   }
 `;
 
-/** Minimal shapes for the two upstream payloads — every field is optional. */
+interface GraphQLRepository {
+  name?: string;
+  description?: string | null;
+  url?: string;
+  homepageUrl?: string | null;
+  stargazerCount?: number;
+  forkCount?: number;
+  pushedAt?: string;
+  isFork?: boolean;
+  isArchived?: boolean;
+  primaryLanguage?: { name?: string } | null;
+  repositoryTopics?: { nodes?: Array<{ topic?: { name?: string } } | null> | null } | null;
+  languages?: { edges?: Array<{ size?: number; node?: { name?: string } }> } | null;
+}
+
 interface GraphQLUser {
   contributionsCollection?: {
     contributionCalendar?: {
@@ -70,15 +93,14 @@ interface GraphQLUser {
       }>;
     };
     totalCommitContributions?: number;
+    totalIssueContributions?: number;
     totalPullRequestContributions?: number;
+    totalPullRequestReviewContributions?: number;
+    restrictedContributionsCount?: number;
   };
   repositories?: {
     totalCount?: number;
-    nodes?: Array<{
-      languages?: {
-        edges?: Array<{ size?: number; node?: { name?: string } }>;
-      } | null;
-    } | null> | null;
+    nodes?: Array<GraphQLRepository | null> | null;
   };
 }
 
@@ -94,10 +116,6 @@ interface RestUserBody {
   created_at?: string;
 }
 
-/**
- * Structural stand-ins for `@vercel/node`'s request/response types, so the
- * function is type-checked by `tsc -b` without adding a dependency.
- */
 interface ServerRequest {
   method?: string;
   query: Record<string, string | string[] | undefined>;
@@ -112,6 +130,25 @@ interface ServerResponse {
 async function readJson(response: Response): Promise<unknown> {
   if (!response.ok) throw new Error(`GitHub responded with ${response.status}`);
   return response.json();
+}
+
+function streakStats(days: GitHubCalendarDay[]) {
+  let longest = 0;
+  let run = 0;
+  for (const day of days) {
+    run = day.count > 0 ? run + 1 : 0;
+    if (run > longest) longest = run;
+  }
+
+  let index = days.length - 1;
+  if (index >= 0 && days[index].count === 0) index -= 1;
+  let current = 0;
+  while (index >= 0 && days[index].count > 0) {
+    current += 1;
+    index -= 1;
+  }
+
+  return { current, longest };
 }
 
 export default async function handler(request: ServerRequest, response: ServerResponse) {
@@ -164,16 +201,13 @@ export default async function handler(request: ServerRequest, response: ServerRe
       throw new Error(graphQL.errors?.[0]?.message ?? 'missing user payload');
     }
   } catch {
-    // Never let a GitHub hiccup break the page — the client renders its
-    // fallback when this returns non-2xx.
     return send(503, { error: 'github_unreachable' });
   }
 
   const user = graphQL.data.user;
   const calendar = user.contributionsCollection?.contributionCalendar;
+  const repositoryNodes = user.repositories?.nodes ?? [];
 
-  // Flatten the weeks: day 0 of week 0 is a Sunday, so the array already
-  // reads column-by-column, top-to-bottom — exactly like github.com.
   const calendarDays: GitHubCalendarDay[] = [];
   for (const week of calendar?.weeks ?? []) {
     for (const day of week.contributionDays ?? []) {
@@ -181,18 +215,36 @@ export default async function handler(request: ServerRequest, response: ServerRe
     }
   }
 
-  // Sum language bytes across every public repo — this is the same math
-  // behind GitHub's own "most used languages" widget.
   const bytesByLanguage = new Map<string, number>();
-  for (const repo of user.repositories?.nodes ?? []) {
+  for (const repo of repositoryNodes) {
     for (const edge of repo?.languages?.edges ?? []) {
       const name = edge.node?.name;
       const size = edge.size ?? 0;
-      if (!name || size <= 0) continue;
+      if (!name || size <= 0 || HIDDEN_LANGUAGES.has(name)) continue;
       bytesByLanguage.set(name, (bytesByLanguage.get(name) ?? 0) + size);
     }
   }
   const totalBytes = [...bytesByLanguage.values()].reduce((sum, bytes) => sum + bytes, 0);
+
+  const repos: GitHubRepo[] = repositoryNodes
+    .filter((repo): repo is GraphQLRepository => Boolean(repo?.name))
+    .map((repo) => ({
+      name: repo.name as string,
+      description: repo.description ?? null,
+      url: repo.url ?? '',
+      homepageUrl: repo.homepageUrl ?? null,
+      stars: repo.stargazerCount ?? 0,
+      forks: repo.forkCount ?? 0,
+      pushedAt: repo.pushedAt ?? '',
+      language: repo.primaryLanguage?.name ?? null,
+      topics: (repo.repositoryTopics?.nodes ?? [])
+        .map((node) => node?.topic?.name)
+        .filter((topic): topic is string => Boolean(topic)),
+      isFork: Boolean(repo.isFork),
+      isArchived: Boolean(repo.isArchived),
+    }));
+
+  const streaks = streakStats(calendarDays);
 
   const stats: GitHubStats = {
     username: OWNER,
@@ -203,7 +255,12 @@ export default async function handler(request: ServerRequest, response: ServerRe
     contributions: {
       total: calendar?.totalContributions ?? 0,
       commits: user.contributionsCollection?.totalCommitContributions ?? 0,
+      issues: user.contributionsCollection?.totalIssueContributions ?? 0,
       pullRequests: user.contributionsCollection?.totalPullRequestContributions ?? 0,
+      reviews: user.contributionsCollection?.totalPullRequestReviewContributions ?? 0,
+      restricted: user.contributionsCollection?.restrictedContributionsCount ?? 0,
+      currentStreak: streaks.current,
+      longestStreak: streaks.longest,
     },
     calendar: calendarDays,
     languages: [...bytesByLanguage.entries()]
@@ -214,6 +271,7 @@ export default async function handler(request: ServerRequest, response: ServerRe
         bytes,
         percent: totalBytes > 0 ? Number(((bytes / totalBytes) * 100).toFixed(1)) : 0,
       })),
+    repos,
   };
 
   response.setHeader(

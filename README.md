@@ -164,9 +164,9 @@ VITE_EMAILJS_PUBLIC_KEY=
 
 **Without these variables**, the rest of the site works fine — only the contact form fails.
 
-#### `GITHUB_TOKEN` (optional — GitHub stats)
+#### `GITHUB_TOKEN` (optional — GitHub stats & projects)
 
-The About page's stats (contribution heatmap, most used languages and the headline counters) come from a Vercel Function in `api/github.ts`, the only place that talks to `api.github.com`:
+The About page's stats (contribution heatmap, most used languages and the headline counters) and the live data on the project cards (stars, forks, last push, repository URLs) come from a Vercel Function in `api/github.ts`, the only place that talks to `api.github.com`:
 
 ```
 browser ──► /api/github ──► api.github.com
@@ -180,16 +180,35 @@ GITHUB_TOKEN=
 ```
 
 - **No `VITE_` prefix.** It is read on the server at runtime and must never reach the browser bundle. Verify with `npm run build && grep -r "$GITHUB_TOKEN" dist/` — it must print nothing.
-- Create a **fine-grained** token with read-only access to public repositories. No write scopes.
+- Create a **fine-grained** token with **All public repositories** access and the **Metadata: Read-only** permission. No write scopes.
 - Add it in Vercel under **Settings → Environment Variables** for Production, Preview and Development.
-- **Without it**, the site is unaffected: the About page just skips the stats section.
-- Local development: `npx vercel dev` runs the function locally (`npm run dev` alone shows no stats).
+- **Without it**, the site is unaffected: the About page skips the stats section and the project cards fall back to the curated text in `src/data/projects.ts`.
+- **Private work the token cannot see** is not silently dropped: the stats card ends with a `Private contributions · N` line, fed by `restrictedContributionsCount`. It stays dim at `0` and switches to full contrast when there is something hidden.
+
+**Local development** — two ways to run the function next to the app:
+
+| Option | Commands | Notes |
+|---|---|---|
+| Vercel CLI | `export GITHUB_TOKEN="…"` then `npx vercel dev` | functions + app on `http://127.0.0.1:3000`; run `npx vercel link` once |
+| Plain Vite | `npm run dev:api` and `npm run dev:local` in two terminals | app on `http://localhost:5173`, `/api` proxied to the dev function on `:8787`; `dev:api` reads `.env.local` itself |
+
+`npm run check:api` runs the full endpoint contract check (shape, cache header, 405/403 guards, and the project merge) against `http://localhost:3000`. Pass a URL to check a deployment: `npm run check:api -- https://your-preview.vercel.app`.
+
+**Adding a project automatically.** The endpoint returns every public repo. Tag a repository with the topic **`portfolio`** on GitHub and it appears on `/projects` with its description, language and links — no code change. Curated entries in `src/data/projects.ts` (Portuguese copy, screenshots, categories, the `featured` flag) always win and are matched by repository name, so a curated project survives even if its repo is renamed, deleted or made private.
+
+Two behaviours worth knowing:
+
+- **Renamed repositories** — set `repo: 'new-repo-name'` on the curated entry. `name` stays the card title, `repo` is the GitHub repository it reads data from. Example: the card `Portfolio` maps to `repo: 'fernandoleitepagani-portfolio'`.
+- **Hidden languages** — `Assembly`, `HTML` and `CSS` are excluded from the "most used languages" card (they come mostly from forks and small sites and drown out the rest). The list lives in `HIDDEN_LANGUAGES` in `api/github.ts`; percentages are recomputed over what remains.
 
 ### Scripts
 
 | Command | Description |
 |---|---|
 | `npm run dev` | Start dev server with HMR |
+| `npm run dev:api` | Serve `/api/github` locally on `:8787` (reads `.env.local`) |
+| `npm run dev:local` | Vite with `/api` proxied to `dev:api` — run both to browse the full site |
+| `npm run check:api` | Contract check for the GitHub endpoint (optionally pass a deployed URL) |
 | `npm run build` | Type-check (`tsc -b`) then build to `dist/` |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | Run ESLint |
@@ -217,7 +236,12 @@ Drop a square-ish JPG into `public/photo.jpg`. It renders on the About page at 3
 
 ### Adding a project
 
-Append to the `projects` array in `src/data/projects.ts`. Set `featured: true` to also show it on the About page.
+Two ways, and they compose:
+
+1. **Automatically** — tag the repository with the topic `portfolio` on GitHub. It then appears on `/projects` using its GitHub description, primary language, stars, forks and last push date.
+2. **Curated** — append to the `projects` array in `src/data/projects.ts`. Curated fields (Portuguese description, `category`, `screenshot`, `tags`, `liveUrl`) override whatever the API returns for that repository, and `featured: true` also shows it on the About page.
+
+Curated entries are matched by repository name and stay visible even when the repository is missing from the API.
 
 ---
 

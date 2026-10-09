@@ -60,6 +60,17 @@ export default defineConfig([
     },
   },
 
+  // ─── Dev scripts (Node, plain ESM) ───
+  {
+    files: ['scripts/**/*.mjs'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: globals.node,
+      sourceType: 'module',
+    },
+  },
+
   // ─── Vercel Functions (Node runtime, no React) ───
   {
     files: ['api/**/*.ts'],

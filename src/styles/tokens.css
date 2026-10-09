@@ -14,10 +14,10 @@
   --dot-green: #27c93f;
 
   /* Contribution heatmap — five levels, one per theme */
-  --heat-0: #1a1a1a;
-  --heat-1: #3d3d3d;
-  --heat-2: #6b6b6b;
-  --heat-3: #9c9c9c;
+  --heat-0: #1e1e1e;
+  --heat-1: #555555;
+  --heat-2: #8a8a8a;
+  --heat-3: #bcbcbc;
   --heat-4: #ffffff;
 
   /* Type scale — theme-independent, shared by all three themes */
@@ -34,12 +34,12 @@
 :root[data-theme='matrix'] {
   --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;
   --separator: #003b00; --link-hover: #39ff14; --button-hover-bg: #00ff41; --button-hover-text: #000;
-  --heat-0: #003b00; --heat-1: #006b0d; --heat-2: #00a319; --heat-3: #00d426; --heat-4: #00ff41;
+  --heat-0: #003b00; --heat-1: #006d00; --heat-2: #00a200; --heat-3: #00db00; --heat-4: #c0ffc0;
 }
 :root[data-theme='crt'] {
   --ink: #52ff2f; --ink-dim: #35921f; --bg: #031003; --border: #52ff2f;
   --separator: #0b350b; --link-hover: #baffaa; --button-hover-bg: #52ff2f; --button-hover-text: #031003;
-  --heat-0: #0b350b; --heat-1: #1c6b12; --heat-2: #2f9d20; --heat-3: #43c529; --heat-4: #52ff2f;
+  --heat-0: #0b350b; --heat-1: #1c6b12; --heat-2: #2f9d20; --heat-3: #5ccc35; --heat-4: #d4ffcb;
 }
 
 /* Point Mantine's own variables at our tokens */

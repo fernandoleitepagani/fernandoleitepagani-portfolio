@@ -1,6 +1,3 @@
-/* ---------- GitHub stats — data from /api/github, styled with theme tokens ---------- */
-
-/* Block titles inside a stats card: quieter than the page title. */
 .stats-block-title {
   font-size: var(--text-body);
   font-weight: 500;
@@ -8,7 +5,6 @@
   margin: 0 0 12px;
 }
 
-/* ---------- Contribution heatmap (github.com layout, our theme) ---------- */
 .heat-scroll {
   overflow-x: auto;
   padding-bottom: 4px;
@@ -28,7 +24,6 @@
   color: var(--ink-dim);
 }
 
-/* Month names sit above the grid, one slot per week column. */
 .heat-months {
   display: grid;
   grid-auto-flow: column;
@@ -71,7 +66,6 @@
   color: var(--ink-dim);
 }
 
-/* ---------- Language bars ---------- */
 .lang-list {
   display: flex;
   flex-direction: column;
@@ -107,7 +101,6 @@
   transition: width 0.3s ease;
 }
 
-/* ---------- Headline counters ---------- */
 .stats-counters {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -123,4 +116,19 @@
   margin: 4px 0 0;
   font-size: var(--text-2xs);
   color: var(--ink-dim);
+}
+
+.stats-private {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--separator);
+  font-size: var(--text-2xs);
+  color: var(--ink-dim);
+}
+.stats-private[data-active] {
+  color: var(--ink);
 }

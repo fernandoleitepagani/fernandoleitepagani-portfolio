@@ -84,6 +84,20 @@
   line-height: 1.6;
 }
 
+.project-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: var(--text-xs);
+  color: var(--ink-dim);
+}
+.project-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .project-links {
   display: flex;
   flex-wrap: wrap;
@@ -127,6 +141,15 @@
   text-decoration: none;
 }
 .project-compact-name:hover { color: var(--link-hover); }
+
+.project-compact-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  font-size: var(--text-xs);
+  color: var(--ink-dim);
+}
 
 .project-compact-btn {
   display: inline-flex;

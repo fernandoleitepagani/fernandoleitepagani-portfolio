@@ -2,7 +2,6 @@ import { Text } from '@mantine/core';
 import { useLanguage } from '../context/LanguageContext';
 import type { GitHubLanguage } from '../data/types';
 
-/** Language share by bytes across every public repo, in theme tokens. */
 export default function LanguageBars({ languages }: { languages: GitHubLanguage[] }) {
   const { t, lang } = useLanguage();
   const { about } = t;

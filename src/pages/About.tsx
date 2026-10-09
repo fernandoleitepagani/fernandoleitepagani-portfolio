@@ -4,6 +4,7 @@ import {
   Flex,
   Group,
   Image,
+  Paper,
   SimpleGrid,
   Skeleton,
   Stack,
@@ -18,13 +19,18 @@ import ProjectCard from '../components/ProjectCard';
 import StatsCard from '../components/StatsCard';
 import { useGitHubStats } from '../hooks/useGitHubStats';
 import { useLanguage } from '../context/LanguageContext';
-import { profile, projects } from '../data/content';
+import { mergeProjects, profile, projects as curatedProjects } from '../data/content';
 
 export default function About() {
   const { t } = useLanguage();
   const { about, projects: text, tools } = t;
-  const featured = projects.filter((p) => p.featured);
-  const { state, data: stats } = useGitHubStats(profile.githubUser);
+  const { state, data } = useGitHubStats(profile.githubUser);
+
+  const liveProjects = state === 'ready' && data ? mergeProjects(data.repos) : [];
+  const featured = (liveProjects.length > 0 ? liveProjects : curatedProjects).filter(
+    (project) => project.featured,
+  );
+  const stats = state === 'ready' ? data : null;
 
   return (
     <Stack gap="xl">
@@ -100,17 +106,17 @@ export default function About() {
 
           {state === 'ready' && stats && (
             <>
-              <PageCard p="md">
+              <Paper className="subcard" p="md">
                 <ContributionGrid days={stats.calendar} />
-              </PageCard>
+              </Paper>
 
               <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                <PageCard p="md">
+                <Paper className="subcard" p="md">
                   <LanguageBars languages={stats.languages} />
-                </PageCard>
-                <PageCard p="md">
+                </Paper>
+                <Paper className="subcard" p="md">
                   <StatsCard stats={stats} />
-                </PageCard>
+                </Paper>
               </SimpleGrid>
             </>
           )}
