@@ -4,8 +4,10 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { profile } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Layout() {
+  const { t } = useLanguage();
   const [opened, { toggle, close }] = useDisclosure(false);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem('sidebar') === 'collapsed');
   const isDesktop = useMediaQuery('(min-width: 48em)');
@@ -22,7 +24,7 @@ export default function Layout() {
       padding="md"
     >
       <AppShell.Header hiddenFrom="sm" px="md" className="mobile-header">
-        <Burger opened={opened} onClick={toggle} size="sm" color="var(--ink)" aria-label="Menu" />
+        <Burger opened={opened} onClick={toggle} size="sm" color="var(--ink)" aria-label={t.a11y.menu} />
         <Text>{profile.name}</Text>
       </AppShell.Header>
 

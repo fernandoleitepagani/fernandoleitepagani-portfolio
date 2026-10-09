@@ -11,6 +11,13 @@ export const content: Record<Lang, Content> = {
       contact: 'Contacts',
     },
     themeLabel: 'Theme',
+    a11y: {
+      language: 'Language',
+      expandSidebar: 'Expand sidebar',
+      collapseSidebar: 'Collapse sidebar',
+      github: 'GitHub',
+      menu: 'Menu',
+    },
     about: {
       title: 'About Me',
       tagline: [
@@ -19,6 +26,10 @@ export const content: Record<Lang, Content> = {
       ],
       description:
         'CS student at PUC Minas (2nd semester). Into Linux since 13. Care about operating systems, automation and DevOps — building fast, reproducible and efficient environments. Prefer understanding how things work under the hood.',
+      statsTitle: 'Stats',
+      statsAltGithub: 'GitHub stats',
+      statsAltLangs: 'Top languages',
+      statsAltLeetcode: 'LeetCode stats',
     },
     curriculum: {
       title: 'Curriculum',
@@ -85,6 +96,12 @@ export const content: Record<Lang, Content> = {
       formSendAnother: 'Send another email',
       formError: 'Could not send. Please try again or email me directly.',
       formPartial: 'Your message was delivered, but the automatic confirmation could not be sent.',
+      labelGithub: 'GitHub',
+      labelLinkedin: 'LinkedIn',
+      labelInstagram: 'Instagram',
+      labelLattes: 'Lattes',
+      labelEmail: 'Email',
+      lattesText: 'Lattes CV',
     },
   },
   pt: {
@@ -97,6 +114,13 @@ export const content: Record<Lang, Content> = {
       contact: 'Contato',
     },
     themeLabel: 'Tema',
+    a11y: {
+      language: 'Idioma',
+      expandSidebar: 'Expandir barra lateral',
+      collapseSidebar: 'Recolher barra lateral',
+      github: 'GitHub',
+      menu: 'Menu',
+    },
     about: {
       title: 'Sobre Mim',
       tagline: [
@@ -105,6 +129,10 @@ export const content: Record<Lang, Content> = {
       ],
       description:
         'Estudante de CC na PUC Minas (2º período). No Linux desde os 13. Interesse por sistemas operacionais, automação e DevOps — ambientes rápidos, reprodutíveis e eficientes. Gosto de entender como as coisas funcionam por baixo dos panos.',
+      statsTitle: 'Estatísticas',
+      statsAltGithub: 'Estatísticas do GitHub',
+      statsAltLangs: 'Linguagens mais usadas',
+      statsAltLeetcode: 'Estatísticas do LeetCode',
     },
     curriculum: {
       title: 'Currículo',
@@ -171,6 +199,12 @@ export const content: Record<Lang, Content> = {
       formSendAnother: 'Enviar outro email',
       formError: 'Não foi possível enviar. Tente de novo ou me escreva diretamente.',
       formPartial: 'Sua mensagem foi entregue, mas a confirmação automática não pôde ser enviada.',
+      labelGithub: 'GitHub',
+      labelLinkedin: 'LinkedIn',
+      labelInstagram: 'Instagram',
+      labelLattes: 'Lattes',
+      labelEmail: 'E-mail',
+      lattesText: 'Currículo Lattes',
     },
   },
 };

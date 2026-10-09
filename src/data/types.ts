@@ -39,7 +39,22 @@ export interface Content {
     string
   >;
   themeLabel: string;
-  about: { title: string; tagline: string[]; description: string };
+  a11y: {
+    language: string;
+    expandSidebar: string;
+    collapseSidebar: string;
+    github: string;
+    menu: string;
+  };
+  about: {
+    title: string;
+    tagline: string[];
+    description: string;
+    statsTitle: string;
+    statsAltGithub: string;
+    statsAltLangs: string;
+    statsAltLeetcode: string;
+  };
   curriculum: { title: string; items: { period: string; title: string; place: string }[] };
   projects: { title: string; viewAll: string; subtitle: string; live: string; sourceCode: string };
   tools: { title: string; groups: { name: string; items: string[] }[] };
@@ -62,5 +77,11 @@ export interface Content {
     formSendAnother: string;
     formError: string;
     formPartial: string;
+    labelGithub: string;
+    labelLinkedin: string;
+    labelInstagram: string;
+    labelLattes: string;
+    labelEmail: string;
+    lattesText: string;
   };
 }

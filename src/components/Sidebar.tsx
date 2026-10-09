@@ -43,7 +43,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
           <UnstyledButton
             className="icon-btn"
             onClick={onToggle}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            aria-label={collapsed ? t.a11y.expandSidebar : t.a11y.collapseSidebar}
           >
             {collapsed ? <IconChevronsRight size={18} /> : <IconChevronsLeft size={18} />}
           </UnstyledButton>
@@ -82,18 +82,18 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
             </UnstyledButton>
           </Tooltip>
           <Tooltip label={lang === 'pt' ? 'English' : 'Português'} position="top">
-            <UnstyledButton className="action-btn" onClick={toggleLang} aria-label="Language">
+            <UnstyledButton className="action-btn" onClick={toggleLang} aria-label={t.a11y.language}>
               <IconLanguage size={18} stroke={1.5} />
             </UnstyledButton>
           </Tooltip>
-          <Tooltip label="Github" position="top">
+          <Tooltip label={t.a11y.github} position="top">
             <UnstyledButton
               component="a"
               href={profile.github}
               target="_blank"
               rel="noreferrer"
               className="action-btn"
-              aria-label="Github"
+              aria-label={t.a11y.github}
             >
               <IconBrandGithub size={18} stroke={1.5} />
             </UnstyledButton>
