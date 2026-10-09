@@ -1,5 +1,7 @@
 import { profile } from './profile';
-import type { Project } from './types';
+import type { GitHubRepo, Project } from './types';
+
+export const PORTFOLIO_TOPIC = 'portfolio';
 
 export const projects: Project[] = [
   {
@@ -39,15 +41,16 @@ export const projects: Project[] = [
     },
   },
   {
-    name: 'myinfo',
-    githubUrl: `${profile.github}/myinfo`,
-    liveUrl: 'https://fernandoleitepagani.github.io/myinfo/',
+    name: 'Portfolio',
+    repo: 'fernandoleitepagani-portfolio',
+    githubUrl: `${profile.github}/fernandoleitepagani-portfolio`,
+    liveUrl: 'https://fernandoleitepagani-portfolio.vercel.app/',
     screenshot: '/projects/placeholder.svg',
-    tags: ['HTML', 'CSS'],
+    tags: ['React', 'TypeScript', 'Vite'],
     category: { en: 'Personal project', pt: 'Projeto pessoal' },
     description: {
-      en: 'Personal info page hosted on GitHub Pages.',
-      pt: 'Página de informações pessoais hospedada no GitHub Pages.',
+      en: 'This portfolio — React, Vite and Mantine, with its own GitHub API layer for the stats and project data.',
+      pt: 'Este portfólio — React, Vite e Mantine, com camada própria de API do GitHub para as estatísticas e os dados dos projetos.',
     },
   },
   {
@@ -62,3 +65,46 @@ export const projects: Project[] = [
     },
   },
 ];
+
+const FALLBACK_CATEGORY = { en: 'Repository', pt: 'Repositório' };
+
+export function mergeProjects(repos: GitHubRepo[]): Project[] {
+  const repoByName = new Map(repos.map((repo) => [repo.name, repo]));
+  const curatedByRepo = new Map(projects.map((project) => [project.repo ?? project.name, project]));
+
+  const enrich = (repo: GitHubRepo): Project => {
+    const curated = curatedByRepo.get(repo.name);
+    const repoTopics = repo.topics.filter((topic) => topic !== PORTFOLIO_TOPIC);
+    const tags =
+      curated?.tags ?? [repo.language, ...repoTopics].filter((tag): tag is string => Boolean(tag));
+
+    return {
+      name: curated?.name ?? repo.name,
+      repo: repo.name,
+      githubUrl: repo.url,
+      liveUrl: curated?.liveUrl ?? repo.homepageUrl ?? undefined,
+      screenshot: curated?.screenshot,
+      tags,
+      category: curated?.category ?? FALLBACK_CATEGORY,
+      featured: curated?.featured,
+      description: curated?.description ?? { en: repo.description ?? '', pt: repo.description ?? '' },
+      stars: repo.stars,
+      forks: repo.forks,
+      pushedAt: repo.pushedAt,
+    };
+  };
+
+  const curated = projects.map((project) => {
+    const repo = repoByName.get(project.repo ?? project.name);
+    return repo ? enrich(repo) : project;
+  });
+
+  const claimed = new Set(projects.map((project) => project.repo ?? project.name));
+  const discovered = repos
+    .filter((repo) => !repo.isFork && !repo.isArchived)
+    .filter((repo) => repo.topics.includes(PORTFOLIO_TOPIC))
+    .filter((repo) => !claimed.has(repo.name))
+    .map(enrich);
+
+  return [...curated, ...discovered];
+}

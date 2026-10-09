@@ -13,20 +13,33 @@
   --dot-yellow: #ffbd2e;
   --dot-green: #27c93f;
 
+  /* Contribution heatmap — five levels, one per theme */
+  --heat-0: #1e1e1e;
+  --heat-1: #555555;
+  --heat-2: #8a8a8a;
+  --heat-3: #bcbcbc;
+  --heat-4: #ffffff;
+
   /* Type scale — theme-independent, shared by all three themes */
   --text-title: 22px;
   --text-body: 15px;
   --text-sm: 14px;
   --text-xs: 13px;
   --text-2xs: 12px;
+
+  /* Heatmap geometry — theme-independent */
+  --heat-cell: 11px;
+  --heat-gap: 3px;
 }
 :root[data-theme='matrix'] {
   --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;
   --separator: #003b00; --link-hover: #39ff14; --button-hover-bg: #00ff41; --button-hover-text: #000;
+  --heat-0: #003b00; --heat-1: #006d00; --heat-2: #00a200; --heat-3: #00db00; --heat-4: #c0ffc0;
 }
 :root[data-theme='crt'] {
   --ink: #52ff2f; --ink-dim: #35921f; --bg: #031003; --border: #52ff2f;
   --separator: #0b350b; --link-hover: #baffaa; --button-hover-bg: #52ff2f; --button-hover-text: #031003;
+  --heat-0: #0b350b; --heat-1: #1c6b12; --heat-2: #2f9d20; --heat-3: #5ccc35; --heat-4: #d4ffcb;
 }
 
 /* Point Mantine's own variables at our tokens */

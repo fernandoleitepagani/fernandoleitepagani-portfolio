@@ -2,78 +2,30 @@ import type { Recommendation } from './types';
 
 export const recommendations: Recommendation[] = [
   {
-    id: 'rec-bill-gates',
-    name: 'Bill Gates',
-    year: 2025,
-    avatar: '/linkedin/rec-bill-gates.jpg',
+    id: 'rec-joao-paulo-aramuni',
+    name: 'João Paulo Aramuni',
+    year: 2026,
+    avatar: '/linkedin/aramuni-profile.jpeg',
     relationship: {
-      en: 'Bill and Fernando worked on the same team',
-      pt: 'Bill e Fernando trabalhavam na mesma equipe',
+      en: "Professor, CTO and tech consultant — was Fernando's mentor at PUC Minas",
+      pt: 'Professor, CTO e consultor de tecnologia — foi mentor do Fernando na PUC Minas',
     },
     text: {
-      en: 'Fernando is a highly dedicated and curious developer. He consistently delivers well-structured solutions and is always willing to share knowledge with the team. His understanding of Linux and automation made a real difference in our projects.',
-      pt: 'Fernando é um desenvolvedor muito dedicado e curioso. Sempre entrega soluções bem estruturadas e está sempre disposto a compartilhar conhecimento com a equipe. Seu domínio de Linux e automação fez diferença real nos nossos projetos.',
+      en: [
+        'I met Fernando as a student in Web Interface Development (DIW) and in Interdisciplinary Work II (Front-end), in the Computer Science programme at PUC Minas. But much of what I know about him I learned outside class hours: in the conversations before and after class, when he would always show up with a new project to present, a technology he had just discovered, or a question that already arrived half-solved.',
+        'He is a guaranteed presence in my DIW workshops, where we build projects with Spring Boot and JavaScript. And he is the kind of student who is not satisfied with making things work: he wants to understand why they work. Not by chance, he started a React portfolio of his own and is part of the Web Tech community at PUC Minas, always chasing the next thing to learn.',
+        'In the Interdisciplinary Work I saw a born leader up close. Fernando drives the team, organises the work, resolves the merge conflicts in the pull requests, and still leads in number of commits and lines of code. It is a leadership that does not stay in words: it is the kind that sits down and does it with you.',
+        'Any team that takes Fernando on will gain someone curious, organised and generous with what he knows. Just one warning: he will show up with Vim configured and an energy drink in hand. I recommend him without any reservation, and with great pride in having followed a piece of that journey.',
+        'Fernando, keep it up. I am rooting for you!',
+      ].join('\n\n'),
+      pt: [
+        'Conheci o Fernando como aluno de Desenvolvimento de Interfaces Web (DIW) e de Trabalho Interdisciplinar II (Front-end), no curso de Ciência da Computação da PUC Minas. Mas boa parte do que sei sobre ele aprendi fora do horário oficial: nas conversas antes e depois da aula, quando ele sempre aparecia com um projeto novo para mostrar, uma tecnologia que tinha acabado de descobrir ou uma dúvida que já chegava meio resolvida.',
+        'Ele é presença garantida nas minhas oficinas de DIW, onde construímos projetos com Spring Boot e JavaScript. E é o tipo de aluno que não se contenta em fazer funcionar: quer entender por que funciona. Não à toa, começou por conta própria um portfólio em React e faz parte da comunidade Web Tech da PUC Minas, sempre atrás da próxima coisa para aprender.',
+        'No Trabalho Interdisciplinar, vi de perto um líder nato. O Fernando puxa o time, organiza o trabalho, resolve os conflitos de merge nos PRs e ainda lidera em número de commits e linhas de código. É uma liderança que não fica no discurso: é de quem senta e faz junto.',
+        'Qualquer equipe que receber o Fernando vai ganhar alguém curioso, organizado e generoso com o que sabe. Só um aviso: ele vai chegar com o Vim configurado e um energético na mão. Recomendo sem nenhuma reserva, e com muito orgulho de ter acompanhado um pedaço dessa trajetória.',
+        'Fernando, continue assim. Estou torcendo muito por você!',
+      ].join('\n\n'),
     },
-    link: 'https://www.linkedin.com/in/williamhgates',
-  },
-  {
-    id: 'rec-lula',
-    name: 'Luiz Inácio Lula da Silva',
-    year: 2025,
-    avatar: '/linkedin/rec-lula.jpg',
-    relationship: {
-      en: 'Luiz Inácio and Fernando worked on the same team',
-      pt: 'Luiz Inácio e Fernando trabalhavam na mesma equipe',
-    },
-    text: {
-      en: 'Fernando is a dedicated professional with strong technical foundations. His work on Linux environments and automation is exceptional, and he consistently approaches problems with maturity and discipline. A pleasure to collaborate with.',
-      pt: 'Fernando é um profissional dedicado, com sólida base técnica. Seu trabalho em ambientes Linux e automação é excepcional, e ele aborda os problemas com maturidade e disciplina. É um prazer colaborar com ele.',
-    },
-    link: 'https://www.linkedin.com/in/luiz-inacio-lula-da-silva',
-  },
-  {
-    id: 'rec-bolsonaro',
-    name: 'Jair Messias Bolsonaro',
-    year: 2025,
-    avatar: '/linkedin/rec-bolsonaro.jpg',
-    relationship: {
-      en: 'Jair and Fernando were colleagues at the same organization',
-      pt: 'Jair e Fernando foram colegas na mesma organização',
-    },
-    text: {
-      en: 'Fernando demonstrates strong commitment and technical competence. He handles infrastructure and automation tasks with precision, and his results speak for themselves. I recommend him without reservation.',
-      pt: 'Fernando demonstra grande comprometimento e competência técnica. Ele lida com tarefas de infraestrutura e automação com precisão, e seus resultados falam por si. Recomendo-o sem ressalvas.',
-    },
-    link: 'https://www.linkedin.com/in/jair-bolsonaro',
-  },
-  {
-    id: 'rec-netanyahu',
-    name: 'Benjamin Netanyahu',
-    year: 2025,
-    avatar: '/linkedin/rec-netanyahu.jpg',
-    relationship: {
-      en: 'Benjamin and Fernando collaborated on the same project',
-      pt: 'Benjamin e Fernando colaboraram no mesmo projeto',
-    },
-    text: {
-      en: 'Fernando is an outstanding developer with a rare combination of technical depth and pragmatism. His contributions to our Linux and DevOps initiatives were invaluable. I highly recommend him for any challenging role.',
-      pt: 'Fernando é um desenvolvedor excepcional, com uma rara combinação de profundidade técnica e pragmatismo. Suas contribuições para nossas iniciativas de Linux e DevOps foram inestimáveis. Recomendo-o fortemente para qualquer posição desafiadora.',
-    },
-    link: 'https://www.linkedin.com/in/benjamin-netanyahu',
-  },
-  {
-    id: 'rec-putin',
-    name: 'Vladimir Putin',
-    year: 2025,
-    avatar: '/linkedin/rec-putin.jpg',
-    relationship: {
-      en: 'Vladimir and Fernando worked on the same infrastructure team',
-      pt: 'Vladimir e Fernando trabalharam na mesma equipe de infraestrutura',
-    },
-    text: {
-      en: 'Fernando shows remarkable discipline and analytical thinking. His ability to design reproducible, efficient environments is a real asset. He is a reliable professional and a strong team player.',
-      pt: 'Fernando demonstra disciplina notável e pensamento analítico. Sua capacidade de projetar ambientes reprodutíveis e eficientes é um diferencial. É um profissional confiável e um forte colaborador em equipe.',
-    },
-    link: 'https://www.linkedin.com/in/vladimir-putin',
+    link: 'https://www.linkedin.com/in/joaopauloaramuni/',
   },
 ];

@@ -25,7 +25,28 @@
   color: var(--ink);
   font-size: var(--text-sm);
   line-height: 1.55;
+  white-space: pre-line;
 }
+.recommendation-text[data-clamped] {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.recommendation-toggle {
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  width: fit-content;
+  color: var(--ink-dim);
+  font-family: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.recommendation-toggle:hover { color: var(--link-hover); }
 
 .recommendation-link {
   color: var(--ink);
