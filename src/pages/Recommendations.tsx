@@ -9,22 +9,26 @@ export default function Recommendations() {
   const { recommendations: copy } = t;
 
   return (
-    <Stack gap="md">
+    <Stack gap="xl">
       <PageCard>
         <Title order={1} className="page-title">
           {copy.title}
         </Title>
       </PageCard>
 
-      {recommendations.length === 0 ? (
-        <PageCard>
-          <Text c="dimmed">{copy.empty}</Text>
-        </PageCard>
-      ) : (
-        recommendations.map((rec) => (
-          <RecommendationCard key={rec.id} rec={rec} />
-        ))
-      )}
+      <Stack gap="md">
+        {recommendations.length === 0 ? (
+          <PageCard>
+            <div className="recommendations-empty">
+              <Text c="dimmed">{copy.empty}</Text>
+            </div>
+          </PageCard>
+        ) : (
+          recommendations.map((rec) => (
+            <RecommendationCard key={rec.id} rec={rec} />
+          ))
+        )}
+      </Stack>
     </Stack>
   );
 }

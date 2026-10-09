@@ -2,4 +2,6 @@
   border: 1px solid var(--separator);
   background: var(--bg);
   width: 100%;
+  transition: border-color 0.15s ease;
 }
+.stats-card:hover { border-color: var(--border); }

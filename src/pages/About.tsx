@@ -88,7 +88,8 @@ export default function About() {
         <Title order={2} className="page-title">
           {about.statsTitle}
         </Title>
-        <SimpleGrid cols={{ base: 1, sm: 2 }}>
+        {/* 3 items → 3 columns on sm+, so nothing is left alone on a second row. */}
+        <SimpleGrid cols={{ base: 1, sm: 3 }}>
           <Image src={stats.github} alt={about.statsAltGithub} className="stats-card" radius="md" />
           <Image src={stats.langs} alt={about.statsAltLangs} className="stats-card" radius="md" />
           <Image src={stats.leetcode} alt={about.statsAltLeetcode} className="stats-card" radius="md" />

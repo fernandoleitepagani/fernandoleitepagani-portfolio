@@ -1,4 +1,6 @@
+/* The mobile name sits where the sidebar logo sits on desktop. */
 .mobile-header { display: flex; align-items: center; gap: 12px; }
+.mobile-header .logo { padding: 0; }
 
 /* Page card — one per page/route (PageCard, 2px border).
    Sub card — compact card nested inside a page card (.subcard, 1px border). */
@@ -17,9 +19,16 @@
   border-radius: 10px;
 }
 
-.page-title { font-size: 22px; font-weight: 400; letter-spacing: 2px; }
+.page-title { font-size: var(--text-title); font-weight: 400; letter-spacing: 2px; }
 
-.photo { border: 1px solid var(--border); }
+.photo {
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.photo:hover {
+  border-color: var(--link-hover);
+  transform: scale(1.02);
+}
 
 .tag {
   background: transparent;
@@ -37,6 +46,12 @@
   font-weight: 400;
   text-decoration: none;
   display: inline-block;
-  font-size: 13px;
+  font-size: var(--text-xs);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.btn:hover { border-color: var(--border); color: var(--link-hover); }
+/* One hover pattern for every button: fill with --button-hover-bg / -text. */
+.btn:hover {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  border-color: var(--border);
+}
