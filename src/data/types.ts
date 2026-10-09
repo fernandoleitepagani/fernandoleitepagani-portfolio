@@ -1,5 +1,34 @@
 export type Lang = 'en' | 'pt';
 
+/** One day of the contribution calendar, flattened from GraphQL weeks. */
+export interface GitHubCalendarDay {
+  /** ISO date, e.g. "2026-01-05". */
+  date: string;
+  count: number;
+}
+
+export interface GitHubLanguage {
+  name: string;
+  bytes: number;
+  percent: number;
+}
+
+/**
+ * Shape returned by `GET /api/github` (see `api/github.ts`).
+ * Kept here so the serverless function and the client share one contract.
+ */
+export interface GitHubStats {
+  username: string;
+  public_repos: number;
+  followers: number;
+  following: number;
+  created_at: string;
+  contributions: { total: number; commits: number; pullRequests: number };
+  /** 53 weeks × 7 days, first day is a Sunday (github.com order). */
+  calendar: GitHubCalendarDay[];
+  languages: GitHubLanguage[];
+}
+
 export interface Project {
   name: string;
   /** Repository URL. Omit for projects without public source. */
@@ -51,9 +80,18 @@ export interface Content {
     tagline: string[];
     description: string;
     statsTitle: string;
-    statsAltGithub: string;
-    statsAltLangs: string;
-    statsAltLeetcode: string;
+    heatmapTitle: string;
+    heatmapLess: string;
+    heatmapMore: string;
+    heatmapNone: string;
+    heatmapOne: string;
+    heatmapMany: string;
+    languagesTitle: string;
+    statsContributions: string;
+    statsCommits: string;
+    statsPullRequests: string;
+    statsRepos: string;
+    statsFollowers: string;
   };
   curriculum: { title: string; items: { period: string; title: string; place: string }[] };
   projects: { title: string; viewAll: string; subtitle: string; live: string; sourceCode: string };

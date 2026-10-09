@@ -59,4 +59,21 @@ export default defineConfig([
       sourceType: 'module',
     },
   },
+
+  // ─── Vercel Functions (Node runtime, no React) ───
+  {
+    files: ['api/**/*.ts'],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: globals.node,
+      sourceType: 'module',
+    },
+    rules: {
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
+      ],
+    },
+  },
 ]);

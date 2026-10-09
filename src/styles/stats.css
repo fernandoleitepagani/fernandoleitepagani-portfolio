@@ -1,7 +1,126 @@
-.stats-card {
-  border: 1px solid var(--separator);
-  background: var(--bg);
-  width: 100%;
-  transition: border-color 0.15s ease;
+/* ---------- GitHub stats — data from /api/github, styled with theme tokens ---------- */
+
+/* Block titles inside a stats card: quieter than the page title. */
+.stats-block-title {
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: 0 0 12px;
 }
-.stats-card:hover { border-color: var(--border); }
+
+/* ---------- Contribution heatmap (github.com layout, our theme) ---------- */
+.heat-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.heat-inner {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.heat-weekdays {
+  display: grid;
+  grid-template-rows: repeat(7, var(--heat-cell));
+  gap: var(--heat-gap);
+  font-size: var(--text-2xs);
+  line-height: var(--heat-cell);
+  color: var(--ink-dim);
+}
+
+/* Month names sit above the grid, one slot per week column. */
+.heat-months {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--heat-cell);
+  gap: var(--heat-gap);
+  height: 18px;
+  font-size: var(--text-2xs);
+  line-height: 1;
+  color: var(--ink-dim);
+}
+.heat-months span { white-space: nowrap; }
+
+.heat-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, var(--heat-cell));
+  grid-auto-columns: var(--heat-cell);
+  gap: var(--heat-gap);
+}
+
+.heat-cell {
+  display: inline-block;
+  width: var(--heat-cell);
+  height: var(--heat-cell);
+  border-radius: 2px;
+  background: var(--heat-0);
+}
+.heat-cell[data-level='1'] { background: var(--heat-1); }
+.heat-cell[data-level='2'] { background: var(--heat-2); }
+.heat-cell[data-level='3'] { background: var(--heat-3); }
+.heat-cell[data-level='4'] { background: var(--heat-4); }
+
+.heat-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: var(--text-2xs);
+  color: var(--ink-dim);
+}
+
+/* ---------- Language bars ---------- */
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lang-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.lang-name {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+.lang-percent {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--ink-dim);
+}
+.lang-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--separator);
+  overflow: hidden;
+}
+.lang-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--ink);
+  transition: width 0.3s ease;
+}
+
+/* ---------- Headline counters ---------- */
+.stats-counters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-content: start;
+}
+.stats-counter-value {
+  margin: 0;
+  font-size: var(--text-title);
+  line-height: 1.1;
+}
+.stats-counter-label {
+  margin: 4px 0 0;
+  font-size: var(--text-2xs);
+  color: var(--ink-dim);
+}

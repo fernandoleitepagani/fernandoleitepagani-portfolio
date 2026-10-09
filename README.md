@@ -164,6 +164,27 @@ VITE_EMAILJS_PUBLIC_KEY=
 
 **Without these variables**, the rest of the site works fine — only the contact form fails.
 
+#### `GITHUB_TOKEN` (optional — GitHub stats)
+
+The About page's stats (contribution heatmap, most used languages and the headline counters) come from a Vercel Function in `api/github.ts`, the only place that talks to `api.github.com`:
+
+```
+browser ──► /api/github ──► api.github.com
+              │ holds GITHUB_TOKEN (server-only)
+              │ caches the answer for 5 min (CDN)
+              ◄── JSON
+```
+
+```
+GITHUB_TOKEN=
+```
+
+- **No `VITE_` prefix.** It is read on the server at runtime and must never reach the browser bundle. Verify with `npm run build && grep -r "$GITHUB_TOKEN" dist/` — it must print nothing.
+- Create a **fine-grained** token with read-only access to public repositories. No write scopes.
+- Add it in Vercel under **Settings → Environment Variables** for Production, Preview and Development.
+- **Without it**, the site is unaffected: the About page just skips the stats section.
+- Local development: `npx vercel dev` runs the function locally (`npm run dev` alone shows no stats).
+
 ### Scripts
 
 | Command | Description |

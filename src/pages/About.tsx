@@ -5,20 +5,26 @@ import {
   Group,
   Image,
   SimpleGrid,
+  Skeleton,
   Stack,
   Text,
   Title,
 } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import ContributionGrid from '../components/ContributionGrid';
+import LanguageBars from '../components/LanguageBars';
 import PageCard from '../components/PageCard';
 import ProjectCard from '../components/ProjectCard';
+import StatsCard from '../components/StatsCard';
+import { useGitHubStats } from '../hooks/useGitHubStats';
 import { useLanguage } from '../context/LanguageContext';
-import { profile, projects, stats } from '../data/content';
+import { profile, projects } from '../data/content';
 
 export default function About() {
   const { t } = useLanguage();
   const { about, projects: text, tools } = t;
   const featured = projects.filter((p) => p.featured);
+  const { state, data: stats } = useGitHubStats(profile.githubUser);
 
   return (
     <Stack gap="xl">
@@ -84,17 +90,32 @@ export default function About() {
         </Stack>
       )}
 
-      <Stack gap="md">
-        <Title order={2} className="page-title">
-          {about.statsTitle}
-        </Title>
-        {/* 3 items → 3 columns on sm+, so nothing is left alone on a second row. */}
-        <SimpleGrid cols={{ base: 1, sm: 3 }}>
-          <Image src={stats.github} alt={about.statsAltGithub} className="stats-card" radius="md" />
-          <Image src={stats.langs} alt={about.statsAltLangs} className="stats-card" radius="md" />
-          <Image src={stats.leetcode} alt={about.statsAltLeetcode} className="stats-card" radius="md" />
-        </SimpleGrid>
-      </Stack>
+      {state !== 'fallback' && (
+        <Stack gap="md">
+          <Title order={2} className="page-title">
+            {about.statsTitle}
+          </Title>
+
+          {state === 'loading' && <Skeleton height={160} radius="md" />}
+
+          {state === 'ready' && stats && (
+            <>
+              <PageCard p="md">
+                <ContributionGrid days={stats.calendar} />
+              </PageCard>
+
+              <SimpleGrid cols={{ base: 1, sm: 2 }}>
+                <PageCard p="md">
+                  <LanguageBars languages={stats.languages} />
+                </PageCard>
+                <PageCard p="md">
+                  <StatsCard stats={stats} />
+                </PageCard>
+              </SimpleGrid>
+            </>
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 }
