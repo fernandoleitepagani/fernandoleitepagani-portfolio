@@ -61,5 +61,6 @@ export interface Content {
     formSent: string;
     formSendAnother: string;
     formError: string;
+    formPartial: string;
   };
 }
