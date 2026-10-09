@@ -1,5 +1,7 @@
 .mobile-header { display: flex; align-items: center; gap: 12px; }
 
+/* Page card — one per page/route (PageCard, 2px border).
+   Sub card — compact card nested inside a page card (.subcard, 1px border). */
 .card {
   background: var(--bg);
   color: var(--ink);

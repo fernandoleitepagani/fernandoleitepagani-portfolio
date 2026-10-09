@@ -86,12 +86,12 @@ export default function About() {
 
       <Stack gap="md">
         <Title order={2} className="page-title">
-          Stats
+          {about.statsTitle}
         </Title>
         <SimpleGrid cols={{ base: 1, sm: 2 }}>
-          <Image src={stats.github} alt="GitHub stats" className="stats-card" radius="md" />
-          <Image src={stats.langs} alt="Top languages" className="stats-card" radius="md" />
-          <Image src={stats.leetcode} alt="LeetCode stats" className="stats-card" radius="md" />
+          <Image src={stats.github} alt={about.statsAltGithub} className="stats-card" radius="md" />
+          <Image src={stats.langs} alt={about.statsAltLangs} className="stats-card" radius="md" />
+          <Image src={stats.leetcode} alt={about.statsAltLeetcode} className="stats-card" radius="md" />
         </SimpleGrid>
       </Stack>
     </Stack>

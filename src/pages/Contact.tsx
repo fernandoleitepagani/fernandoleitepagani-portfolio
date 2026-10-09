@@ -36,18 +36,18 @@ export default function Contact() {
   const links = [
     { label: contact.email, href: `mailto:${profile.email}`, text: profile.email, icon: IconMail },
     { label: contact.emailWork, href: `mailto:${profile.emailWork}`, text: profile.emailWork, icon: IconMail },
-    { label: 'Github', href: profile.github, text: 'fernandoleitepagani', icon: IconBrandGithub },
-    { label: 'Linkedin', href: profile.linkedin, text: 'fernandoleitepagani', icon: IconBrandLinkedin },
-    { label: 'Instagram', href: profile.instagram, text: '@fernandoleitepagani', icon: IconBrandInstagram },
-    { label: 'Lattes', href: profile.lattes, text: 'Currículo Lattes', icon: IconSchool },
+    { label: contact.labelGithub, href: profile.github, text: 'fernandoleitepagani', icon: IconBrandGithub },
+    { label: contact.labelLinkedin, href: profile.linkedin, text: 'fernandoleitepagani', icon: IconBrandLinkedin },
+    { label: contact.labelInstagram, href: profile.instagram, text: '@fernandoleitepagani', icon: IconBrandInstagram },
+    { label: contact.labelLattes, href: profile.lattes, text: contact.lattesText, icon: IconSchool },
     { label: contact.location, href: undefined, text: profile.location, icon: IconMapPin },
   ];
 
   const socials = [
-    { href: profile.linkedin, icon: IconBrandLinkedin, label: 'LinkedIn' },
-    { href: profile.github, icon: IconBrandGithub, label: 'GitHub' },
-    { href: profile.instagram, icon: IconBrandInstagram, label: 'Instagram' },
-    { href: `mailto:${profile.emailWork}`, icon: IconMail, label: 'Email' },
+    { href: profile.linkedin, icon: IconBrandLinkedin, label: contact.labelLinkedin },
+    { href: profile.github, icon: IconBrandGithub, label: contact.labelGithub },
+    { href: profile.instagram, icon: IconBrandInstagram, label: contact.labelInstagram },
+    { href: `mailto:${profile.emailWork}`, icon: IconMail, label: contact.labelEmail },
   ];
 
   const sendEmail = async (e: React.FormEvent) => {
