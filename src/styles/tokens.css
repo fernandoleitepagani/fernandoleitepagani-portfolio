@@ -8,6 +8,10 @@
   --link-hover: #fff;
   --button-hover-bg: #fff;
   --button-hover-text: #000;
+  --window-bar: #171717;
+  --dot-red: #ff5f56;
+  --dot-yellow: #ffbd2e;
+  --dot-green: #27c93f;
 }
 :root[data-theme='matrix'] {
   --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;

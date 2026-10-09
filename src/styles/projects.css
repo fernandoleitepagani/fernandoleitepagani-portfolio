@@ -1,0 +1,150 @@
+/* ---------- Project showcase (Projects page + About featured) ---------- */
+.project {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.project-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Side-by-side media/text only when the card itself is wide enough. */
+@container (min-width: 46rem) {
+  .project-inner { grid-template-columns: 0.4fr 0.6fr; }
+}
+
+.project-media { min-width: 0; }
+
+/* macOS-style window frame */
+.project-window {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--separator);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.project-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--separator);
+  background: var(--window-bar);
+}
+.project-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+.project-dot[data-dot='red'] { background: var(--dot-red); }
+.project-dot[data-dot='yellow'] { background: var(--dot-yellow); }
+.project-dot[data-dot='green'] { background: var(--dot-green); }
+
+.project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-width: 0;
+}
+.project-info-top { display: flex; flex-direction: column; gap: 16px; }
+
+.project-name {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+.project-category {
+  margin-top: 4px;
+  color: var(--ink-dim);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-description {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.project-link:hover { border-color: var(--border); color: var(--link-hover); }
+
+.project-link-primary {
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-bg);
+  color: var(--button-hover-text);
+}
+.project-link-primary:hover {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--ink);
+}
+
+/* ---------- Compact variant (About page featured grid) ---------- */
+.project-compact {
+  border-color: var(--separator);
+}
+.project-compact-name {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.project-compact-name:hover { color: var(--link-hover); }
+
+.project-compact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 6px 12px;
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.project-compact-btn:hover { border-color: var(--border); color: var(--link-hover); }
+
+/* ---------- Separator between showcase projects ---------- */
+.projects-list > .project + .project {
+  border-top: 1px solid var(--separator);
+  padding-top: 32px;
+}

@@ -2,8 +2,18 @@ export type Lang = 'en' | 'pt';
 
 export interface Project {
   name: string;
-  url: string;
+  /** Repository URL. Omit for projects without public source. */
+  githubUrl?: string;
+  /** Deployed/live URL, when the project is publicly available. */
+  liveUrl?: string;
+  /**
+   * Preview image under `public/projects/`, referenced as
+   * `/projects/{file}`. Omit to render the card without media.
+   */
+  screenshot?: string;
   tags: string[];
+  /** Short category shown above the description, e.g. "Personal project". */
+  category: Record<Lang, string>;
   featured?: boolean;
   description: Record<Lang, string>;
 }
@@ -31,7 +41,7 @@ export interface Content {
   themeLabel: string;
   about: { title: string; tagline: string[]; description: string };
   curriculum: { title: string; items: { period: string; title: string; place: string }[] };
-  projects: { title: string; viewAll: string };
+  projects: { title: string; viewAll: string; subtitle: string; live: string; sourceCode: string };
   tools: { title: string; groups: { name: string; items: string[] }[] };
   interests: { title: string; items: string[] };
   recommendations: { title: string; empty: string };

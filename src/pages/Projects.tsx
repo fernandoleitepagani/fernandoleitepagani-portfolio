@@ -1,4 +1,4 @@
-import { SimpleGrid, Stack, Title } from '@mantine/core';
+import { Stack, Text, Title } from '@mantine/core';
 import PageCard from '../components/PageCard';
 import ProjectCard from '../components/ProjectCard';
 import { useLanguage } from '../context/LanguageContext';
@@ -8,18 +8,21 @@ export default function Projects() {
   const { projects: text } = useLanguage().t;
 
   return (
-    <Stack gap="md">
+    <Stack gap="lg">
       <PageCard>
-        <Title order={1} className="page-title">
-          {text.title}
-        </Title>
+        <Stack gap="xs">
+          <Title order={1} className="page-title">
+            {text.title}
+          </Title>
+          <Text c="dimmed">{text.subtitle}</Text>
+        </Stack>
       </PageCard>
 
-      <SimpleGrid cols={{ base: 1, sm: 2 }}>
+      <Stack gap="lg" className="projects-list">
         {projects.map((p) => (
           <ProjectCard key={p.name} project={p} />
         ))}
-      </SimpleGrid>
+      </Stack>
     </Stack>
   );
 }
