@@ -5,6 +5,7 @@ export const content: Record<Lang, Content> = {
     nav: {
       about: 'About',
       resume: 'Resume',
+      skills: 'Skills',
       projects: 'Projects',
       academics: 'Academics',
       awards: 'Awards',
@@ -109,6 +110,21 @@ export const content: Record<Lang, Content> = {
       updated: 'Updated {when}',
       preview: 'preview image',
     },
+    skills: {
+      title: 'Skills',
+      subtitle: 'Technologies I use, arranged on an interactive globe.',
+      all: 'All',
+      viewGlobe: 'Globe',
+      viewList: 'List',
+      hint: 'Drag to spin · click an icon to open the link',
+      explore: 'Explore all skills',
+      categories: {
+        languages: 'Languages',
+        web: 'Web',
+        systems: 'Systems & infra',
+        setup: 'Daily setup',
+      },
+    },
     tools: {
       title: 'Tools',
       groups: [
@@ -167,6 +183,7 @@ export const content: Record<Lang, Content> = {
     nav: {
       about: 'Sobre',
       resume: 'Currículo',
+      skills: 'Habilidades',
       projects: 'Projetos',
       academics: 'Acadêmico',
       awards: 'Prêmios',
@@ -270,6 +287,21 @@ export const content: Record<Lang, Content> = {
       forks: 'Forks',
       updated: 'Atualizado {when}',
       preview: 'imagem de prévia',
+    },
+    skills: {
+      title: 'Habilidades',
+      subtitle: 'Tecnologias que eu uso, dispostas num globo interativo.',
+      all: 'Todas',
+      viewGlobe: 'Globo',
+      viewList: 'Lista',
+      hint: 'Arraste para girar · clique num ícone para abrir o link',
+      explore: 'Explorar todas as habilidades',
+      categories: {
+        languages: 'Linguagens',
+        web: 'Web',
+        systems: 'Sistemas e infra',
+        setup: 'Setup diário',
+      },
     },
     tools: {
       title: 'Ferramentas',

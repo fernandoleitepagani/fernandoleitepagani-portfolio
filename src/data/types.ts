@@ -144,7 +144,10 @@ export interface AwardsContent {
 }
 
 export interface Content {
-  nav: Record<'about' | 'resume' | 'projects' | 'academics' | 'awards' | 'recommendations' | 'contact', string>;
+  nav: Record<
+    'about' | 'resume' | 'skills' | 'projects' | 'academics' | 'awards' | 'recommendations' | 'contact',
+    string
+  >;
   themeLabel: string;
   a11y: {
     language: string;
@@ -208,6 +211,16 @@ export interface Content {
     forks: string;
     updated: string;
     preview: string;
+  };
+  skills: {
+    title: string;
+    subtitle: string;
+    all: string;
+    viewGlobe: string;
+    viewList: string;
+    hint: string;
+    explore: string;
+    categories: Record<'languages' | 'web' | 'systems' | 'setup', string>;
   };
   tools: { title: string; groups: { name: string; items: string[] }[] };
   interests: { title: string; items: string[] };

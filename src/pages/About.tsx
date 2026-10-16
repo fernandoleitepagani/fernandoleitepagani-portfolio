@@ -1,6 +1,5 @@
 import {
   Anchor,
-  Badge,
   Flex,
   Group,
   Image,
@@ -18,6 +17,7 @@ import ContributionGrid from '../components/ContributionGrid';
 import LanguageBars from '../components/LanguageBars';
 import PageCard from '../components/PageCard';
 import ProjectCard from '../components/ProjectCard';
+import SkillsSection from '../components/skills/SkillsSection';
 import StatsCard from '../components/StatsCard';
 import { useGitHubStats } from '../hooks/useGitHubStats';
 import { useLanguage } from '../context/LanguageContext';
@@ -25,7 +25,7 @@ import { mergeProjects, profile, projects as curatedProjects } from '../data/con
 
 export default function About() {
   const { t } = useLanguage();
-  const { about, projects: text, tools, interests } = t;
+  const { about, projects: text, interests } = t;
   const { state, data } = useGitHubStats(profile.githubUser);
 
   const liveProjects = state === 'ready' && data ? mergeProjects(data.repos) : [];
@@ -83,21 +83,15 @@ export default function About() {
       </PageCard>
 
       <Stack gap="md">
-        <Title order={2} className="page-title">
-          {tools.title}
-        </Title>
-        {tools.groups.map((group) => (
-          <Stack key={group.name} gap="xs">
-            <Text c="dimmed">{group.name}</Text>
-            <Group gap="xs">
-              {group.items.map((item) => (
-                <Badge key={item} variant="outline" className="tag">
-                  {item}
-                </Badge>
-              ))}
-            </Group>
-          </Stack>
-        ))}
+        <Group justify="space-between">
+          <Title order={2} className="page-title">
+            {t.skills.title}
+          </Title>
+          <Anchor component={Link} to="/skills" className="link">
+            {t.skills.explore} →
+          </Anchor>
+        </Group>
+        <SkillsSection compact />
       </Stack>
 
       <Stack gap="md">

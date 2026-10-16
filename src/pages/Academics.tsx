@@ -12,16 +12,7 @@ export default function Academics() {
   );
 
   return (
-    <Stack gap="xl">
-      <PageCard>
-        <Stack gap="xs">
-          <Title order={1} className="page-title">
-            {content.title}
-          </Title>
-          <Text c="dimmed">{content.subtitle}</Text>
-        </Stack>
-      </PageCard>
-
+    <Stack gap="md">
       <PageCard>
         <Stack gap="xs">
           <Title order={2} className="page-title">

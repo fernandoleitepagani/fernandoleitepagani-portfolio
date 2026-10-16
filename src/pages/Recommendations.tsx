@@ -1,4 +1,4 @@
-import { Stack, Text, Title } from '@mantine/core';
+import { Stack, Text } from '@mantine/core';
 import PageCard from '../components/PageCard';
 import RecommendationCard from '../components/RecommendationCard';
 import { useLanguage } from '../context/LanguageContext';
@@ -9,26 +9,18 @@ export default function Recommendations() {
   const { recommendations: copy } = t;
 
   return (
-    <Stack gap="xl">
-      <PageCard>
-        <Title order={1} className="page-title">
-          {copy.title}
-        </Title>
-      </PageCard>
-
-      <Stack gap="md">
-        {recommendations.length === 0 ? (
-          <PageCard>
-            <div className="recommendations-empty">
-              <Text c="dimmed">{copy.empty}</Text>
-            </div>
-          </PageCard>
-        ) : (
-          recommendations.map((rec) => (
-            <RecommendationCard key={rec.id} rec={rec} />
-          ))
-        )}
-      </Stack>
+    <Stack gap="md">
+      {recommendations.length === 0 ? (
+        <PageCard>
+          <div className="recommendations-empty">
+            <Text c="dimmed">{copy.empty}</Text>
+          </div>
+        </PageCard>
+      ) : (
+        recommendations.map((rec) => (
+          <RecommendationCard key={rec.id} rec={rec} />
+        ))
+      )}
     </Stack>
   );
 }
