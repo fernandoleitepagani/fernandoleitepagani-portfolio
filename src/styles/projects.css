@@ -166,8 +166,77 @@
 }
 .project-compact-btn:hover { border-color: var(--border); color: var(--link-hover); }
 
-/* ---------- Separator between showcase projects ---------- */
-.projects-list > .project + .project {
-  border-top: 1px solid var(--separator);
-  padding-top: 32px;
+/* ---------- Timeline (Projects page) ---------- */
+.projects-timeline {
+  --tl-line: 7px;
+  --tl-node: 15px;
+  --tl-gap: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tl-gap);
+}
+.projects-timeline-item {
+  position: relative;
+  padding-left: 40px;
+}
+/* Connector spans each card plus the gap that reaches the next node. */
+.projects-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: var(--tl-line);
+  top: 0;
+  bottom: calc(-1 * var(--tl-gap));
+  width: 1px;
+  background: var(--separator);
+}
+.projects-timeline-item:first-child::before {
+  top: 50%;
+  background: linear-gradient(to bottom, transparent, var(--separator) 30%);
+}
+.projects-timeline-item:last-child::before {
+  bottom: 50%;
+  background: linear-gradient(to bottom, var(--separator), transparent);
+}
+
+/* Node sits on the rail, centered on its card. */
+.projects-timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--tl-node);
+  height: var(--tl-node);
+  margin-top: calc(var(--tl-node) / -2);
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--separator);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+.projects-timeline-item[data-active]::after {
+  background: var(--button-hover-bg);
+  border-color: var(--border);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 10%, transparent);
+  transform: scale(1.15);
+}
+
+/* Faint card, matching the site's sub-cards. */
+.projects-timeline .project {
+  border: 1px solid var(--separator);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.projects-timeline-item[data-active] .project {
+  border-color: color-mix(in srgb, var(--border) 45%, var(--separator));
+  box-shadow: 0 30px 70px -58px color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+@media (max-width: 30em) {
+  .projects-timeline { --tl-line: 5px; --tl-node: 11px; --tl-gap: 36px; }
+  .projects-timeline-item { padding-left: 26px; }
+  .projects-timeline .project { padding: 14px; }
 }
