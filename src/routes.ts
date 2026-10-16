@@ -1,17 +1,27 @@
+import type { ComponentType } from 'react';
 import {
-  IconFileText,
+  IconAward,
+  IconFileCv,
   IconFolder,
-  IconHeart,
   IconMail,
-  IconMessage,
+  IconMessageCircle,
+  IconSchool,
   IconUser,
 } from '@tabler/icons-react';
 
-export const navItems = [
+export interface NavItem {
+  key: 'about' | 'resume' | 'projects' | 'academics' | 'awards' | 'recommendations' | 'contact';
+  path: string;
+  icon: ComponentType<{ size?: number; stroke?: number }>;
+  size?: number;
+}
+
+export const navItems: NavItem[] = [
   { key: 'about', path: '/', icon: IconUser },
-  { key: 'curriculum', path: '/curriculum', icon: IconFileText },
+  { key: 'resume', path: '/resume', icon: IconFileCv },
   { key: 'projects', path: '/projects', icon: IconFolder },
-  { key: 'interests', path: '/interests', icon: IconHeart },
-  { key: 'recommendations', path: '/recommendations', icon: IconMessage },
+  { key: 'academics', path: '/academics', icon: IconSchool },
+  { key: 'awards', path: '/awards', icon: IconAward },
+  { key: 'recommendations', path: '/recommendations', icon: IconMessageCircle, size: 21 },
   { key: 'contact', path: '/contact', icon: IconMail },
-] as const;
+];
