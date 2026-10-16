@@ -98,7 +98,7 @@ export default function About() {
         <Title order={2} className="page-title">
           {interests.title}
         </Title>
-        <List spacing="xs">
+        <List spacing="xs" className="interests">
           {interests.items.map((item) => (
             <List.Item key={item}>{item}</List.Item>
           ))}
