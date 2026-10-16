@@ -150,9 +150,12 @@ export const content: Record<Lang, Content> = {
     },
     recommendations: {
       title: 'Recommendations',
+      subtitle:
+        'What professors, colleagues and mentors say about working with me — in full, without edits.',
       empty: 'No recommendations yet.',
       readMore: 'Read more',
       readLess: 'Read less',
+      viewAll: 'View all',
     },
     contact: {
       title: 'Contacts',
@@ -332,9 +335,12 @@ export const content: Record<Lang, Content> = {
     },
     recommendations: {
       title: 'Recomendações',
+      subtitle:
+        'O que professores, colegas e mentores dizem sobre trabalhar comigo — na íntegra, sem edições.',
       empty: 'Nenhuma recomendação ainda.',
       readMore: 'Ver mais',
       readLess: 'Ver menos',
+      viewAll: 'Ver todas',
     },
     contact: {
       title: 'Contato',

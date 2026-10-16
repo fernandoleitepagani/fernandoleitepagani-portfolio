@@ -228,7 +228,14 @@ export interface Content {
   };
   tools: { title: string; groups: { name: string; items: string[] }[] };
   interests: { title: string; items: string[] };
-  recommendations: { title: string; empty: string; readMore: string; readLess: string };
+  recommendations: {
+    title: string;
+    subtitle: string;
+    empty: string;
+    readMore: string;
+    readLess: string;
+    viewAll: string;
+  };
   contact: {
     title: string;
     subtitle: string;

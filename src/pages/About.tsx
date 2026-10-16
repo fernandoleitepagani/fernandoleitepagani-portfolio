@@ -45,11 +45,11 @@ export default function About() {
   const showActivity = state !== 'fallback';
 
   const sections: PageIndexItem[] = [
-    { id: 'projects', label: text.title },
     { id: 'experience', label: resume.experienceTitle },
     { id: 'education', label: resume.educationTitle },
-    { id: 'recommendations', label: recText.title },
+    { id: 'projects', label: text.title },
     { id: 'skills', label: t.skills.title },
+    { id: 'recommendations', label: recText.title },
     { id: 'interests', label: interests.title },
   ];
   if (showActivity) sections.push({ id: 'activity', label: about.githubTitle });
@@ -95,31 +95,10 @@ export default function About() {
 
       <PageIndex items={sections} />
 
-      {featured.length > 0 && (
-        <section id="projects" className="page-section">
-          <Stack gap="md">
-            <SectionHead
-              index={1}
-              title={text.title}
-              action={
-                <Link to="/projects" viewTransition className="link">
-                  {text.viewAll} →
-                </Link>
-              }
-            />
-            <SimpleGrid cols={{ base: 1, sm: 2 }}>
-              {featured.map((project) => (
-                <ProjectCard key={project.name} project={project} variant="compact" />
-              ))}
-            </SimpleGrid>
-          </Stack>
-        </section>
-      )}
-
       <section id="experience" className="page-section">
         <Stack gap="md">
           <SectionHead
-            index={2}
+            index={1}
             title={resume.experienceTitle}
             action={
               <Link to="/resume" viewTransition className="link">
@@ -152,7 +131,7 @@ export default function About() {
       <section id="education" className="page-section">
         <Stack gap="md">
           <SectionHead
-            index={3}
+            index={2}
             title={resume.educationTitle}
             action={
               <Link to="/academics" viewTransition className="link">
@@ -177,21 +156,31 @@ export default function About() {
         </Stack>
       </section>
 
-      <section id="recommendations" className="page-section">
-        <Stack gap="md">
-          <SectionHead index={4} title={recText.title} />
-          {recommendations.length === 0 ? (
-            <Text c="dimmed">{recText.empty}</Text>
-          ) : (
-            recommendations.map((rec) => <RecommendationCard key={rec.id} rec={rec} />)
-          )}
-        </Stack>
-      </section>
+      {featured.length > 0 && (
+        <section id="projects" className="page-section">
+          <Stack gap="md">
+            <SectionHead
+              index={3}
+              title={text.title}
+              action={
+                <Link to="/projects" viewTransition className="link">
+                  {text.viewAll} →
+                </Link>
+              }
+            />
+            <SimpleGrid cols={{ base: 1, sm: 2 }}>
+              {featured.map((project) => (
+                <ProjectCard key={project.name} project={project} variant="compact" />
+              ))}
+            </SimpleGrid>
+          </Stack>
+        </section>
+      )}
 
       <section id="skills" className="page-section">
         <Stack gap="md">
           <SectionHead
-            index={5}
+            index={4}
             title={t.skills.title}
             action={
               <Link to="/skills" viewTransition className="link">
@@ -200,6 +189,25 @@ export default function About() {
             }
           />
           <SkillsSection compact />
+        </Stack>
+      </section>
+
+      <section id="recommendations" className="page-section">
+        <Stack gap="md">
+          <SectionHead
+            index={5}
+            title={recText.title}
+            action={
+              <Link to="/recommendations" viewTransition className="link">
+                {recText.viewAll} →
+              </Link>
+            }
+          />
+          {recommendations.length === 0 ? (
+            <Text c="dimmed">{recText.empty}</Text>
+          ) : (
+            recommendations.slice(0, 2).map((rec) => <RecommendationCard key={rec.id} rec={rec} />)
+          )}
         </Stack>
       </section>
 
