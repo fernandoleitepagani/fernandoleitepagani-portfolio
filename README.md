@@ -27,9 +27,12 @@ Live: [fernandoleitepagani-portfolio.vercel.app](https://fernandoleitepagani-por
 
 - **Three themes** — Dark, Matrix, CRT — switchable at runtime, persisted to `localStorage`.
 - **Bilingual** — Portuguese and English, switchable at runtime, persisted to `localStorage`.
+- **Resume** — a dedicated résumé page with a one-page PDF for each language, generated from `scripts/resume/`.
+- **Project case studies** — every curated project has a detail page at `/projects/:slug` with motivation, how it works, the hard part and takeaways. Data lives in `src/data/projects.ts`.
+- **Academics & awards** — coursework by semester plus a certificates section (`src/data/academics.ts`), and honors/recognitions (`src/data/awards.ts`).
 - **Contact form** — sends a notification to the owner and an auto-reply to the visitor, both via EmailJS.
 - **Recommendations** — cards with avatar, relationship context, text, and LinkedIn link. Data lives in `src/data/recommendations.ts`.
-- **GitHub / LeetCode stats** — embedded as live images on the About page.
+- **GitHub stats & projects** — contribution heatmap, most-used languages, headline counters and project cards, served by our own `/api/github` function and merged with the curated list in `src/data/projects.ts`.
 - **Responsive** — collapsible sidebar on desktop, drawer on mobile.
 
 ---
@@ -209,6 +212,7 @@ Two behaviours worth knowing:
 | `npm run dev:api` | Serve `/api/github` locally on `:8787` (reads `.env.local`) |
 | `npm run dev:local` | Vite with `/api` proxied to `dev:api` — run both to browse the full site |
 | `npm run check:api` | Contract check for the GitHub endpoint (optionally pass a deployed URL) |
+| `npm run resume:pdf` | Regenerate the résumé PDFs from `scripts/resume/` (needs a Chromium binary) |
 | `npm run build` | Type-check (`tsc -b`) then build to `dist/` |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | Run ESLint |
