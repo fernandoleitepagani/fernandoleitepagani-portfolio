@@ -1,6 +1,57 @@
-/* The mobile name sits where the sidebar logo sits on desktop. */
-.mobile-header { display: flex; align-items: center; gap: 12px; }
-.mobile-header .logo { padding: 0; }
+/* Every page eases in once, on route change. */
+.page-container > * { animation: rise-in var(--dur-slow) var(--ease-organic); }
+
+/* Floating chrome — the sidebar and the mobile header detach from the viewport edges. */
+@media (min-width: 48em) {
+  .app-navbar { background: transparent; border: 0; padding: 10px; }
+  .app-navbar > .sidebar {
+    height: 100%;
+    padding: 8px;
+    background: var(--bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 47.99em) {
+  .app-header {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    height: auto;
+    padding: 0;
+    background: var(--bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .app-main {
+    padding-top: calc(var(--app-shell-header-offset, 0rem) + var(--app-shell-padding) + 8px);
+  }
+}
+
+/* The mobile menu is the floating header unfolding downwards. */
+.mobile-bar { display: flex; align-items: center; gap: 12px; height: 54px; padding: 0 16px; }
+.mobile-bar .logo { padding: 0; white-space: nowrap; }
+.mobile-menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur) var(--ease-organic); }
+.mobile-menu[data-open] { grid-template-rows: 1fr; }
+.mobile-menu-inner {
+  min-height: 0; overflow: hidden;
+  opacity: 0; transform: translateY(-6px);
+  transition: opacity var(--dur) var(--ease-organic), transform var(--dur) var(--ease-organic);
+}
+.mobile-menu[data-open] > .mobile-menu-inner {
+  opacity: 1; transform: none;
+  border-top: 1px solid var(--separator);
+}
+.mobile-menu .sidebar { height: auto; }
+
+/* Interests — two balanced columns on wide screens. */
+.interests { columns: 2; column-gap: 32px; }
+.interests li { break-inside: avoid; }
+@media (max-width: 48em) {
+  .interests { columns: 1; }
+}
 
 /* Page card — one per page/route (PageCard, 2px border).
    Sub card — compact card nested inside a page card (.subcard, 1px border). */
@@ -8,22 +59,24 @@
   background: var(--bg);
   color: var(--ink);
   border: 2px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   width: 100%;
   box-sizing: border-box;
+  transition: border-color var(--dur) var(--ease-soft);
 }
 .subcard {
-  background: var(--bg);
+  background: var(--surface);
   color: var(--ink);
-  border: 1px solid var(--separator);
-  border-radius: 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition: border-color var(--dur) var(--ease-soft), background var(--dur) var(--ease-soft);
 }
 
-.page-title { font-size: var(--text-title); font-weight: 400; letter-spacing: 2px; }
+.page-title { font-size: var(--text-title); font-weight: 400; letter-spacing: 2px; text-wrap: balance; }
 
 .photo {
   border: 1px solid var(--border);
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  transition: border-color var(--dur) var(--ease-soft), transform var(--dur-slow) var(--ease-organic);
 }
 .photo:hover {
   border-color: var(--link-hover);
@@ -31,11 +84,17 @@
 }
 
 .tag {
-  background: transparent;
+  background: var(--surface);
   color: var(--ink);
-  border-color: var(--separator);
+  border-color: var(--hairline);
+  border-radius: var(--radius-pill);
   text-transform: none;
   font-weight: 400;
+  transition: border-color var(--dur-fast) var(--ease-soft), background var(--dur-fast) var(--ease-soft);
+}
+.tag:hover {
+  background: var(--surface-strong);
+  border-color: var(--separator);
 }
 
 .btn,
@@ -43,17 +102,23 @@
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--separator);
+  border-radius: var(--radius-sm);
   font-weight: 400;
   text-decoration: none;
   display: inline-block;
   font-size: var(--text-xs);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background var(--dur) var(--ease-soft),
+    color var(--dur) var(--ease-soft),
+    border-color var(--dur) var(--ease-soft),
+    transform var(--dur-fast) var(--ease-organic);
 }
 /* One hover pattern for every button: fill with --button-hover-bg / -text. */
 .btn:hover {
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
   border-color: var(--border);
+  transform: translateY(-1px);
 }
 
 /* Availability badge with a small pulsing dot. */
@@ -63,8 +128,9 @@
   gap: 8px;
   width: fit-content;
   padding: 4px 12px;
-  border: 1px solid var(--separator);
-  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
   font-size: var(--text-2xs);
   letter-spacing: 0.5px;
   color: var(--ink-dim);
@@ -92,15 +158,20 @@
   min-width: 168px;
   padding: 9px 16px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--ink);
   font-size: var(--text-xs);
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background var(--dur) var(--ease-soft),
+    color var(--dur) var(--ease-soft),
+    border-color var(--dur) var(--ease-soft),
+    transform var(--dur) var(--ease-organic);
 }
 .cta:hover,
 .cta:focus-visible {
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
   border-color: var(--border);
+  transform: translateY(-2px);
 }
