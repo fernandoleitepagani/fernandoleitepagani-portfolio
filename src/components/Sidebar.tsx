@@ -38,7 +38,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
   return (
     <div className="sidebar" data-collapsed={collapsed || undefined}>
       <div className="sidebar-top">
-        {collapsed ? <IconWorld size={20} className="logo-icon" /> : <Text className="logo">{profile.name}</Text>}
+        {collapsed ? <IconWorld size={20} className="logo-icon" /> : <Text className="logo">{profile.displayName}</Text>}
         {onToggle && (
           <UnstyledButton
             className="icon-btn"
@@ -51,7 +51,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
       </div>
 
       <nav>
-        {navItems.map(({ key, path, icon: Icon }) => {
+        {navItems.map(({ key, path, icon: Icon, size }) => {
           const label = t.nav[key];
           return (
             <Tooltip key={key} label={label} position="right" disabled={!collapsed}>
@@ -63,7 +63,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
                 aria-label={label}
                 onClick={onNavigate}
               >
-                <Icon size={18} stroke={1.5} />
+                <Icon size={size ?? 18} stroke={1.5} />
                 {!collapsed && <span>{label}</span>}
               </UnstyledButton>
             </Tooltip>
@@ -81,7 +81,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
               })()}
             </UnstyledButton>
           </Tooltip>
-          <Tooltip label={lang === 'pt' ? 'English' : 'Português'} position="top">
+          <Tooltip label={`${t.a11y.language}: ${lang === 'pt' ? 'Português' : 'English'}`} position="top">
             <UnstyledButton className="action-btn" onClick={toggleLang} aria-label={t.a11y.language}>
               <IconLanguage size={18} stroke={1.5} />
             </UnstyledButton>
