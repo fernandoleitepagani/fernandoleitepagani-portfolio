@@ -4,6 +4,7 @@ import {
   Flex,
   Group,
   Image,
+  List,
   Paper,
   SimpleGrid,
   Skeleton,
@@ -11,6 +12,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
+import { IconBrandGithub, IconFileCv, IconMail } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import ContributionGrid from '../components/ContributionGrid';
 import LanguageBars from '../components/LanguageBars';
@@ -23,7 +25,7 @@ import { mergeProjects, profile, projects as curatedProjects } from '../data/con
 
 export default function About() {
   const { t } = useLanguage();
-  const { about, projects: text, tools } = t;
+  const { about, projects: text, tools, interests } = t;
   const { state, data } = useGitHubStats(profile.githubUser);
 
   const liveProjects = state === 'ready' && data ? mergeProjects(data.repos) : [];
@@ -35,29 +37,49 @@ export default function About() {
   return (
     <Stack gap="xl">
       <PageCard>
-        <Flex gap="xl" justify="space-between" direction={{ base: 'column-reverse', sm: 'row' }}>
-          <Stack gap="md" maw={400}>
-            <Title order={1} className="page-title">
-              {about.title}
-            </Title>
-            <div>
-              {about.tagline.map((line) => (
-                <Text key={line}>{line}</Text>
-              ))}
-            </div>
-            <Text>{about.description}</Text>
-          </Stack>
-          <Image
-            src="/photo.jpg"
-            alt={profile.name}
-            w={300}
-            h={400}
-            maw="100%"
-            fit="cover"
-            radius="md"
-            className="photo"
-          />
-        </Flex>
+        <Stack gap="lg">
+          <Flex gap="xl" justify="space-between" direction={{ base: 'column-reverse', sm: 'row' }}>
+            <Stack gap="md" maw={560}>
+              <span className="availability">
+                <span className="availability-dot" aria-hidden="true" />
+                {about.available}
+              </span>
+              <Title order={1} className="page-title">
+                {about.title}
+              </Title>
+              <div>
+                {about.tagline.map((line) => (
+                  <Text key={line}>{line}</Text>
+                ))}
+              </div>
+              <Text>{about.description}</Text>
+            </Stack>
+            <Image
+              src="/photo.jpg"
+              alt={profile.name}
+              w={300}
+              h={400}
+              maw="100%"
+              fit="cover"
+              radius="md"
+              className="photo"
+            />
+          </Flex>
+          <Group gap="sm" className="cta-row">
+            <Anchor component={Link} to="/resume" className="cta">
+              <IconFileCv size={15} stroke={1.6} />
+              {about.ctaResume}
+            </Anchor>
+            <Anchor component={Link} to="/contact" className="cta">
+              <IconMail size={15} stroke={1.6} />
+              {about.ctaContact}
+            </Anchor>
+            <Anchor href={profile.github} target="_blank" rel="noreferrer" className="cta">
+              <IconBrandGithub size={15} stroke={1.6} />
+              {t.a11y.github}
+            </Anchor>
+          </Group>
+        </Stack>
       </PageCard>
 
       <Stack gap="md">
@@ -76,6 +98,17 @@ export default function About() {
             </Group>
           </Stack>
         ))}
+      </Stack>
+
+      <Stack gap="md">
+        <Title order={2} className="page-title">
+          {interests.title}
+        </Title>
+        <List spacing="xs">
+          {interests.items.map((item) => (
+            <List.Item key={item}>{item}</List.Item>
+          ))}
+        </List>
       </Stack>
 
       {featured.length > 0 && (
