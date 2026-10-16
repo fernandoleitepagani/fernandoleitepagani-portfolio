@@ -3,6 +3,7 @@
 .skills-globe {
   position: relative; width: 100%; height: clamp(260px, 52dvh, 480px); overflow: hidden;
   touch-action: none; cursor: grab; user-select: none;
+  isolation: isolate;
 }
 .skills-globe--compact { height: clamp(300px, 42vw, 380px); }
 .skills-globe:active { cursor: grabbing; }
