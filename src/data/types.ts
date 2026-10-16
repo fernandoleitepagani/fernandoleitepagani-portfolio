@@ -145,10 +145,15 @@ export interface AwardsContent {
 
 export interface Content {
   nav: Record<
-    'about' | 'resume' | 'skills' | 'projects' | 'academics' | 'awards' | 'recommendations' | 'contact',
+    'about' | 'resume' | 'skills' | 'projects' | 'academics' | 'contact',
     string
   >;
   themeLabel: string;
+  common: {
+    showMore: string;
+    showLess: string;
+    index: string;
+  };
   a11y: {
     language: string;
     expandSidebar: string;
@@ -164,6 +169,7 @@ export interface Content {
     ctaResume: string;
     ctaContact: string;
     statsTitle: string;
+    githubTitle: string;
     heatmapTitle: string;
     heatmapLess: string;
     heatmapMore: string;
@@ -247,5 +253,7 @@ export interface Content {
     labelLattes: string;
     labelEmail: string;
     lattesText: string;
+    copyEmail: string;
+    copied: string;
   };
 }

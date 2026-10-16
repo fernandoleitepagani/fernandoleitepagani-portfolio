@@ -1,22 +1,12 @@
-import { useLayoutEffect, useRef, useState } from 'react';
 import { Anchor, Avatar, Group, Paper, Stack, Text } from '@mantine/core';
 import { IconBrandLinkedin } from '@tabler/icons-react';
+import Clamped from './Clamped';
 import { useLanguage } from '../context/LanguageContext';
 import type { Recommendation } from '../data/content';
 
 export default function RecommendationCard({ rec }: { rec: Recommendation }) {
-  const { lang, t } = useLanguage();
-  const { readMore, readLess } = t.recommendations;
+  const { lang } = useLanguage();
   const initial = rec.name.trim().charAt(0).toUpperCase();
-  const [expanded, setExpanded] = useState(false);
-  const [clamped, setClamped] = useState(false);
-  const textRef = useRef<HTMLParagraphElement>(null);
-
-  useLayoutEffect(() => {
-    const element = textRef.current;
-    if (!element || expanded) return;
-    setClamped(element.scrollHeight > element.clientHeight + 1);
-  }, [rec.text, lang, expanded]);
 
   return (
     <Paper className="subcard" p="md">
@@ -36,19 +26,9 @@ export default function RecommendationCard({ rec }: { rec: Recommendation }) {
 
           <Text className="recommendation-relationship">{rec.relationship[lang]}</Text>
 
-          <Text ref={textRef} className="recommendation-text" data-clamped={!expanded || undefined}>
+          <Clamped lines={4} className="recommendation-text">
             {rec.text[lang]}
-          </Text>
-
-          {(clamped || expanded) && (
-            <button
-              type="button"
-              className="recommendation-toggle"
-              onClick={() => setExpanded((value) => !value)}
-            >
-              {expanded ? readLess : readMore}
-            </button>
-          )}
+          </Clamped>
 
           {rec.link && (
             <Anchor

@@ -12,19 +12,29 @@ import {
 } from '@mantine/core';
 import { IconBrandGithub, IconFileCv, IconMail } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
+import Clamped from '../components/Clamped';
 import ContributionGrid from '../components/ContributionGrid';
 import LanguageBars from '../components/LanguageBars';
 import PageCard from '../components/PageCard';
+import PageIndex, { type PageIndexItem } from '../components/PageIndex';
 import ProjectCard from '../components/ProjectCard';
+import RecommendationCard from '../components/RecommendationCard';
+import Rich from '../components/Rich';
+import SectionHead from '../components/SectionHead';
 import SkillsSection from '../components/skills/SkillsSection';
 import StatsCard from '../components/StatsCard';
 import { useGitHubStats } from '../hooks/useGitHubStats';
 import { useLanguage } from '../context/LanguageContext';
-import { mergeProjects, profile, projects as curatedProjects } from '../data/content';
+import {
+  mergeProjects,
+  profile,
+  projects as curatedProjects,
+  recommendations,
+} from '../data/content';
 
 export default function About() {
   const { t } = useLanguage();
-  const { about, projects: text, interests } = t;
+  const { about, projects: text, interests, resume, recommendations: recText } = t;
   const { state, data } = useGitHubStats(profile.githubUser);
 
   const liveProjects = state === 'ready' && data ? mergeProjects(data.repos) : [];
@@ -32,10 +42,21 @@ export default function About() {
     (project) => project.featured,
   );
   const stats = state === 'ready' ? data : null;
+  const showActivity = state !== 'fallback';
+
+  const sections: PageIndexItem[] = [
+    { id: 'projects', label: text.title },
+    { id: 'experience', label: resume.experienceTitle },
+    { id: 'education', label: resume.educationTitle },
+    { id: 'recommendations', label: recText.title },
+    { id: 'skills', label: t.skills.title },
+    { id: 'interests', label: interests.title },
+  ];
+  if (showActivity) sections.push({ id: 'activity', label: about.githubTitle });
 
   return (
     <Stack gap="xl">
-      <PageCard>
+      <PageCard accent>
         <Stack gap="lg">
           <Flex gap="xl" justify="space-between" direction={{ base: 'column-reverse', sm: 'row' }}>
             <Stack gap="md" maw={560}>
@@ -56,14 +77,14 @@ export default function About() {
             <img src="/photo.jpg" alt={profile.name} className="photo" width={280} height={280} />
           </Flex>
           <Group gap="sm" className="cta-row">
-            <Anchor component={Link} to="/resume" className="cta">
+            <Link to="/resume" viewTransition className="cta">
               <IconFileCv size={15} stroke={1.6} />
               {about.ctaResume}
-            </Anchor>
-            <Anchor component={Link} to="/contact" className="cta">
+            </Link>
+            <Link to="/contact" viewTransition className="cta">
               <IconMail size={15} stroke={1.6} />
               {about.ctaContact}
-            </Anchor>
+            </Link>
             <Anchor href={profile.github} target="_blank" rel="noreferrer" className="cta">
               <IconBrandGithub size={15} stroke={1.6} />
               {t.a11y.github}
@@ -72,72 +93,159 @@ export default function About() {
         </Stack>
       </PageCard>
 
-      <Stack gap="md">
-        <Group justify="space-between">
-          <Title order={2} className="page-title">
-            {t.skills.title}
-          </Title>
-          <Anchor component={Link} to="/skills" className="link">
-            {t.skills.explore} →
-          </Anchor>
-        </Group>
-        <SkillsSection compact />
-      </Stack>
-
-      <Stack gap="md">
-        <Title order={2} className="page-title">
-          {interests.title}
-        </Title>
-        <List spacing="xs" className="interests">
-          {interests.items.map((item) => (
-            <List.Item key={item}>{item}</List.Item>
-          ))}
-        </List>
-      </Stack>
+      <PageIndex items={sections} />
 
       {featured.length > 0 && (
-        <Stack gap="md">
-          <Group justify="space-between">
-            <Title order={2} className="page-title">
-              {text.title}
-            </Title>
-            <Anchor component={Link} to="/projects">
-              {text.viewAll}
-            </Anchor>
-          </Group>
-          <SimpleGrid cols={{ base: 1, sm: 2 }}>
-            {featured.map((p) => (
-              <ProjectCard key={p.name} project={p} variant="compact" />
-            ))}
-          </SimpleGrid>
-        </Stack>
+        <section id="projects" className="page-section">
+          <Stack gap="md">
+            <SectionHead
+              index={1}
+              title={text.title}
+              action={
+                <Link to="/projects" viewTransition className="link">
+                  {text.viewAll} →
+                </Link>
+              }
+            />
+            <SimpleGrid cols={{ base: 1, sm: 2 }}>
+              {featured.map((project) => (
+                <ProjectCard key={project.name} project={project} variant="compact" />
+              ))}
+            </SimpleGrid>
+          </Stack>
+        </section>
       )}
 
-      {state !== 'fallback' && (
+      <section id="experience" className="page-section">
         <Stack gap="md">
-          <Title order={2} className="page-title">
-            {about.statsTitle}
-          </Title>
+          <SectionHead
+            index={2}
+            title={resume.experienceTitle}
+            action={
+              <Link to="/resume" viewTransition className="link">
+                {t.nav.resume} →
+              </Link>
+            }
+          />
+          <div className="entry-list">
+            {resume.experience.map((entry) => (
+              <article className="entry" key={entry.role}>
+                <div className="entry-head">
+                  <Title order={3} className="entry-title">
+                    {entry.role}
+                  </Title>
+                  <span className="entry-period">{entry.period}</span>
+                </div>
+                <Text className="entry-meta">
+                  {[entry.org, entry.location].filter(Boolean).join(' · ')}
+                </Text>
+                <Text className="entry-summary">{entry.summary}</Text>
+                <Clamped lines={3} className="entry-body">
+                  <Rich text={entry.body} />
+                </Clamped>
+              </article>
+            ))}
+          </div>
+        </Stack>
+      </section>
 
-          {state === 'loading' && <Skeleton height={160} radius="md" />}
+      <section id="education" className="page-section">
+        <Stack gap="md">
+          <SectionHead
+            index={3}
+            title={resume.educationTitle}
+            action={
+              <Link to="/academics" viewTransition className="link">
+                {t.nav.academics} →
+              </Link>
+            }
+          />
+          <div className="entry-list">
+            {resume.education.map((entry) => (
+              <article className="entry" key={entry.degree}>
+                <div className="entry-head">
+                  <Title order={3} className="entry-title">
+                    {entry.degree}
+                  </Title>
+                  <span className="entry-period">{entry.period}</span>
+                </div>
+                <Text className="entry-meta">{entry.school}</Text>
+                <Text className="entry-summary">{entry.summary}</Text>
+              </article>
+            ))}
+          </div>
+        </Stack>
+      </section>
 
-          {state === 'ready' && stats && (
-            <>
-              <Paper className="subcard" p="md">
-                <ContributionGrid days={stats.calendar} />
-              </Paper>
-
-              <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                <Paper className="subcard" p="md">
-                  <LanguageBars languages={stats.languages} />
-                </Paper>
-                <Paper className="subcard" p="md">
-                  <StatsCard stats={stats} />
-                </Paper>
-              </SimpleGrid>
-            </>
+      <section id="recommendations" className="page-section">
+        <Stack gap="md">
+          <SectionHead index={4} title={recText.title} />
+          {recommendations.length === 0 ? (
+            <Text c="dimmed">{recText.empty}</Text>
+          ) : (
+            recommendations.map((rec) => <RecommendationCard key={rec.id} rec={rec} />)
           )}
         </Stack>
+      </section>
+
+      <section id="skills" className="page-section">
+        <Stack gap="md">
+          <SectionHead
+            index={5}
+            title={t.skills.title}
+            action={
+              <Link to="/skills" viewTransition className="link">
+                {t.skills.explore} →
+              </Link>
+            }
+          />
+          <SkillsSection compact />
+        </Stack>
+      </section>
+
+      <section id="interests" className="page-section">
+        <Stack gap="md">
+          <SectionHead index={6} title={interests.title} />
+          <List spacing="xs" className="interests">
+            {interests.items.map((item) => (
+              <List.Item key={item}>{item}</List.Item>
+            ))}
+          </List>
+        </Stack>
+      </section>
+
+      {showActivity && (
+        <section id="activity" className="page-section">
+          <details className="activity">
+            <summary className="activity-summary">
+              <span className="section-num" aria-hidden="true">
+                07
+              </span>
+              <span className="activity-title">{about.githubTitle}</span>
+            </summary>
+
+            <div className="activity-body">
+              {state === 'loading' && <Skeleton height={160} radius="md" />}
+
+              {state === 'ready' && stats && (
+                <>
+                  <Paper className="subcard" p="md">
+                    <ContributionGrid days={stats.calendar} />
+                  </Paper>
+
+                  <SimpleGrid cols={{ base: 1, sm: 2 }}>
+                    <Paper className="subcard" p="md">
+                      <LanguageBars languages={stats.languages} />
+                    </Paper>
+                    <Paper className="subcard" p="md">
+                      <StatsCard stats={stats} />
+                    </Paper>
+                  </SimpleGrid>
+                </>
+              )}
+            </div>
+          </details>
+        </section>
       )}
     </Stack>
   );

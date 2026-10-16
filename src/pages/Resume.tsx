@@ -1,5 +1,6 @@
 import { Anchor } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
+import Rich from '../components/Rich';
 import { useLanguage } from '../context/LanguageContext';
 import { profile, type Lang } from '../data/content';
 
@@ -9,16 +10,6 @@ const RESUME_PDF: Record<Lang, string> = {
 };
 
 const PORTFOLIO_URL = 'https://fernandoleitepagani-portfolio.vercel.app/';
-
-function Rich({ text }: { text: string }) {
-  return (
-    <>
-      {text.split('**').map((part, index) =>
-        index % 2 === 1 ? <strong key={index}>{part}</strong> : <span key={index}>{part}</span>,
-      )}
-    </>
-  );
-}
 
 export default function Resume() {
   const { t, lang } = useLanguage();
