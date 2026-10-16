@@ -4,9 +4,10 @@ export const content: Record<Lang, Content> = {
   en: {
     nav: {
       about: 'About',
-      curriculum: 'Curriculum',
+      resume: 'Resume',
       projects: 'Projects',
-      interests: 'Interests',
+      academics: 'Academics',
+      awards: 'Awards',
       recommendations: 'Recommendations',
       contact: 'Contacts',
     },
@@ -26,6 +27,9 @@ export const content: Record<Lang, Content> = {
       ],
       description:
         'CS student at PUC Minas (2nd semester). Into Linux since 13. Care about operating systems, automation and DevOps — building fast, reproducible and efficient environments. Prefer understanding how things work under the hood.',
+      available: 'Open to internships',
+      ctaResume: 'View resume',
+      ctaContact: 'Get in touch',
       statsTitle: 'Stats',
       heatmapTitle: 'Contributions in the last year',
       heatmapLess: 'Less',
@@ -45,19 +49,65 @@ export const content: Record<Lang, Content> = {
       statsRepos: 'Public repos',
       statsFollowers: 'Followers',
     },
-    curriculum: {
-      title: 'Curriculum',
-      items: [
+    resume: {
+      title: 'Resume',
+      role: 'Computer Science student · Linux, systems & DevOps',
+      download: 'Download PDF',
+      highlights: [
+        { value: '14', label: 'Public repositories' },
+        { value: '100+', label: 'Contributions (12 months)' },
+        { value: '29', label: 'Pull requests' },
+        { value: '41', label: 'Issues' },
+      ],
+      summaryTitle: 'Summary',
+      summary:
+        'Computer Science student at PUC Minas with a strong focus on Linux, systems and DevOps. I have used Linux as my daily driver since I was 13, build my own tooling and self-host services on my own hardware. I care about fast, reproducible and efficient environments, and I prefer understanding how things work under the hood.',
+      experienceTitle: 'Experience',
+      experience: [
         {
-          period: '2025 – now',
-          title: 'B.Sc. Computer Science (2nd semester)',
-          place: 'PUC Minas — Belo Horizonte, MG',
+          role: 'Open-source developer',
+          org: 'Personal projects',
+          period: '2026 – now',
+          location: 'Remote',
+          summary:
+            'Building and maintaining open-source tools for the Linux desktop — 3 projects, 14 public repositories and 100+ contributions in the last year.',
+          bullets: [
+            'MangoMod — visual, interactive configuration interface for the MangoWM compositor (GTK4/libadwaita), forked and adapted from NiriMod.',
+            'Simple-Nvim — modular, performant Neovim configuration built on lazy.nvim (LSP, completion, debugging).',
+            'Rofi-Scripts — launcher scripts that make desktop workflows faster and simpler.',
+          ],
+          tags: ['Python', 'Lua', 'Shell', 'GTK4', 'Neovim', 'Linux'],
         },
         {
+          role: 'Youth exchange student',
+          org: 'Rotary Youth Exchange · AVTEC',
           period: 'Previously',
-          title: 'Rotary Youth Exchange · contact with IT at AVTEC',
-          place: 'Alaska, USA',
+          location: 'Alaska, USA',
+          summary:
+            'Cultural exchange in the United States, with contact with the IT of a technical college.',
+          bullets: [
+            'Lived and studied abroad, reaching advanced English.',
+            'First contact with IT infrastructure at a technical institution (AVTEC).',
+          ],
+          tags: ['English', 'Communication'],
         },
+      ],
+      educationTitle: 'Education',
+      education: [
+        {
+          degree: 'B.Sc. Computer Science',
+          school: 'PUC Minas — Belo Horizonte, MG',
+          period: '2025 – now',
+          summary:
+            'Second semester. Coursework in algorithms and data structures, object-oriented programming, computer systems and web development.',
+          tags: ['Algorithms', 'Data structures', 'C', 'Java', 'Web'],
+        },
+      ],
+      skillsTitle: 'Skills',
+      languagesTitle: 'Languages',
+      languages: [
+        { name: 'Portuguese', level: 'Native' },
+        { name: 'English', level: 'Advanced' },
       ],
     },
     projects: {
@@ -67,6 +117,11 @@ export const content: Record<Lang, Content> = {
         "A collection of projects I've worked on — from personal experiments to open-source contributions.",
       live: 'Live',
       sourceCode: 'Source Code',
+      learnMore: 'Learn more',
+      back: 'All projects',
+      period: 'Period',
+      stack: 'Stack',
+      links: 'Links',
       stars: 'Stars',
       forks: 'Forks',
       updated: 'Updated {when}',
@@ -101,9 +156,11 @@ export const content: Record<Lang, Content> = {
     },
     contact: {
       title: 'Contacts',
+      subtitle:
+        'I like building things and collaborating. If you have a project, an opportunity or just want to say hi, reach out — English or Portuguese, both work.',
+      replyNote: 'I usually reply within a day.',
       email: 'University email',
       emailWork: 'Work email',
-      location: 'Location',
       formTitle: 'Get in touch',
       formSubtitle: 'Feel free to reach out or send a message.',
       formName: 'Your name',
@@ -127,9 +184,10 @@ export const content: Record<Lang, Content> = {
   pt: {
     nav: {
       about: 'Sobre',
-      curriculum: 'Currículo',
+      resume: 'Currículo',
       projects: 'Projetos',
-      interests: 'Interesses',
+      academics: 'Acadêmico',
+      awards: 'Prêmios',
       recommendations: 'Recomendações',
       contact: 'Contato',
     },
@@ -149,6 +207,9 @@ export const content: Record<Lang, Content> = {
       ],
       description:
         'Estudante de CC na PUC Minas (2º período). No Linux desde os 13. Interesse por sistemas operacionais, automação e DevOps — ambientes rápidos, reprodutíveis e eficientes. Gosto de entender como as coisas funcionam por baixo dos panos.',
+      available: 'Aberto a estágios',
+      ctaResume: 'Ver currículo',
+      ctaContact: 'Fale comigo',
       statsTitle: 'Estatísticas',
       heatmapTitle: 'Contribuições no último ano',
       heatmapLess: 'Menos',
@@ -168,19 +229,65 @@ export const content: Record<Lang, Content> = {
       statsRepos: 'Repositórios públicos',
       statsFollowers: 'Seguidores',
     },
-    curriculum: {
+    resume: {
       title: 'Currículo',
-      items: [
+      role: 'Estudante de Ciência da Computação · Linux, sistemas e DevOps',
+      download: 'Baixar PDF',
+      highlights: [
+        { value: '14', label: 'Repositórios públicos' },
+        { value: '100+', label: 'Contribuições (12 meses)' },
+        { value: '29', label: 'Pull requests' },
+        { value: '41', label: 'Issues' },
+      ],
+      summaryTitle: 'Resumo',
+      summary:
+        'Estudante de Ciência da Computação na PUC Minas com forte foco em Linux, sistemas e DevOps. Uso Linux como sistema principal desde os 13 anos, desenvolvo minhas próprias ferramentas e mantenho serviços self-hosted no meu próprio hardware. Prezo por ambientes rápidos, reprodutíveis e eficientes e gosto de entender como as coisas funcionam por baixo dos panos.',
+      experienceTitle: 'Experiência',
+      experience: [
         {
-          period: '2025 – hoje',
-          title: 'Bacharelado em Ciência da Computação (2º período)',
-          place: 'PUC Minas — Belo Horizonte, MG',
+          role: 'Desenvolvedor open-source',
+          org: 'Projetos pessoais',
+          period: '2026 – hoje',
+          location: 'Remoto',
+          summary:
+            'Desenvolvimento e manutenção de ferramentas open-source para o desktop Linux — 3 projetos, 14 repositórios públicos e mais de 100 contribuições no último ano.',
+          bullets: [
+            'MangoMod — interface visual e interativa de configuração para o compositor MangoWM (GTK4/libadwaita), adaptada a partir do NiriMod.',
+            'Simple-Nvim — configuração modular e performática do Neovim com lazy.nvim (LSP, completion, debugging).',
+            'Rofi-Scripts — scripts de launcher que tornam o fluxo de trabalho no desktop mais rápido e simples.',
+          ],
+          tags: ['Python', 'Lua', 'Shell', 'GTK4', 'Neovim', 'Linux'],
         },
         {
+          role: 'Estudante de intercâmbio',
+          org: 'Rotary Youth Exchange · AVTEC',
           period: 'Anteriormente',
-          title: 'Intercâmbio Rotary · contato com TI na AVTEC',
-          place: 'Alaska, EUA',
+          location: 'Alaska, EUA',
+          summary:
+            'Intercâmbio cultural nos Estados Unidos, com contato com a TI de uma faculdade técnica.',
+          bullets: [
+            'Morei e estudei no exterior, alcançando inglês avançado.',
+            'Primeiro contato com infraestrutura de TI em uma instituição técnica (AVTEC).',
+          ],
+          tags: ['Inglês', 'Comunicação'],
         },
+      ],
+      educationTitle: 'Formação',
+      education: [
+        {
+          degree: 'Bacharelado em Ciência da Computação',
+          school: 'PUC Minas — Belo Horizonte, MG',
+          period: '2025 – hoje',
+          summary:
+            'Segundo período. Disciplinas de algoritmos e estruturas de dados, programação orientada a objetos, sistemas computacionais e desenvolvimento web.',
+          tags: ['Algoritmos', 'Estruturas de dados', 'C', 'Java', 'Web'],
+        },
+      ],
+      skillsTitle: 'Habilidades',
+      languagesTitle: 'Idiomas',
+      languages: [
+        { name: 'Português', level: 'Nativo' },
+        { name: 'Inglês', level: 'Avançado' },
       ],
     },
     projects: {
@@ -190,6 +297,11 @@ export const content: Record<Lang, Content> = {
         'Uma coleção de projetos em que trabalhei — de experimentos pessoais a contribuições open-source.',
       live: 'Ver online',
       sourceCode: 'Código-fonte',
+      learnMore: 'Ver mais',
+      back: 'Todos os projetos',
+      period: 'Período',
+      stack: 'Stack',
+      links: 'Links',
       stars: 'Estrelas',
       forks: 'Forks',
       updated: 'Atualizado {when}',
@@ -224,9 +336,11 @@ export const content: Record<Lang, Content> = {
     },
     contact: {
       title: 'Contato',
+      subtitle:
+        'Gosto de construir coisas e colaborar. Se você tem um projeto, uma oportunidade ou só quer dar um oi, fale comigo — em português ou inglês, tanto faz.',
+      replyNote: 'Costumo responder em até um dia.',
       email: 'E-mail universitário',
       emailWork: 'E-mail de trabalho',
-      location: 'Localização',
       formTitle: 'Entre em contato',
       formSubtitle: 'Sinta-se à vontade para se conectar ou me enviar uma mensagem.',
       formName: 'Seu nome',
