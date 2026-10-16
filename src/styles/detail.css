@@ -1,0 +1,76 @@
+/* Project case study */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  color: var(--ink-dim);
+  font-size: var(--text-xs);
+}
+.back-link:hover { color: var(--link-hover); }
+
+.detail-summary {
+  max-width: 62ch;
+  font-size: var(--text-body);
+}
+
+.detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 232px;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 48em) {
+  .detail-body { grid-template-columns: 1fr; }
+}
+
+.detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+.detail-section-title {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.detail-aside {
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (max-width: 48em) {
+  .detail-aside { position: static; }
+}
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+}
+.detail-meta-label {
+  font-size: var(--text-2xs);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* Academics & awards */
+.grades-table th {
+  font-size: var(--text-2xs);
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.award-title {
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
