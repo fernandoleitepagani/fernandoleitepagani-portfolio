@@ -87,8 +87,7 @@ export interface ResumeEntry {
   period: string;
   location: string;
   summary: string;
-  bullets: string[];
-  tags: string[];
+  body: string;
 }
 
 export interface ResumeEducation {
@@ -96,7 +95,6 @@ export interface ResumeEducation {
   school: string;
   period: string;
   summary: string;
-  tags: string[];
 }
 
 export interface Course {
@@ -185,7 +183,6 @@ export interface Content {
     title: string;
     role: string;
     download: string;
-    highlights: { value: string; label: string }[];
     summaryTitle: string;
     summary: string;
     experienceTitle: string;
