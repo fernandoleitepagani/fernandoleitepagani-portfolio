@@ -216,8 +216,6 @@ export interface Content {
     title: string;
     subtitle: string;
     all: string;
-    viewGlobe: string;
-    viewList: string;
     hint: string;
     explore: string;
     categories: Record<'languages' | 'web' | 'systems' | 'setup', string>;

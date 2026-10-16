@@ -114,8 +114,6 @@ export const content: Record<Lang, Content> = {
       title: 'Skills',
       subtitle: 'Technologies I use, arranged on an interactive globe.',
       all: 'All',
-      viewGlobe: 'Globe',
-      viewList: 'List',
       hint: 'Drag to spin · click an icon to open the link',
       explore: 'Explore all skills',
       categories: {
@@ -292,8 +290,6 @@ export const content: Record<Lang, Content> = {
       title: 'Habilidades',
       subtitle: 'Tecnologias que eu uso, dispostas num globo interativo.',
       all: 'Todas',
-      viewGlobe: 'Globo',
-      viewList: 'Lista',
       hint: 'Arraste para girar · clique num ícone para abrir o link',
       explore: 'Explorar todas as habilidades',
       categories: {
