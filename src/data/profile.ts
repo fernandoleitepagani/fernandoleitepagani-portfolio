@@ -1,5 +1,6 @@
 export const profile = {
   name: 'Fernando Leite Pagani',
+  displayName: 'Fernando Pagani',
   github: 'https://github.com/fernandoleitepagani',
   linkedin: 'https://www.linkedin.com/in/fernandoleitepagani',
   email: 'fernando.leite@sga.pucminas.br',
