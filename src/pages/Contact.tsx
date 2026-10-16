@@ -1,13 +1,13 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, type ComponentType } from 'react';
 import emailjs from '@emailjs/browser';
 import {
   Alert,
   Anchor,
-  Divider,
   Group,
   Stack,
   Text,
   Title,
+  Tooltip,
   UnstyledButton,
 } from '@mantine/core';
 import {
@@ -17,37 +17,53 @@ import {
   IconBrandLinkedin,
   IconCheck,
   IconMail,
-  IconMapPin,
   IconRefresh,
-  IconSchool,
 } from '@tabler/icons-react';
 import PageCard from '../components/PageCard';
+import LattesIcon from '../components/icons/LattesIcon';
 import EMAILJS_CONFIG from '../config/emailjs';
 import { useLanguage } from '../context/LanguageContext';
 import { profile } from '../data/content';
 
 type FormStatus = 'idle' | 'sending' | 'sent' | 'partial' | 'error';
 
+type IconComponent = ComponentType<{ size?: number; stroke?: number }>;
+
+interface ContactLinkProps {
+  icon: IconComponent;
+  label: string;
+  href: string;
+}
+
+function ContactLink({ icon: Icon, label, href }: ContactLinkProps) {
+  const external = href.startsWith('http');
+  return (
+    <Tooltip label={label} position="top" withArrow>
+      <Anchor
+        href={href}
+        className="contact-card"
+        aria-label={label}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noreferrer' : undefined}
+      >
+        <Icon size={20} stroke={1.5} />
+      </Anchor>
+    </Tooltip>
+  );
+}
+
 export default function Contact() {
-  const { contact } = useLanguage().t;
+  const { t } = useLanguage();
+  const { contact, about } = t;
   const form = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<FormStatus>('idle');
 
-  const links = [
-    { label: contact.email, href: `mailto:${profile.email}`, text: profile.email, icon: IconMail },
-    { label: contact.emailWork, href: `mailto:${profile.emailWork}`, text: profile.emailWork, icon: IconMail },
-    { label: contact.labelGithub, href: profile.github, text: 'fernandoleitepagani', icon: IconBrandGithub },
-    { label: contact.labelLinkedin, href: profile.linkedin, text: 'fernandoleitepagani', icon: IconBrandLinkedin },
-    { label: contact.labelInstagram, href: profile.instagram, text: '@fernandoleitepagani', icon: IconBrandInstagram },
-    { label: contact.labelLattes, href: profile.lattes, text: contact.lattesText, icon: IconSchool },
-    { label: contact.location, href: undefined, text: profile.location, icon: IconMapPin },
-  ];
-
-  const socials = [
-    { href: profile.linkedin, icon: IconBrandLinkedin, label: contact.labelLinkedin },
-    { href: profile.github, icon: IconBrandGithub, label: contact.labelGithub },
-    { href: profile.instagram, icon: IconBrandInstagram, label: contact.labelInstagram },
-    { href: `mailto:${profile.emailWork}`, icon: IconMail, label: contact.labelEmail },
+  const links: ContactLinkProps[] = [
+    { label: contact.labelEmail, href: `mailto:${profile.emailWork}`, icon: IconMail },
+    { label: contact.labelLinkedin, href: profile.linkedin, icon: IconBrandLinkedin },
+    { label: contact.labelGithub, href: profile.github, icon: IconBrandGithub },
+    { label: contact.labelInstagram, href: profile.instagram, icon: IconBrandInstagram },
+    { label: contact.labelLattes, href: profile.lattes, icon: LattesIcon },
   ];
 
   const sendEmail = async (e: React.FormEvent) => {
@@ -61,7 +77,6 @@ export default function Contact() {
     const message = formData.get('message') as string;
     const time = new Date().toLocaleString();
 
-    // 1st call: notify me — if this fails nothing was delivered, so it is a real error.
     try {
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
@@ -75,7 +90,6 @@ export default function Contact() {
       return;
     }
 
-    // 2nd call: auto-reply to the visitor — failing here is only partial success.
     try {
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
@@ -99,26 +113,19 @@ export default function Contact() {
     <Stack gap="xl">
       <PageCard>
         <Stack gap="md">
+          <span className="availability">
+            <span className="availability-dot" aria-hidden="true" />
+            {about.available}
+          </span>
           <Title order={1} className="page-title">
             {contact.title}
           </Title>
-          {links.map(({ label, href, text, icon: Icon }) => (
-            <Group key={label} gap="sm" align="flex-start" wrap="nowrap">
-              <Icon size={18} stroke={1.5} style={{ marginTop: 2, flexShrink: 0, color: 'var(--ink-dim)' }} />
-              <div>
-                <Text c="dimmed" size="sm">
-                  {label}
-                </Text>
-                {href ? (
-                  <Anchor href={href} target="_blank" rel="noreferrer">
-                    {text}
-                  </Anchor>
-                ) : (
-                  <Text>{text}</Text>
-                )}
-              </div>
-            </Group>
-          ))}
+          <Text className="contact-intro">{contact.subtitle}</Text>
+          <Group gap="sm" className="contact-links">
+            {links.map((link) => (
+              <ContactLink key={link.label} {...link} />
+            ))}
+          </Group>
         </Stack>
       </PageCard>
 
@@ -195,26 +202,20 @@ export default function Contact() {
                 placeholder={contact.formMessage}
                 disabled={status === 'sending'}
               />
-              <UnstyledButton type="submit" className="contact-submit" disabled={status === 'sending'}>
+              <UnstyledButton
+                type="submit"
+                className="contact-submit"
+                disabled={status === 'sending'}
+              >
                 {status === 'sending' ? contact.formSending : contact.formSend}
               </UnstyledButton>
             </form>
 
-            <Divider color="var(--separator)" my="xs" />
-
-            <Group justify="center" gap="lg">
-              {socials.map(({ href, icon: Icon, label }) => (
-                <Anchor
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-social"
-                  aria-label={label}
-                >
-                  <Icon size={22} stroke={1.5} />
-                </Anchor>
-              ))}
+            <Group justify="center" gap={6}>
+              <IconCheck size={14} stroke={2} style={{ color: 'var(--online)' }} />
+              <Text c="dimmed" size="xs">
+                {contact.replyNote}
+              </Text>
             </Group>
           </Stack>
         )}
