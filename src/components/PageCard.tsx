@@ -5,11 +5,14 @@ interface PageCardProps {
   children: ReactNode;
   className?: string;
   p?: MantineSpacing;
+  accent?: boolean;
 }
 
-export default function PageCard({ children, className, p = 'xl' }: PageCardProps) {
+export default function PageCard({ children, className, p = 'xl', accent = false }: PageCardProps) {
+  const classes = ['card', accent ? 'card-accent' : '', className ?? ''].filter(Boolean).join(' ');
+
   return (
-    <Paper className={className ? `card ${className}` : 'card'} p={p} w="100%">
+    <Paper className={classes} p={p} w="100%">
       {children}
     </Paper>
   );

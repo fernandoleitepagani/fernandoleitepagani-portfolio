@@ -35,14 +35,27 @@
 .mobile-bar .logo { padding: 0; white-space: nowrap; }
 .mobile-menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur) var(--ease-organic); }
 .mobile-menu[data-open] { grid-template-rows: 1fr; }
+/* `visibility` keeps the closed menu out of the tab order. */
 .mobile-menu-inner {
-  min-height: 0; overflow: hidden;
-  opacity: 0; transform: translateY(-6px);
-  transition: opacity var(--dur) var(--ease-organic), transform var(--dur) var(--ease-organic);
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--dur) var(--ease-organic),
+    transform var(--dur) var(--ease-organic),
+    visibility 0s linear var(--dur);
 }
 .mobile-menu[data-open] > .mobile-menu-inner {
-  opacity: 1; transform: none;
+  visibility: visible;
+  opacity: 1;
+  transform: none;
   border-top: 1px solid var(--separator);
+  transition:
+    opacity var(--dur) var(--ease-organic),
+    transform var(--dur) var(--ease-organic),
+    visibility 0s;
 }
 .mobile-menu .sidebar { height: auto; }
 
@@ -53,17 +66,19 @@
   .interests { columns: 1; }
 }
 
-/* Page card — one per page/route (PageCard, 2px border).
-   Sub card — compact card nested inside a page card (.subcard, 1px border). */
+/* Page card — one per page/route (PageCard, hairline frame).
+   Accent card — the single loud frame a page is allowed (hero, form header).
+   Sub card — compact card nested inside a page card (.subcard, faint surface). */
 .card {
   background: var(--bg);
   color: var(--ink);
-  border: 2px solid var(--border);
+  border: 1px solid var(--separator);
   border-radius: var(--radius-lg);
   width: 100%;
   box-sizing: border-box;
   transition: border-color var(--dur) var(--ease-soft);
 }
+.card-accent { border: 2px solid var(--border); }
 .subcard {
   background: var(--surface);
   color: var(--ink);
@@ -73,6 +88,121 @@
 }
 
 .page-title { font-size: var(--text-title); font-weight: 400; letter-spacing: 2px; text-wrap: balance; }
+
+/* Numbered sections, laid out like a résumé outline. */
+.page-section { scroll-margin-top: 72px; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-num {
+  margin-right: 10px;
+  color: var(--ink-dim);
+  font-size: 0.72em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* In-page index — a sticky table of contents that follows the scroll. */
+.page-index {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 0;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  scrollbar-width: none;
+}
+.page-index::-webkit-scrollbar { display: none; }
+.page-index-link {
+  flex: none;
+  padding: 5px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  color: var(--ink-dim);
+  font-size: var(--text-2xs);
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    background var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.page-index-link:hover { color: var(--ink); border-color: var(--separator); }
+.page-index-link[data-active] {
+  color: var(--button-hover-text);
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-bg);
+}
+@media (max-width: 47.99em) {
+  .page-section { scroll-margin-top: 132px; }
+  .page-index { top: 66px; }
+}
+
+/* Case-study contents, sitting in the sticky aside. */
+.page-index-aside {
+  position: static;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 0;
+  overflow: visible;
+  background: none;
+  backdrop-filter: none;
+}
+.page-index-aside .page-index-link {
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  font-size: var(--text-xs);
+}
+.page-index-aside .page-index-link[data-active] { background: var(--surface); color: var(--ink); }
+
+/* Résumé-style entries, separated by hairlines instead of boxes. */
+.entry-list { display: flex; flex-direction: column; }
+.entry { padding: 18px 0; border-top: 1px solid var(--separator); }
+.entry:first-child { padding-top: 0; border-top: 0; }
+.entry:last-child { padding-bottom: 0; }
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+.entry-title { margin: 0; font-size: var(--text-body); font-weight: 500; letter-spacing: 0.5px; }
+.entry-period { flex: none; color: var(--ink-dim); font-size: var(--text-xs); white-space: nowrap; }
+.entry-meta { margin: 2px 0 0; color: var(--ink-dim); font-size: var(--text-xs); }
+.entry-summary { margin: 8px 0 0; }
+.entry-body { margin-top: 6px; font-size: var(--text-sm); }
+@media (max-width: 36em) {
+  .entry-head { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+
+/* GitHub activity — collapsed by default, so it never pushes the work down. */
+.activity-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: var(--text-title);
+  letter-spacing: 2px;
+  cursor: pointer;
+  list-style: none;
+}
+.activity-summary::-webkit-details-marker { display: none; }
+.activity-summary::after {
+  content: '+';
+  margin-left: auto;
+  color: var(--ink-dim);
+  font-size: var(--text-sm);
+}
+.activity[open] .activity-summary::after { content: '–'; }
+.activity-body { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
 
 /* Profile photo — a circular avatar, like a LinkedIn / Instagram picture. */
 .photo {

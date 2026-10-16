@@ -9,46 +9,63 @@
   justify-content: flex-end;
 }
 
-/* A light "sheet of paper" holding the resume, mirroring the printed PDF. */
+/* The résumé reads as part of the site — same type, same hairlines. */
 .resume-sheet {
-  background: #ffffff;
-  color: #111111;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.45;
-  border-radius: 10px;
-  padding: 44px 48px;
-  box-shadow: 0 0 0 1px var(--separator), 0 12px 40px rgba(0, 0, 0, 0.4);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-lg);
+  padding: 40px 44px;
 }
 
 .resume-head { text-align: center; }
-.resume-head h1 { font-size: 30px; margin: 0; letter-spacing: 0.5px; }
-.resume-role { font-weight: 700; color: #333333; margin: 6px 0 0; font-size: 15px; }
-.resume-contact { margin: 8px 0 0; font-size: 13px; }
-.resume-contact a { color: #1a4fd6; text-decoration: underline; }
-.resume-contact .sep { color: #999999; margin: 0 7px; }
+.resume-head h1 { margin: 0; font-size: var(--text-title); font-weight: 400; letter-spacing: 2px; }
+.resume-role { margin: 6px 0 0; color: var(--ink-dim); font-size: var(--text-sm); }
+.resume-contact { margin: 10px 0 0; font-size: var(--text-xs); color: var(--ink-dim); }
+.resume-contact a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.resume-contact a:hover { color: var(--link-hover); }
+.resume-contact .sep { margin: 0 7px; color: var(--separator); }
 
 .resume-sheet h2 {
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   margin: 26px 0 10px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #111111;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--separator);
+  color: var(--ink-dim);
+  font-size: var(--text-2xs);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .resume-sheet p { margin: 8px 0; }
+.resume-sheet strong { font-weight: 500; }
 
-.resume-entry { padding: 12px 0; border-bottom: 1px solid #e3e3e3; }
+.resume-entry { padding: 12px 0; border-bottom: 1px solid var(--separator); }
 .resume-entry:last-child { border-bottom: none; padding-bottom: 0; }
 .resume-entry-head { display: flex; justify-content: space-between; gap: 16px; }
-.resume-entry-title { font-weight: 700; }
-.resume-entry-type { font-weight: 400; color: #555555; }
-.resume-entry-period { color: #555555; white-space: nowrap; }
-.resume-entry-org { font-style: italic; color: #555555; margin: 3px 0 0; }
+.resume-entry-title { font-weight: 500; }
+.resume-entry-type { color: var(--ink-dim); }
+.resume-entry-period { color: var(--ink-dim); white-space: nowrap; }
+.resume-entry-org { margin: 3px 0 0; color: var(--ink-dim); font-style: italic; }
 .resume-entry-org.no-italic { font-style: normal; }
 
 .resume-line { margin: 5px 0; }
+
+/* Inline link with a leading icon (résumé, case studies, academics). */
+.resume-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  color: var(--ink);
+  font-size: var(--text-xs);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+.resume-link:hover { color: var(--link-hover); }
 
 @media (max-width: 36em) {
   .resume-sheet { padding: 28px 22px; }
@@ -56,11 +73,23 @@
   .resume-entry-period { white-space: normal; }
 }
 
+/* On paper the résumé goes back to ink on white, ready for print-to-PDF. */
 @media print {
   .resume-toolbar { display: none; }
   .resume-sheet {
-    box-shadow: none;
+    background: #fff;
+    color: #111;
+    border: 0;
     border-radius: 0;
     padding: 0;
   }
+  .resume-role,
+  .resume-entry-type,
+  .resume-entry-period,
+  .resume-entry-org,
+  .resume-contact,
+  .resume-sheet h2 { color: #555; }
+  .resume-contact a { color: #111; }
+  .resume-sheet h2,
+  .resume-entry { border-color: #ddd; }
 }

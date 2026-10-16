@@ -38,6 +38,8 @@
   text-transform: uppercase;
   color: var(--ink-dim);
 }
+.detail-section { scroll-margin-top: 24px; }
+.detail-section-body { font-size: var(--text-body); }
 
 .detail-aside {
   position: sticky;
@@ -48,6 +50,7 @@
 }
 @media (max-width: 48em) {
   .detail-aside { position: static; }
+  .page-index-aside { display: none; }
 }
 .detail-meta {
   display: flex;
