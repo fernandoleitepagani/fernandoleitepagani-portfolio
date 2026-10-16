@@ -4,13 +4,7 @@ import Clamped from './Clamped';
 import { useLanguage } from '../context/LanguageContext';
 import type { Recommendation } from '../data/content';
 
-export default function RecommendationCard({
-  rec,
-  full = false,
-}: {
-  rec: Recommendation;
-  full?: boolean;
-}) {
+export default function RecommendationCard({ rec }: { rec: Recommendation }) {
   const { lang } = useLanguage();
   const initial = rec.name.trim().charAt(0).toUpperCase();
 
@@ -32,13 +26,9 @@ export default function RecommendationCard({
 
           <Text className="recommendation-relationship">{rec.relationship[lang]}</Text>
 
-          {full ? (
-            <Text className="recommendation-text">{rec.text[lang]}</Text>
-          ) : (
-            <Clamped lines={4} className="recommendation-text">
-              {rec.text[lang]}
-            </Clamped>
-          )}
+          <Clamped lines={4} className="recommendation-text">
+            {rec.text[lang]}
+          </Clamped>
 
           {rec.link && (
             <Anchor

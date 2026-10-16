@@ -145,7 +145,7 @@ export interface AwardsContent {
 
 export interface Content {
   nav: Record<
-    'about' | 'resume' | 'skills' | 'projects' | 'academics' | 'contact',
+    'about' | 'resume' | 'skills' | 'projects' | 'academics' | 'recommendations' | 'contact',
     string
   >;
   themeLabel: string;

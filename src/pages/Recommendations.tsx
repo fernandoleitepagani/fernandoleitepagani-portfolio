@@ -26,7 +26,7 @@ export default function Recommendations() {
       ) : (
         <Stack gap="md">
           {recommendations.map((rec) => (
-            <RecommendationCard key={rec.id} rec={rec} full />
+            <RecommendationCard key={rec.id} rec={rec} />
           ))}
         </Stack>
       )}
