@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fernando Leite Pagani — Resume</title>
+    <style>
+      :root { --ink: #111; --dim: #555; --line: #d0d0d0; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Georgia, 'Times New Roman', serif;
+        color: var(--ink);
+        font-size: 10.5pt;
+        line-height: 1.34;
+      }
+      .page { max-width: 780px; margin: 0 auto; padding: 22px 46px 18px; }
+      header { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 4px; }
+      h1 { font-size: 21pt; margin: 0 0 2px; letter-spacing: 1px; }
+      .role { font-size: 10.5pt; color: var(--dim); margin: 0 0 8px; }
+      .contact { font-size: 9.5pt; color: var(--dim); margin: 0; }
+      .contact span + span::before { content: '  ·  '; }
+      .contact a { color: var(--dim); text-decoration: none; }
+      .highlights { display: flex; gap: 30px; margin-top: 8px; }
+      .highlights div { display: flex; flex-direction: column; gap: 1px; }
+      .highlights b { font-size: 15pt; line-height: 1; }
+      .highlights span { font-size: 8.5pt; color: var(--dim); }
+      h2 {
+        font-size: 10.5pt;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin: 12px 0 5px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 4px;
+      }
+      p { margin: 4px 0; }
+      .entry { margin-bottom: 8px; break-inside: avoid; }
+      .entry-head { display: flex; justify-content: space-between; gap: 12px; }
+      .entry-title { font-weight: bold; }
+      .entry-period { color: var(--dim); font-size: 9.5pt; white-space: nowrap; }
+      .entry-org { color: var(--dim); font-size: 10pt; }
+      ul { margin: 4px 0 0; padding-left: 18px; }
+      li { margin: 2px 0; }
+      .skills p { margin: 4px 0; }
+      .skills b { display: inline-block; min-width: 148px; }
+      .langs { display: flex; gap: 32px; }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Fernando Leite Pagani</h1>
+        <p class="role">Computer Science student · Linux, systems &amp; DevOps</p>
+        <p class="contact">
+          <span>Belo Horizonte, MG</span>
+          <span><a href="mailto:fernando.leite@sga.pucminas.br">fernando.leite@sga.pucminas.br</a></span>
+          <span><a href="https://www.linkedin.com/in/fernandoleitepagani">linkedin.com/in/fernandoleitepagani</a></span>
+          <span><a href="https://github.com/fernandoleitepagani">github.com/fernandoleitepagani</a></span>
+        </p>
+        <div class="highlights">
+          <div><b>14</b><span>Public repositories</span></div>
+          <div><b>100+</b><span>Contributions (12 months)</span></div>
+          <div><b>29</b><span>Pull requests</span></div>
+          <div><b>41</b><span>Issues</span></div>
+        </div>
+      </header>
+
+      <section>
+        <h2>Summary</h2>
+        <p>
+          Computer Science student at PUC Minas with a strong focus on Linux, systems and DevOps. I
+          have used Linux as my daily driver since I was 13, build my own tooling and self-host
+          services on my own hardware. I care about fast, reproducible and efficient environments,
+          and I prefer understanding how things work under the hood.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Open-source developer</span>
+            <span class="entry-period">2026 – now</span>
+          </div>
+          <div class="entry-org">Personal projects · Remote</div>
+          <p>
+            Building and maintaining open-source tools for the Linux desktop — 3 projects, 14
+            public repositories and 100+ contributions in the last year.
+          </p>
+          <ul>
+            <li>
+              MangoMod — visual, interactive configuration interface for the MangoWM compositor
+              (GTK4/libadwaita), forked and adapted from NiriMod.
+            </li>
+            <li>
+              Simple-Nvim — modular, performant Neovim configuration built on lazy.nvim (LSP,
+              completion, debugging).
+            </li>
+            <li>
+              Rofi-Scripts — launcher scripts that make desktop workflows faster and simpler.
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Youth exchange student</span>
+            <span class="entry-period">Previously</span>
+          </div>
+          <div class="entry-org">Rotary Youth Exchange · AVTEC · Alaska, USA</div>
+          <p>
+            Cultural exchange in the United States, with contact with the IT of a technical college.
+          </p>
+          <ul>
+            <li>Lived and studied abroad, reaching advanced English.</li>
+            <li>First contact with IT infrastructure at a technical institution (AVTEC).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">B.Sc. Computer Science</span>
+            <span class="entry-period">2025 – now</span>
+          </div>
+          <div class="entry-org">PUC Minas — Belo Horizonte, MG</div>
+          <p>
+            Second semester. Coursework in algorithms and data structures, object-oriented
+            programming, computer systems and web development.
+          </p>
+        </div>
+      </section>
+
+      <section class="skills">
+        <h2>Skills</h2>
+        <p><b>Languages:</b> C, C++, Python, Java, Lua, Bash, HTML, CSS</p>
+        <p><b>Systems &amp; infra:</b> Linux (Fedora, Arch, Debian), Docker, Git, Tailscale, Syncthing</p>
+        <p><b>Tools:</b> Neovim, Wayland, Jellyfin, homelab / self-hosting</p>
+      </section>
+
+      <section>
+        <h2>Languages</h2>
+        <div class="langs">
+          <span>Portuguese — Native</span>
+          <span>English — Advanced</span>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

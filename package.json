@@ -10,7 +10,9 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "check:api": "node scripts/check-github-api.mjs"
+    "check:api": "node scripts/check-github-api.mjs",
+    "resume:pdf": "node scripts/build-resume-pdf.mjs",
+    "og:image": "node scripts/build-og-image.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
