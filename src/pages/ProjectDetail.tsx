@@ -1,7 +1,9 @@
 import { Anchor, Badge, Group, Stack, Text, Title } from '@mantine/core';
 import { IconArrowLeft, IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import Clamped from '../components/Clamped';
 import PageCard from '../components/PageCard';
+import PageIndex, { type PageIndexItem } from '../components/PageIndex';
 import { useLanguage } from '../context/LanguageContext';
 import { projects } from '../data/projects';
 
@@ -13,14 +15,20 @@ export default function ProjectDetail() {
 
   if (!project) return <Navigate to="/projects" replace />;
 
+  const sections = project.sections ?? [];
+  const contents: PageIndexItem[] = sections.map((section, index) => ({
+    id: `section-${index}`,
+    label: section.title[lang],
+  }));
+
   return (
     <Stack gap="xl">
-      <PageCard>
+      <PageCard accent>
         <Stack gap="lg">
-          <Anchor component={Link} to="/projects" className="back-link">
+          <Link to="/projects" viewTransition className="back-link">
             <IconArrowLeft size={15} stroke={1.6} />
             {text.back}
-          </Anchor>
+          </Link>
 
           <Stack gap="xs">
             <Text className="project-category">{project.category[lang]}</Text>
@@ -47,17 +55,29 @@ export default function ProjectDetail() {
                 </div>
               )}
 
-              {project.sections?.map((section) => (
-                <Stack key={section.title.en} gap="xs" className="detail-section">
+              {sections.map((section, index) => (
+                <Stack
+                  key={section.title.en}
+                  gap="xs"
+                  className="detail-section"
+                  id={`section-${index}`}
+                >
                   <Title order={2} className="detail-section-title">
+                    <span className="section-num" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
                     {section.title[lang]}
                   </Title>
-                  <Text>{section.body[lang]}</Text>
+                  <Clamped lines={3} className="detail-section-body">
+                    {section.body[lang]}
+                  </Clamped>
                 </Stack>
               ))}
             </div>
 
             <aside className="detail-aside">
+              {contents.length > 1 && <PageIndex items={contents} className="page-index-aside" />}
+
               {project.period && (
                 <div className="subcard detail-meta">
                   <Text className="detail-meta-label">{text.period}</Text>
