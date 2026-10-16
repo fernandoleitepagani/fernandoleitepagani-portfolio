@@ -5,6 +5,83 @@ export const PORTFOLIO_TOPIC = 'portfolio';
 
 export const projects: Project[] = [
   {
+    name: 'Rofi-Scripts',
+    slug: 'rofi-scripts',
+    repo: 'Rofi-Scripts',
+    githubUrl: `${profile.github}/Rofi-Scripts`,
+    screenshot: '/projects/placeholder.svg',
+    images: ['/projects/placeholder.svg'],
+    period: '2026',
+    tags: ['Shell', 'Bash', 'Rofi', 'Wayland'],
+    category: { en: 'Personal project', pt: 'Projeto pessoal' },
+    description: {
+      en: 'A collection of custom Rofi scripts for a faster, keyboard-driven Linux desktop.',
+      pt: 'Uma coleção de scripts Rofi para um desktop Linux mais rápido e orientado ao teclado.',
+    },
+    summary: {
+      en: 'Lean, theme-agnostic Rofi scripts for the small tasks I repeat every day.',
+      pt: 'Scripts Rofi enxutos e agnósticos de tema para as pequenas tarefas que repito todos os dias.',
+    },
+    sections: [
+      {
+        title: { en: 'Motivation', pt: 'Motivação' },
+        body: {
+          en: 'Rofi is my launcher. I wanted the small tasks I repeat every day to be one keystroke away, so I wrote a set of simple, theme-agnostic scripts.',
+          pt: 'O Rofi é meu launcher. Eu queria que as pequenas tarefas que repito todo dia estivessem a uma tecla de distância, então escrevi um conjunto de scripts simples e agnósticos de tema.',
+        },
+      },
+      {
+        title: { en: 'How it works', pt: 'Como funciona' },
+        body: {
+          en: 'Bash scripts (plus a Python one) that plug into Rofi: system info for network, Bluetooth and audio, media control over MPRIS, a power menu (logout/reboot/shutdown/suspend) and switching power profiles. Developed and tested on Wayland.',
+          pt: 'Scripts Bash (e um em Python) que se integram ao Rofi: informações de rede, Bluetooth e áudio, controle de mídia via MPRIS, menu de energia (logout/reboot/shutdown/suspend) e troca de perfis de energia. Desenvolvidos e testados no Wayland.',
+        },
+      },
+      {
+        title: { en: 'Takeaways', pt: 'Aprendizados' },
+        body: {
+          en: 'A small example of automating my own workflow and keeping scripts simple, portable and theme-agnostic.',
+          pt: 'Um pequeno exemplo de automatizar meu próprio fluxo e manter scripts simples, portáveis e agnósticos de tema.',
+        },
+      },
+    ],
+  },
+  {
+    name: 'Prototipo-Login-PUC',
+    slug: 'prototipo-login-puc',
+    repo: 'Prototipo-Login-PUC',
+    githubUrl: `${profile.github}/Prototipo-Login-PUC`,
+    screenshot: '/projects/placeholder.svg',
+    images: ['/projects/placeholder.svg'],
+    period: '2026',
+    tags: ['HTML', 'CSS'],
+    category: { en: 'University project', pt: 'Projeto acadêmico' },
+    description: {
+      en: 'Login prototype inspired by the PUC Minas student portal.',
+      pt: 'Protótipo de login inspirado no portal do aluno da PUC Minas.',
+    },
+    summary: {
+      en: 'A front-end prototype reproducing a familiar, real login interface.',
+      pt: 'Um protótipo de front-end reproduzindo uma interface de login real e familiar.',
+    },
+    sections: [
+      {
+        title: { en: 'Motivation', pt: 'Motivação' },
+        body: {
+          en: 'A front-end exercise to reproduce a familiar, real interface and focus on layout, form details and responsive behaviour.',
+          pt: 'Um exercício de front-end para reproduzir uma interface real e familiar, com foco em layout, detalhes de formulário e comportamento responsivo.',
+        },
+      },
+      {
+        title: { en: 'How it works', pt: 'Como funciona' },
+        body: {
+          en: 'HTML and CSS with a form (email and password), validation states and a responsive layout that mirrors the portal visual language.',
+          pt: 'HTML e CSS com um formulário (email e senha), estados de validação e um layout responsivo que espelha a linguagem visual do portal.',
+        },
+      },
+    ],
+  },
+  {
     name: 'MangoMod',
     slug: 'mangomod',
     repo: 'MangoMod',
@@ -98,43 +175,44 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: 'Rofi-Scripts',
-    slug: 'rofi-scripts',
-    repo: 'Rofi-Scripts',
-    githubUrl: `${profile.github}/Rofi-Scripts`,
+    name: 'visualize_it',
+    slug: 'visualize-it',
+    repo: 'visualize_it',
+    githubUrl: `${profile.github}/visualize_it`,
     screenshot: '/projects/placeholder.svg',
     images: ['/projects/placeholder.svg'],
     period: '2026',
-    tags: ['Shell', 'Bash', 'Rofi', 'Wayland'],
-    category: { en: 'Personal project', pt: 'Projeto pessoal' },
+    tags: ['React', 'TypeScript', 'Vite', 'Mantine'],
+    category: { en: 'University project — AEDS II', pt: 'Projeto acadêmico — AEDS II' },
+    featured: true,
     description: {
-      en: 'A collection of custom Rofi scripts for a faster, keyboard-driven Linux desktop.',
-      pt: 'Uma coleção de scripts Rofi para um desktop Linux mais rápido e orientado ao teclado.',
+      en: 'Simple website to visualize concepts from the AEDS II course (data structures & algorithms).',
+      pt: 'Site simples para visualizar conceitos da disciplina de AEDS II (estruturas de dados e algoritmos).',
     },
     summary: {
-      en: 'Lean, theme-agnostic Rofi scripts for the small tasks I repeat every day.',
-      pt: 'Scripts Rofi enxutos e agnósticos de tema para as pequenas tarefas que repito todos os dias.',
+      en: 'An interactive visualizer for algorithms, data structures and asymptotic complexity.',
+      pt: 'Um visualizador interativo de algoritmos, estruturas de dados e complexidade assintótica.',
     },
     sections: [
       {
         title: { en: 'Motivation', pt: 'Motivação' },
         body: {
-          en: 'Rofi is my launcher. I wanted the small tasks I repeat every day to be one keystroke away, so I wrote a set of simple, theme-agnostic scripts.',
-          pt: 'O Rofi é meu launcher. Eu queria que as pequenas tarefas que repito todo dia estivessem a uma tecla de distância, então escrevi um conjunto de scripts simples e agnósticos de tema.',
+          en: 'Built for AEDS II: reading the code was not enough, so I made the algorithms run step by step, with the Java or C code, the variables and the complexity table side by side.',
+          pt: 'Feito para AEDS II: só ler o código não bastava, então fiz os algoritmos rodarem passo a passo, com o código em Java ou C, as variáveis e a tabela de complexidade lado a lado.',
         },
       },
       {
         title: { en: 'How it works', pt: 'Como funciona' },
         body: {
-          en: 'Bash scripts (plus a Python one) that plug into Rofi: system info for network, Bluetooth and audio, media control over MPRIS, a power menu (logout/reboot/shutdown/suspend) and switching power profiles. Developed and tested on Wayland.',
-          pt: 'Scripts Bash (e um em Python) que se integram ao Rofi: informações de rede, Bluetooth e áudio, controle de mídia via MPRIS, menu de energia (logout/reboot/shutdown/suspend) e troca de perfis de energia. Desenvolvidos e testados no Wayland.',
+          en: 'Each lesson is pure data plus a pure function: `steps()` returns the list of animation frames and the player just walks that list, so lessons are testable without a browser. Views render bars, cells or graph nodes, and the code panel highlights the line being executed.',
+          pt: 'Cada lição é dado puro mais uma função pura: `steps()` devolve a lista de quadros da animação e o player só percorre essa lista, então as lições são testáveis sem navegador. As views renderizam barras, células ou nós de grafo, e o painel de código destaca a linha em execução.',
         },
       },
       {
         title: { en: 'Takeaways', pt: 'Aprendizados' },
         body: {
-          en: 'A small example of automating my own workflow and keeping scripts simple, portable and theme-agnostic.',
-          pt: 'Um pequeno exemplo de automatizar meu próprio fluxo e manter scripts simples, portáveis e agnósticos de tema.',
+          en: 'Testing animations through pure functions, and turning coursework into a reusable study tool.',
+          pt: 'Testar animações por meio de funções puras, e transformar um trabalho de disciplina em uma ferramenta de estudo reutilizável.',
         },
       },
     ],
@@ -150,6 +228,7 @@ export const projects: Project[] = [
     period: '2026',
     tags: ['React', 'TypeScript', 'Vite', 'Mantine'],
     category: { en: 'Personal project', pt: 'Projeto pessoal' },
+    featured: true,
     description: {
       en: 'This portfolio — React, Vite and Mantine, with its own GitHub API layer for the stats and project data.',
       pt: 'Este portfólio — React, Vite e Mantine, com camada própria de API do GitHub para as estatísticas e os dados dos projetos.',
@@ -185,83 +264,6 @@ export const projects: Project[] = [
         body: {
           en: 'It made me comfortable with serverless functions, caching, the GitHub API and building a small design system with CSS tokens.',
           pt: 'Me deixou confortável com funções serverless, cache, a API do GitHub e construir um pequeno design system com CSS tokens.',
-        },
-      },
-    ],
-  },
-  {
-    name: 'visualize_it',
-    slug: 'visualize-it',
-    repo: 'visualize_it',
-    githubUrl: `${profile.github}/visualize_it`,
-    screenshot: '/projects/placeholder.svg',
-    images: ['/projects/placeholder.svg'],
-    period: '2026',
-    tags: ['React', 'TypeScript', 'Vite', 'Mantine'],
-    category: { en: 'University project — AEDS II', pt: 'Projeto acadêmico — AEDS II' },
-    description: {
-      en: 'Simple website to visualize concepts from the AEDS II course (data structures & algorithms).',
-      pt: 'Site simples para visualizar conceitos da disciplina de AEDS II (estruturas de dados e algoritmos).',
-    },
-    summary: {
-      en: 'An interactive visualizer for algorithms, data structures and asymptotic complexity.',
-      pt: 'Um visualizador interativo de algoritmos, estruturas de dados e complexidade assintótica.',
-    },
-    sections: [
-      {
-        title: { en: 'Motivation', pt: 'Motivação' },
-        body: {
-          en: 'Built for AEDS II: reading the code was not enough, so I made the algorithms run step by step, with the Java or C code, the variables and the complexity table side by side.',
-          pt: 'Feito para AEDS II: só ler o código não bastava, então fiz os algoritmos rodarem passo a passo, com o código em Java ou C, as variáveis e a tabela de complexidade lado a lado.',
-        },
-      },
-      {
-        title: { en: 'How it works', pt: 'Como funciona' },
-        body: {
-          en: 'Each lesson is pure data plus a pure function: `steps()` returns the list of animation frames and the player just walks that list, so lessons are testable without a browser. Views render bars, cells or graph nodes, and the code panel highlights the line being executed.',
-          pt: 'Cada lição é dado puro mais uma função pura: `steps()` devolve a lista de quadros da animação e o player só percorre essa lista, então as lições são testáveis sem navegador. As views renderizam barras, células ou nós de grafo, e o painel de código destaca a linha em execução.',
-        },
-      },
-      {
-        title: { en: 'Takeaways', pt: 'Aprendizados' },
-        body: {
-          en: 'Testing animations through pure functions, and turning coursework into a reusable study tool.',
-          pt: 'Testar animações por meio de funções puras, e transformar um trabalho de disciplina em uma ferramenta de estudo reutilizável.',
-        },
-      },
-    ],
-  },
-  {
-    name: 'Prototipo-Login-PUC',
-    slug: 'prototipo-login-puc',
-    repo: 'Prototipo-Login-PUC',
-    githubUrl: `${profile.github}/Prototipo-Login-PUC`,
-    screenshot: '/projects/placeholder.svg',
-    images: ['/projects/placeholder.svg'],
-    period: '2026',
-    tags: ['HTML', 'CSS'],
-    category: { en: 'University project', pt: 'Projeto acadêmico' },
-    description: {
-      en: 'Login prototype inspired by the PUC Minas student portal.',
-      pt: 'Protótipo de login inspirado no portal do aluno da PUC Minas.',
-    },
-    summary: {
-      en: 'A front-end prototype reproducing a familiar, real login interface.',
-      pt: 'Um protótipo de front-end reproduzindo uma interface de login real e familiar.',
-    },
-    sections: [
-      {
-        title: { en: 'Motivation', pt: 'Motivação' },
-        body: {
-          en: 'A front-end exercise to reproduce a familiar, real interface and focus on layout, form details and responsive behaviour.',
-          pt: 'Um exercício de front-end para reproduzir uma interface real e familiar, com foco em layout, detalhes de formulário e comportamento responsivo.',
-        },
-      },
-      {
-        title: { en: 'How it works', pt: 'Como funciona' },
-        body: {
-          en: 'HTML and CSS with a form (email and password), validation states and a responsive layout that mirrors the portal visual language.',
-          pt: 'HTML e CSS com um formulário (email e senha), estados de validação e um layout responsivo que espelha a linguagem visual do portal.',
         },
       },
     ],

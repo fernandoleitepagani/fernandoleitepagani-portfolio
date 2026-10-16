@@ -32,7 +32,11 @@ export default function Projects() {
     let frame = 0;
     const update = () => {
       frame = 0;
-      const center = window.innerHeight / 2;
+      const viewport = window.innerHeight;
+      const center = viewport / 2;
+      const first = items[0].getBoundingClientRect();
+      const last = items[items.length - 1].getBoundingClientRect();
+
       let best = 0;
       let bestDistance = Number.POSITIVE_INFINITY;
       items.forEach((item, index) => {
@@ -43,6 +47,10 @@ export default function Projects() {
           best = index;
         }
       });
+
+      if (first.top >= 0) best = 0;
+      else if (last.bottom <= viewport) best = items.length - 1;
+
       setActive(best);
     };
     const onScroll = () => {
