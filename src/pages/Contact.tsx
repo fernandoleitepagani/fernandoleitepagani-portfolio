@@ -1,21 +1,13 @@
 import { useRef, useState, type ComponentType } from 'react';
 import emailjs from '@emailjs/browser';
-import {
-  Alert,
-  Anchor,
-  Group,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
-  UnstyledButton,
-} from '@mantine/core';
+import { Alert, Anchor, Group, Stack, Text, Title, UnstyledButton } from '@mantine/core';
 import {
   IconAlertCircle,
   IconBrandGithub,
   IconBrandInstagram,
   IconBrandLinkedin,
   IconCheck,
+  IconCopy,
   IconMail,
   IconRefresh,
 } from '@tabler/icons-react';
@@ -38,17 +30,16 @@ interface ContactLinkProps {
 function ContactLink({ icon: Icon, label, href }: ContactLinkProps) {
   const external = href.startsWith('http');
   return (
-    <Tooltip label={label} position="top" withArrow>
-      <Anchor
-        href={href}
-        className="contact-card"
-        aria-label={label}
-        target={external ? '_blank' : undefined}
-        rel={external ? 'noreferrer' : undefined}
-      >
-        <Icon size={20} stroke={1.5} />
-      </Anchor>
-    </Tooltip>
+    <Anchor
+      href={href}
+      className="contact-card"
+      aria-label={label}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer' : undefined}
+    >
+      <Icon size={16} stroke={1.5} />
+      <span>{label}</span>
+    </Anchor>
   );
 }
 
@@ -57,6 +48,7 @@ export default function Contact() {
   const { contact, about } = t;
   const form = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<FormStatus>('idle');
+  const [copied, setCopied] = useState(false);
 
   const links: ContactLinkProps[] = [
     { label: contact.labelEmail, href: `mailto:${profile.emailWork}`, icon: IconMail },
@@ -65,6 +57,16 @@ export default function Contact() {
     { label: contact.labelInstagram, href: profile.instagram, icon: IconBrandInstagram },
     { label: contact.labelLattes, href: profile.lattes, icon: LattesIcon },
   ];
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.emailWork);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  };
 
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,7 +113,7 @@ export default function Contact() {
 
   return (
     <Stack gap="xl">
-      <PageCard>
+      <PageCard accent>
         <Stack gap="md">
           <span className="availability">
             <span className="availability-dot" aria-hidden="true" />
@@ -121,6 +123,17 @@ export default function Contact() {
             {contact.title}
           </Title>
           <Text className="contact-intro">{contact.subtitle}</Text>
+
+          <div className="contact-direct">
+            <Anchor href={`mailto:${profile.emailWork}`} className="contact-email">
+              {profile.emailWork}
+            </Anchor>
+            <UnstyledButton className="contact-copy" onClick={copyEmail} aria-live="polite">
+              {copied ? <IconCheck size={14} stroke={2} /> : <IconCopy size={14} stroke={1.6} />}
+              {copied ? contact.copied : contact.copyEmail}
+            </UnstyledButton>
+          </div>
+
           <Group gap="sm" className="contact-links">
             {links.map((link) => (
               <ContactLink key={link.label} {...link} />
@@ -131,7 +144,7 @@ export default function Contact() {
 
       <PageCard>
         {status === 'sent' || status === 'partial' ? (
-          <div className="contact-success">
+          <div className="contact-success" role="status" aria-live="polite">
             <div className="contact-success-icon">
               <IconCheck size={38} stroke={2.5} />
             </div>
@@ -143,7 +156,6 @@ export default function Contact() {
                 color="orange"
                 className="contact-success-warning"
                 icon={<IconAlertCircle size={18} stroke={1.5} />}
-                aria-live="polite"
               >
                 {contact.formPartial}
               </Alert>
@@ -202,11 +214,7 @@ export default function Contact() {
                 placeholder={contact.formMessage}
                 disabled={status === 'sending'}
               />
-              <UnstyledButton
-                type="submit"
-                className="contact-submit"
-                disabled={status === 'sending'}
-              >
+              <UnstyledButton type="submit" className="contact-submit" disabled={status === 'sending'}>
                 {status === 'sending' ? contact.formSending : contact.formSend}
               </UnstyledButton>
             </form>

@@ -55,9 +55,9 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
           const label = t.nav[key];
           return (
             <Tooltip key={key} label={label} position="right" disabled={!collapsed}>
-              <UnstyledButton
-                component={Link}
+              <Link
                 to={path}
+                viewTransition
                 className="nav-item"
                 data-active={pathname === path || undefined}
                 aria-label={label}
@@ -65,7 +65,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
               >
                 <Icon size={size ?? 18} stroke={1.5} />
                 {!collapsed && <span>{label}</span>}
-              </UnstyledButton>
+              </Link>
             </Tooltip>
           );
         })}

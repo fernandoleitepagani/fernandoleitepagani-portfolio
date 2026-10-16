@@ -23,6 +23,7 @@
 .nav-item {
   display: flex; align-items: center; gap: 12px;
   padding: 11px 12px; font-size: var(--text-sm); color: var(--ink);
+  text-decoration: none;
   border-radius: var(--radius-sm);
   transition: background var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft);
 }
