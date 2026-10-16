@@ -37,7 +37,7 @@
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
   --dur-fast: 0.18s;
   --dur: 0.36s;
-  --dur-slow: 0.7s;
+  --dur-slow: 0.5s;
 
   /* Shape — one restrained radius scale for every surface */
   --radius-sm: 6px;

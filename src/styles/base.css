@@ -26,10 +26,31 @@ p { text-wrap: pretty; }
 
 .link {
   color: var(--ink);
+  text-decoration: underline;
   text-underline-offset: 3px;
   transition: color var(--dur-fast) var(--ease-soft);
 }
 .link:hover { color: var(--link-hover); }
+
+/* Long prose stays collapsed until the reader asks for the rest of it. */
+.clamp > [data-clamped] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-toggle {
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  width: fit-content;
+  color: var(--ink-dim);
+  font-family: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+.clamp-toggle:hover { color: var(--link-hover); }
 
 /* Slim, monochrome scrollbars. */
 * {
@@ -56,4 +77,43 @@ p { text-wrap: pretty; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------- Scroll-driven reveal ----------
+   Below-the-fold blocks fade in as they enter the viewport. The range ends
+   early, so anything already on screen renders fully opaque. Pure CSS, and a
+   no-op wherever scroll timelines are unsupported. */
+@supports (animation-timeline: view()) {
+  .page-container :is(.project, .subcard, .entry) {
+    animation-name: rise-in;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+  /* Panels that live inside a sticky column or a disclosure stay static. */
+  .detail-aside .subcard,
+  .activity .subcard { animation-name: none; }
+}
+
+/* ---------- Route cross-fade ----------
+   Links carry `viewTransition`, so the browser snapshots the page and
+   cross-fades it. Everything else (sidebar, header) is untouched. */
+@keyframes page-out { to { opacity: 0; } }
+@keyframes page-in { from { opacity: 0; } }
+::view-transition-old(root) { animation: page-out var(--dur-fast) var(--ease-soft) both; }
+::view-transition-new(root) { animation: page-in var(--dur) var(--ease-organic) both; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+}
+
+/* Printing falls back to paper colours, with no chrome. */
+@media print {
+  .app-navbar,
+  .app-header,
+  .page-index { display: none !important; }
+  .app-main { padding: 0 !important; }
+  body { background: #fff; color: #000; }
 }

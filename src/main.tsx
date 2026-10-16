@@ -1,11 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { MantineProvider, createTheme } from '@mantine/core';
 import '@fontsource/jetbrains-mono/400.css';
 import '@mantine/core/styles.css';
 import './styles/index.css';
-import App from './App';
+import { router } from './router';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -22,9 +22,7 @@ createRoot(document.getElementById('root')!).render(
     <MantineProvider theme={mantineTheme} forceColorScheme="dark">
       <ThemeProvider>
         <LanguageProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <RouterProvider router={router} />
         </LanguageProvider>
       </ThemeProvider>
     </MantineProvider>
