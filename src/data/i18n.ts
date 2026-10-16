@@ -51,59 +51,41 @@ export const content: Record<Lang, Content> = {
     },
     resume: {
       title: 'Resume',
-      role: 'Computer Science student · Linux, systems & DevOps',
+      role: 'Computer Science Student · Belo Horizonte, Brazil',
       download: 'Download PDF',
-      highlights: [
-        { value: '14', label: 'Public repositories' },
-        { value: '100+', label: 'Contributions (12 months)' },
-        { value: '29', label: 'Pull requests' },
-        { value: '41', label: 'Issues' },
-      ],
       summaryTitle: 'Summary',
       summary:
-        'Computer Science student at PUC Minas with a strong focus on Linux, systems and DevOps. I have used Linux as my daily driver since I was 13, build my own tooling and self-host services on my own hardware. I care about fast, reproducible and efficient environments, and I prefer understanding how things work under the hood.',
-      experienceTitle: 'Experience',
+        'Computer Science student at PUC Minas with a strong focus on **Linux**, **systems** and **DevOps**. I have used Linux as my daily driver since I was 13, build and maintain **14 public repositories** with **100+ contributions** in the last year, and self-host services on my own hardware. I care about fast, reproducible and efficient environments, and I prefer understanding how things work under the hood.',
+      experienceTitle: 'Professional Experience',
       experience: [
         {
           role: 'Open-source developer',
           org: 'Personal projects',
-          period: '2026 – now',
-          location: 'Remote',
-          summary:
-            'Building and maintaining open-source tools for the Linux desktop — 3 projects, 14 public repositories and 100+ contributions in the last year.',
-          bullets: [
-            'MangoMod — visual, interactive configuration interface for the MangoWM compositor (GTK4/libadwaita), forked and adapted from NiriMod.',
-            'Simple-Nvim — modular, performant Neovim configuration built on lazy.nvim (LSP, completion, debugging).',
-            'Rofi-Scripts — launcher scripts that make desktop workflows faster and simpler.',
-          ],
-          tags: ['Python', 'Lua', 'Shell', 'GTK4', 'Neovim', 'Linux'],
+          period: '2026 – Present',
+          location: 'Open source',
+          summary: 'Open-source tools for the Linux desktop.',
+          body: 'Building and maintaining open-source tooling, with **3 projects**, **14 public repositories** and **100+ contributions** in the last year. **MangoMod** — visual, interactive configuration interface for the MangoWM Wayland compositor (GTK4/libadwaita), forked and adapted from NiriMod. **Simple-Nvim** — modular, performant Neovim configuration built on lazy.nvim (LSP, completion, debugging). **Rofi-Scripts** — launcher scripts that make desktop workflows faster and simpler.',
         },
         {
           role: 'Youth exchange student',
           org: 'Rotary Youth Exchange · AVTEC',
           period: 'Previously',
           location: 'Alaska, USA',
-          summary:
-            'Cultural exchange in the United States, with contact with the IT of a technical college.',
-          bullets: [
-            'Lived and studied abroad, reaching advanced English.',
-            'First contact with IT infrastructure at a technical institution (AVTEC).',
-          ],
-          tags: ['English', 'Communication'],
+          summary: 'Cultural exchange in the United States.',
+          body: 'Lived and studied in Alaska, reaching **advanced English**, and had first contact with IT infrastructure at **AVTEC**, a technical college.',
         },
       ],
-      educationTitle: 'Education',
+      educationTitle: 'Academic Background',
       education: [
         {
           degree: 'B.Sc. Computer Science',
           school: 'PUC Minas — Belo Horizonte, MG',
-          period: '2025 – now',
+          period: '2025 – Present (2nd semester)',
           summary:
-            'Second semester. Coursework in algorithms and data structures, object-oriented programming, computer systems and web development.',
-          tags: ['Algorithms', 'Data structures', 'C', 'Java', 'Web'],
+            'Coursework: Algorithms and Data Structures, Discrete Mathematics, Databases, Web Interface Development, Software Engineering.',
         },
       ],
-      skillsTitle: 'Skills',
+      skillsTitle: 'Technical Skills',
       languagesTitle: 'Languages',
       languages: [
         { name: 'Portuguese', level: 'Native' },
@@ -231,59 +213,41 @@ export const content: Record<Lang, Content> = {
     },
     resume: {
       title: 'Currículo',
-      role: 'Estudante de Ciência da Computação · Linux, sistemas e DevOps',
+      role: 'Estudante de Ciência da Computação · Belo Horizonte, Brasil',
       download: 'Baixar PDF',
-      highlights: [
-        { value: '14', label: 'Repositórios públicos' },
-        { value: '100+', label: 'Contribuições (12 meses)' },
-        { value: '29', label: 'Pull requests' },
-        { value: '41', label: 'Issues' },
-      ],
       summaryTitle: 'Resumo',
       summary:
-        'Estudante de Ciência da Computação na PUC Minas com forte foco em Linux, sistemas e DevOps. Uso Linux como sistema principal desde os 13 anos, desenvolvo minhas próprias ferramentas e mantenho serviços self-hosted no meu próprio hardware. Prezo por ambientes rápidos, reprodutíveis e eficientes e gosto de entender como as coisas funcionam por baixo dos panos.',
-      experienceTitle: 'Experiência',
+        'Estudante de Ciência da Computação na PUC Minas com forte foco em **Linux**, **sistemas** e **DevOps**. Uso Linux como sistema principal desde os 13 anos, desenvolvo e mantenho **14 repositórios públicos** com **mais de 100 contribuições** no último ano, e mantenho serviços self-hosted no meu próprio hardware. Prezo por ambientes rápidos, reprodutíveis e eficientes e gosto de entender como as coisas funcionam por baixo dos panos.',
+      experienceTitle: 'Experiência Profissional',
       experience: [
         {
           role: 'Desenvolvedor open-source',
           org: 'Projetos pessoais',
-          period: '2026 – hoje',
-          location: 'Remoto',
-          summary:
-            'Desenvolvimento e manutenção de ferramentas open-source para o desktop Linux — 3 projetos, 14 repositórios públicos e mais de 100 contribuições no último ano.',
-          bullets: [
-            'MangoMod — interface visual e interativa de configuração para o compositor MangoWM (GTK4/libadwaita), adaptada a partir do NiriMod.',
-            'Simple-Nvim — configuração modular e performática do Neovim com lazy.nvim (LSP, completion, debugging).',
-            'Rofi-Scripts — scripts de launcher que tornam o fluxo de trabalho no desktop mais rápido e simples.',
-          ],
-          tags: ['Python', 'Lua', 'Shell', 'GTK4', 'Neovim', 'Linux'],
+          period: '2026 – Atualmente',
+          location: 'Open source',
+          summary: 'Ferramentas open-source para o desktop Linux.',
+          body: 'Desenvolvimento e manutenção de ferramentas open-source, com **3 projetos**, **14 repositórios públicos** e **mais de 100 contribuições** no último ano. **MangoMod** — interface visual e interativa de configuração para o compositor Wayland MangoWM (GTK4/libadwaita), adaptada a partir do NiriMod. **Simple-Nvim** — configuração modular e performática do Neovim com lazy.nvim (LSP, completion, debugging). **Rofi-Scripts** — scripts de launcher que tornam o fluxo no desktop mais rápido e simples.',
         },
         {
           role: 'Estudante de intercâmbio',
           org: 'Rotary Youth Exchange · AVTEC',
           period: 'Anteriormente',
           location: 'Alaska, EUA',
-          summary:
-            'Intercâmbio cultural nos Estados Unidos, com contato com a TI de uma faculdade técnica.',
-          bullets: [
-            'Morei e estudei no exterior, alcançando inglês avançado.',
-            'Primeiro contato com infraestrutura de TI em uma instituição técnica (AVTEC).',
-          ],
-          tags: ['Inglês', 'Comunicação'],
+          summary: 'Intercâmbio cultural nos Estados Unidos.',
+          body: 'Morei e estudei no **Alaska**, alcançando **inglês avançado**, e tive o primeiro contato com infraestrutura de TI na **AVTEC**, uma escola técnica.',
         },
       ],
-      educationTitle: 'Formação',
+      educationTitle: 'Formação Acadêmica',
       education: [
         {
           degree: 'Bacharelado em Ciência da Computação',
           school: 'PUC Minas — Belo Horizonte, MG',
-          period: '2025 – hoje',
+          period: '2025 – Atualmente (2º período)',
           summary:
-            'Segundo período. Disciplinas de algoritmos e estruturas de dados, programação orientada a objetos, sistemas computacionais e desenvolvimento web.',
-          tags: ['Algoritmos', 'Estruturas de dados', 'C', 'Java', 'Web'],
+            'Disciplinas: Algoritmos e Estruturas de Dados, Matemática Discreta, Banco de Dados, Desenvolvimento de Interfaces Web, Engenharia de Software.',
         },
       ],
-      skillsTitle: 'Habilidades',
+      skillsTitle: 'Habilidades Técnicas',
       languagesTitle: 'Idiomas',
       languages: [
         { name: 'Português', level: 'Nativo' },
