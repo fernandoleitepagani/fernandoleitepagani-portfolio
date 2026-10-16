@@ -359,8 +359,37 @@ responsiva mobile.
 
 Site publicado: **[fernandoleitepagani-portfolio.vercel.app](https://fernandoleitepagani-portfolio.vercel.app/)**
 
-> **Capturas reais da aplicação:** ainda pendentes. Não usamos imagens geradas para representar
-> software em execução; as capturas serão adicionadas após serem feitas no site real.
+Capturas reais do site **em produção**, no tema escuro (1400×900):
+
+| Sobre Mim | Experiência e Formação |
+| :---: | :---: |
+| <img src="docs/screenshots/01-sobre-mim.png" alt="Seção Sobre Mim, com índice de navegação na página" width="440px"> | <img src="docs/screenshots/02-experiencia-formacao.png" alt="Seções de experiência profissional e formação acadêmica" width="440px"> |
+| **Projetos (timeline)** | **Detalhe do projeto (estudo de caso)** |
+| <img src="docs/screenshots/03-projetos-timeline.png" alt="Timeline de projetos, do mais antigo ao mais recente" width="440px"> | <img src="docs/screenshots/04-projeto-detalhe.png" alt="Página de estudo de caso de um projeto" width="440px"> |
+| **Habilidades** | **Currículo** |
+| <img src="docs/screenshots/05-habilidades.png" alt="Globo 3D de habilidades e lista completa" width="440px"> | <img src="docs/screenshots/06-curriculo.png" alt="Currículo no tema do site, com download em PDF" width="440px"> |
+| **Acadêmico** | **Recomendações** |
+| <img src="docs/screenshots/07-academico.png" alt="Percurso acadêmico por período, com notas e certificados" width="440px"> | <img src="docs/screenshots/08-recomendacoes.png" alt="Recomendações de professores e colegas" width="440px"> |
+| **Contato** | **Atividade no GitHub (dados reais via `/api/github`)** |
+| <img src="docs/screenshots/09-contato.png" alt="Página de contato com e-mail, redes e formulário" width="440px"> | <img src="docs/screenshots/10-github-atividade.png" alt="Heatmap de contribuições, linguagens e estatísticas" width="440px"> |
+
+**Temas** — o mesmo site em três identidades visuais:
+
+| Matrix | CRT |
+| :---: | :---: |
+| <img src="docs/screenshots/11-tema-matrix.png" alt="Tema Matrix" width="440px"> | <img src="docs/screenshots/11-tema-crt.png" alt="Tema CRT, com efeito de tubo" width="440px"> |
+
+**Responsividade** — 390×844 (iPhone 12/13/14):
+
+| Sobre Mim | Menu de navegação | Projeto |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/12-mobile-sobre.png" alt="Site no celular — Sobre Mim" height="340px"> | <img src="docs/screenshots/13-mobile-menu.png" alt="Site no celular — menu aberto" height="340px"> | <img src="docs/screenshots/14-mobile-projeto.png" alt="Site no celular — projeto" height="340px"> |
+
+> [!NOTE]
+> As capturas acima são do site publicado. Em *Projetos*, o portfólio, o `visualize_it` e o
+> `Prototipo-Login-PUC` já usam capturas reais das aplicações em execução; `MangoMod`, `Simple-Nvim`
+> e `Rofi-Scripts` ainda usam pranchas de substituição (`public/projects/*.svg`), por dependerem de
+> sessão gráfica (GTK4/Wayland/terminal) para serem gravados.
 
 ---
 
