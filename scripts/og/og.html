@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fernando Leite Pagani — Open Graph card</title>
+    <style>
+      @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('../../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2')
+          format('woff2');
+        font-weight: 400;
+      }
+      * { box-sizing: border-box; }
+      html,
+      body { margin: 0; width: 1200px; height: 630px; }
+      body {
+        background: #000;
+        color: #fff;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        width: 1080px;
+        height: 540px;
+        border: 2px solid #fff;
+        border-radius: 18px;
+        padding: 54px 60px;
+        display: flex;
+        flex-direction: column;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        padding: 6px 16px;
+        border: 1px solid #2a2a2a;
+        border-radius: 999px;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        color: #8a8368;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #39d353;
+        box-shadow: 0 0 10px #39d353;
+      }
+      h1 { font-size: 52px; font-weight: 400; letter-spacing: 2px; margin: 26px 0 0; }
+      .role { font-size: 21px; color: #8a8368; margin: 14px 0 0; }
+      .stats { display: flex; gap: 58px; margin-top: auto; }
+      .stats div { display: flex; flex-direction: column; gap: 6px; }
+      .stats b { font-size: 40px; font-weight: 400; line-height: 1; }
+      .stats span {
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #8a8368;
+      }
+      .foot { margin-top: 30px; font-size: 15px; color: #8a8368; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <span class="badge"><span class="dot"></span> Open to internships</span>
+      <h1>Fernando Leite Pagani</h1>
+      <p class="role">Computer Science student · Linux, systems &amp; DevOps</p>
+      <div class="stats">
+        <div><b>14</b><span>Public repositories</span></div>
+        <div><b>100+</b><span>Contributions (12mo)</span></div>
+        <div><b>29</b><span>Pull requests</span></div>
+        <div><b>41</b><span>Issues</span></div>
+      </div>
+      <div class="foot">fernandoleitepagani-portfolio.vercel.app</div>
+    </div>
+  </body>
+</html>
