@@ -1,7 +1,7 @@
 /* ---------- Skills globe ---------- */
-.skills-page { justify-content: center; min-height: calc(100dvh - 96px); }
+.skills-page { min-height: calc(100dvh - 96px); }
 .skills-globe {
-  position: relative; width: 100%; height: clamp(280px, calc(100dvh - 220px), 560px); overflow: hidden;
+  position: relative; width: 100%; height: clamp(260px, 52dvh, 480px); overflow: hidden;
   touch-action: none; cursor: grab; user-select: none;
 }
 .skills-globe--compact { height: clamp(300px, 42vw, 380px); }
@@ -20,9 +20,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 8px 18px -6px rgba(0, 0, 0, 0.6);
   text-decoration: none;
   will-change: transform, opacity;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: box-shadow var(--dur) var(--ease-soft), border-color var(--dur) var(--ease-soft);
 }
-.skills-globe-item svg { width: 26px; height: 26px; transition: transform 0.2s ease; }
+.skills-globe-item svg { width: 26px; height: 26px; transition: transform var(--dur) var(--ease-organic); }
 .skills-globe-monogram { font-size: 14px; font-weight: 700; letter-spacing: 1px; }
 
 .skills-globe-item:hover,
@@ -44,7 +44,7 @@
   white-space: nowrap;
   opacity: 0; pointer-events: none;
   transform: translate(-50%, -4px);
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition: opacity var(--dur-fast) var(--ease-soft), transform var(--dur-fast) var(--ease-organic);
 }
 .skills-globe-item:hover .skills-globe-label,
 .skills-globe-item:focus-visible .skills-globe-label { opacity: 1; transform: translate(-50%, 0); }
@@ -67,12 +67,19 @@
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   padding: 18px 12px;
   color: var(--ink);
-  border: 1px solid var(--separator);
-  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
   text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color var(--dur) var(--ease-soft),
+    background var(--dur) var(--ease-soft),
+    transform var(--dur) var(--ease-organic);
 }
-.skills-grid a:hover { border-color: var(--skill); transform: translateY(-2px); }
+.skills-grid a:hover {
+  border-color: var(--skill);
+  background: var(--surface);
+  transform: translateY(-2px);
+}
 .skills-grid svg { width: 32px; height: 32px; color: var(--skill); }
 .skills-monogram { font-size: 20px; font-weight: 700; letter-spacing: 1px; color: var(--skill); }
 .skills-grid span:not(.skills-monogram) { font-size: var(--text-sm); }

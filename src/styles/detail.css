@@ -6,6 +6,7 @@
   width: fit-content;
   color: var(--ink-dim);
   font-size: var(--text-xs);
+  transition: color var(--dur-fast) var(--ease-soft);
 }
 .back-link:hover { color: var(--link-hover); }
 

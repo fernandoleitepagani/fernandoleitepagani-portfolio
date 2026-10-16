@@ -48,8 +48,15 @@
   display: inline-block;
   width: var(--heat-cell);
   height: var(--heat-cell);
-  border-radius: 2px;
+  border-radius: 3px;
   background: var(--heat-0);
+  transition: transform var(--dur-fast) var(--ease-organic), box-shadow var(--dur-fast) var(--ease-soft);
+}
+.heat-cell:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.18);
+  box-shadow: 0 0 0 2px var(--ring);
 }
 .heat-cell[data-level='1'] { background: var(--heat-1); }
 .heat-cell[data-level='2'] { background: var(--heat-2); }
@@ -98,7 +105,7 @@
   height: 100%;
   border-radius: 999px;
   background: var(--ink);
-  transition: width 0.3s ease;
+  transition: width var(--dur-slow) var(--ease-organic);
 }
 
 .stats-counters {
@@ -111,6 +118,7 @@
   margin: 0;
   font-size: var(--text-title);
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 .stats-counter-label {
   margin: 4px 0 0;

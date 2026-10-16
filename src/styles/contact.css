@@ -7,18 +7,21 @@
 .contact-input {
   width: 100%;
   box-sizing: border-box;
-  background: transparent;
-  border: 1px solid var(--separator);
-  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
   padding: 10px 14px;
   color: var(--ink);
   font-size: var(--text-sm);
   font-family: inherit;
   outline: none;
-  transition: border-color 0.15s ease;
+  transition:
+    border-color var(--dur) var(--ease-soft),
+    background var(--dur) var(--ease-soft),
+    box-shadow var(--dur) var(--ease-soft);
 }
 .contact-input::placeholder { color: var(--ink-dim); }
-.contact-input:focus { border-color: var(--border); }
+.contact-input:focus { border-color: var(--border); box-shadow: 0 0 0 3px var(--ring); }
 .contact-textarea { resize: vertical; min-height: 120px; }
 
 /* Contact links — a row of icon tiles. */
@@ -32,30 +35,38 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border: 1px solid var(--separator);
-  border-radius: 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
   color: var(--ink);
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background var(--dur) var(--ease-soft),
+    color var(--dur) var(--ease-soft),
+    border-color var(--dur) var(--ease-soft),
+    transform var(--dur) var(--ease-organic);
 }
 .contact-card:hover,
 .contact-card:focus-visible {
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
   border-color: var(--border);
+  transform: translateY(-2px);
 }
 
 .contact-submit {
   width: 100%;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
   background: transparent;
   color: var(--ink);
   font-size: var(--text-sm);
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background var(--dur) var(--ease-soft),
+    color var(--dur) var(--ease-soft),
+    transform var(--dur-fast) var(--ease-organic);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,6 +74,7 @@
 .contact-submit:hover:not(:disabled) {
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
+  transform: translateY(-1px);
 }
 .contact-submit:disabled {
   opacity: 0.55;
@@ -71,7 +83,7 @@
 .contact-social {
   color: var(--ink-dim);
   display: inline-flex;
-  transition: color 0.15s ease;
+  transition: color var(--dur-fast) var(--ease-soft);
 }
 .contact-social:hover { color: var(--link-hover); }
 
@@ -85,7 +97,7 @@
   gap: 12px;
   padding: 56px 24px;
   min-height: 360px;
-  animation: contact-success-fade 0.4s ease;
+  animation: contact-success-fade var(--dur) var(--ease-organic);
 }
 
 @keyframes contact-success-fade {
@@ -150,13 +162,14 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur) var(--ease-soft), color var(--dur) var(--ease-soft), background var(--dur) var(--ease-soft), transform var(--dur-fast) var(--ease-organic);
 }
 /* One hover pattern for every button: fill with --button-hover-bg / -text. */
 .contact-success-btn:hover {
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
   border-color: var(--border);
+  transform: translateY(-1px);
 }
 
 /* Partial-success warning inside the success block */
