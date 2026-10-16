@@ -74,8 +74,17 @@
 
 .page-title { font-size: var(--text-title); font-weight: 400; letter-spacing: 2px; text-wrap: balance; }
 
+/* Profile photo — a circular avatar, like a LinkedIn / Instagram picture. */
 .photo {
+  display: block;
+  width: clamp(170px, 44vw, 280px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
   border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  align-self: center;
   transition: border-color var(--dur) var(--ease-soft), transform var(--dur-slow) var(--ease-organic);
 }
 .photo:hover {

@@ -2,7 +2,6 @@ import {
   Anchor,
   Flex,
   Group,
-  Image,
   List,
   Paper,
   SimpleGrid,
@@ -54,16 +53,7 @@ export default function About() {
               </div>
               <Text>{about.description}</Text>
             </Stack>
-            <Image
-              src="/photo.jpg"
-              alt={profile.name}
-              w={300}
-              h={400}
-              maw="100%"
-              fit="cover"
-              radius="md"
-              className="photo"
-            />
+            <img src="/photo.jpg" alt={profile.name} className="photo" width={280} height={280} />
           </Flex>
           <Group gap="sm" className="cta-row">
             <Anchor component={Link} to="/resume" className="cta">
