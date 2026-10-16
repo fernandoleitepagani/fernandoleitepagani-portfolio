@@ -55,3 +55,52 @@
   color: var(--button-hover-text);
   border-color: var(--border);
 }
+
+/* Availability badge with a small pulsing dot. */
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 4px 12px;
+  border: 1px solid var(--separator);
+  border-radius: 999px;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.5px;
+  color: var(--ink-dim);
+}
+.availability-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--online);
+  box-shadow: 0 0 6px var(--online);
+  animation: availability-pulse 2s ease-in-out infinite;
+}
+@keyframes availability-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Call-to-action links — same hover pattern as every other button. */
+.cta-row { flex-wrap: wrap; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 168px;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: var(--text-xs);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.cta:hover,
+.cta:focus-visible {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  border-color: var(--border);
+}
