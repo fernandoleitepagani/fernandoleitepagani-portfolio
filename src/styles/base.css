@@ -1,14 +1,50 @@
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
   font-size: var(--text-body);
   overflow-x: hidden;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color var(--dur) var(--ease-soft), color var(--dur) var(--ease-soft);
 }
 
-.link { color: var(--ink); }
+::selection {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+}
+
+/* Fluid type: balance headings, avoid orphans in body copy. */
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* One shared entrance motion for page surfaces. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.link {
+  color: var(--ink);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
 .link:hover { color: var(--link-hover); }
+
+/* Slim, monochrome scrollbars. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hairline) transparent;
+}
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--surface-strong); background-clip: padding-box; }
 
 /* Every transition/animation on the site honours the OS setting. */
 @media (prefers-reduced-motion: reduce) {
