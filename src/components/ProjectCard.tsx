@@ -174,7 +174,7 @@ export default function ProjectCard({ project, variant = 'showcase' }: ProjectCa
               </a>
             )}
             {project.slug && project.sections && project.sections.length > 0 && (
-              <Link className="project-link" to={`/projects/${project.slug}`}>
+              <Link viewTransition className="project-link" to={`/projects/${project.slug}`}>
                 <IconArrowRight size={15} stroke={1.6} />
                 {learnMore}
               </Link>
