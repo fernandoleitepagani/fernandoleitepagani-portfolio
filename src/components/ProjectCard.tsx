@@ -1,5 +1,12 @@
 import { Badge, Group, Paper, Stack, Text, Title } from '@mantine/core';
-import { IconBrandGithub, IconExternalLink, IconGitFork, IconStar } from '@tabler/icons-react';
+import {
+  IconArrowRight,
+  IconBrandGithub,
+  IconExternalLink,
+  IconGitFork,
+  IconStar,
+} from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import type { Project } from '../data/content';
 
@@ -29,7 +36,7 @@ function relativeTime(iso: string, locale: string) {
 
 export default function ProjectCard({ project, variant = 'showcase' }: ProjectCardProps) {
   const { lang, t } = useLanguage();
-  const { live, sourceCode, stars, forks, updated, preview } = t.projects;
+  const { live, sourceCode, learnMore, stars, forks, updated, preview } = t.projects;
   const locale = lang === 'pt' ? 'pt-BR' : 'en-US';
   const number = new Intl.NumberFormat(locale);
   const href = project.githubUrl ?? project.liveUrl;
@@ -165,6 +172,12 @@ export default function ProjectCard({ project, variant = 'showcase' }: ProjectCa
                 <IconBrandGithub size={15} stroke={1.6} />
                 {sourceCode}
               </a>
+            )}
+            {project.slug && project.sections && project.sections.length > 0 && (
+              <Link className="project-link" to={`/projects/${project.slug}`}>
+                <IconArrowRight size={15} stroke={1.6} />
+                {learnMore}
+              </Link>
             )}
           </nav>
         </div>
