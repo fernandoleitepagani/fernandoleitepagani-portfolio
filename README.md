@@ -1,371 +1,421 @@
-# Fernando Leite Pagani — Portfolio
-
-Personal portfolio site. A single-page React app with client-side routing, three switchable terminal-inspired themes, PT/EN localisation, and a working contact form via EmailJS. Deployed on Vercel.
-
-Live: [fernandoleitepagani-portfolio.vercel.app](https://fernandoleitepagani-portfolio.vercel.app)
+<!-- README baseado no template do Prof. Dr. João Paulo Aramuni (PUC Minas) -->
 
 ---
 
-## Stack
+# 🏷️ Portfólio Profissional — Fernando Leite Pagani 👨‍💻
 
-| Layer | Technology |
-|---|---|
-| Framework | React 19 |
-| Language | TypeScript 5.8 (strict mode) |
-| Build tool | Vite 7 |
-| UI library | Mantine 8 (`@mantine/core`, `@mantine/hooks`) |
-| Icons | `@tabler/icons-react` |
-| Routing | `react-router-dom` 7 |
-| Font | JetBrains Mono (`@fontsource/jetbrains-mono`) |
-| Email | EmailJS (`@emailjs/browser`) |
-| Linting | ESLint 9 (flat config) + `typescript-eslint` |
-| Hosting | Vercel |
+> [!NOTE]
+> Portfólio pessoal bilíngue (PT/EN), com estética de terminal, três temas e dados reais do GitHub.
+> **Foque no valor:** um site que apresenta trajetória, habilidades, projetos e contato de forma
+> moderna, rápida e acessível.
 
----
-
-## Features
-
-- **Three themes** — Dark, Matrix, CRT — switchable at runtime, persisted to `localStorage`.
-- **Bilingual** — Portuguese and English, switchable at runtime, persisted to `localStorage`.
-- **Resume** — a dedicated résumé page with a one-page PDF for each language, generated from `scripts/resume/`.
-- **Project case studies** — every curated project has a detail page at `/projects/:slug` with motivation, how it works, the hard part and takeaways. Data lives in `src/data/projects.ts`.
-- **Academics & awards** — coursework by semester plus a certificates section (`src/data/academics.ts`), and honors/recognitions (`src/data/awards.ts`).
-- **Contact form** — sends a notification to the owner and an auto-reply to the visitor, both via EmailJS.
-- **Recommendations** — cards with avatar, relationship context, text, and LinkedIn link. Data lives in `src/data/recommendations.ts`.
-- **GitHub stats & projects** — contribution heatmap, most-used languages, headline counters and project cards, served by our own `/api/github` function and merged with the curated list in `src/data/projects.ts`.
-- **Responsive** — collapsible sidebar on desktop, drawer on mobile.
-
----
-
-## Project structure
-
-````
-.
-├── public/
-│   ├── favicon.svg
-│   ├── photo.jpg                       # profile photo
-│   └── linkedin/                       # recommendation avatars
-│       ├── rec-bill-gates.jpg
-│       ├── rec-bolsonaro.jpg
-│       ├── rec-lula.jpg
-│       ├── rec-netanyahu.jpg
-│       └── rec-putin.jpg
-├── src/
-│   ├── components/
-│   │   ├── Layout.tsx                  # AppShell: sidebar + header + outlet
-│   │   ├── PageCard.tsx                # reusable bordered card
-│   │   ├── ProjectCard.tsx
-│   │   ├── RecommendationCard.tsx
-│   │   └── Sidebar.tsx
-│   ├── config/
-│   │   └── emailjs.ts                  # EmailJS env-var wiring
-│   ├── context/
-│   │   ├── LanguageContext.tsx         # PT/EN provider + useLanguage()
-│   │   └── ThemeContext.tsx            # theme provider + useTheme()
-│   ├── data/
-│   │   ├── content.ts                  # barrel — re-exports everything below
-│   │   ├── i18n.ts                     # PT/EN translation dictionary
-│   │   ├── profile.ts                  # name, links, stats image URLs
-│   │   ├── projects.ts                 # projects array
-│   │   ├── recommendations.ts          # recommendations array
-│   │   └── types.ts                    # Lang, Project, Recommendation, Content
-│   ├── pages/
-│   │   ├── About.tsx                   # about + tools + featured projects + stats
-│   │   ├── Contact.tsx                 # contact form + success state
-│   │   ├── Curriculum.tsx
-│   │   ├── Interests.tsx
-│   │   ├── Projects.tsx
-│   │   └── Recommendations.tsx
-│   ├── styles/
-│   │   ├── index.css                   # barrel — @imports everything below
-│   │   ├── tokens.css                  # theme tokens + Mantine var overrides
-│   │   ├── base.css
-│   │   ├── layout.css
-│   │   ├── timeline.css
-│   │   ├── stats.css
-│   │   ├── contact.css
-│   │   ├── recommendations.css
-│   │   ├── sidebar.css
-│   │   └── themes/
-│   │       └── crt.css                 # CRT overlays (scanlines, flicker, glow)
-│   ├── App.tsx                         # route table
-│   ├── main.tsx                        # entry point, providers
-│   ├── routes.ts                       # sidebar nav items
-│   └── vite-env.d.ts
-├── .env.example
-├── .gitignore
-├── eslint.config.mjs
-├── index.html
-├── package.json
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
-├── vercel.json
-└── vite.config.ts
-````
-
-**Conventions**
-
-- **Content editing** — everything user-facing lives in `src/data/`. Never edit components to change text; edit `i18n.ts`, `projects.ts`, or `recommendations.ts`.
-- **Styling** — one CSS module per feature area, all pulled into `src/styles/index.css` via `@import`. Components don't import CSS directly.
-- **Theming** — components use CSS variables (`var(--ink)`, `var(--border)`), never hardcoded colors. That's how a single button works across all three themes.
+<table>
+  <tr>
+    <td width="800px">
+      <div align="justify">
+        Este repositório contém o <b>portfólio profissional</b> de <b>Fernando Leite Pagani</b>,
+        estudante de Ciência da Computação na PUC Minas. O site reúne as quatro seções pedidas no
+        <i>Laboratório 01</i> — <b>Sobre Mim</b> (PT/EN), <b>Projetos</b>, <b>Experiências</b> e
+        <b>Contato</b> — com uma identidade visual própria inspirada em <i>terminais</i>, três temas
+        alternáveis (Dark, Matrix e CRT) e suporte a dois idiomas. Todo o conteúdo é dirigido por
+        dados (<code>src/data/</code>) e o site consome a API do GitHub por meio de uma
+        <b>função serverless própria</b>, sem expor o token no navegador.
+      </div>
+    </td>
+    <td>
+      <div>
+        <img src="public/favicon.svg" alt="Logo do Projeto" width="120px"/>
+      </div>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## Running locally
+## 🚧 Status do Projeto
 
-### Prerequisites
+[![Deploy](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://fernandoleitepagani-portfolio.vercel.app/)
+[![Licença](https://img.shields.io/github/license/fernandoleitepagani/fernandoleitepagani-portfolio?style=for-the-badge&color=007ec6&logo=opensourceinitiative)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/fernandoleitepagani/fernandoleitepagani-portfolio?style=for-the-badge&color=007ec6&logo=gitkraken)](https://github.com/fernandoleitepagani/fernandoleitepagani-portfolio/commits/main)
+[![React](https://img.shields.io/badge/React-19-007ec6?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-007ec6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-007ec6?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev/)
+[![Mantine](https://img.shields.io/badge/Mantine-8-007ec6?style=for-the-badge&logo=mantine&logoColor=white)](https://mantine.dev/)
 
-- Node.js **20.19+** or **22.12+** (Vite 7 requirement)
-- npm 10+
+---
 
-Check your version:
+## 📚 Índice
+
+- [Links Úteis](#-links-úteis)
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Funcionalidades Principais](#-funcionalidades-principais)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Arquitetura](#-arquitetura)
+- [Instalação e Execução](#-instalação-e-execução)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Variáveis de Ambiente](#-variáveis-de-ambiente)
+  - [Instalação de Dependências](#-instalação-de-dependências)
+  - [Como Executar a Aplicação](#-como-executar-a-aplicação)
+- [Deploy](#-deploy)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Demonstração](#-demonstração)
+  - [Protótipos (Wireframes)](#-protótipos-wireframes)
+  - [Aplicação Web](#-aplicação-web)
+- [Testes](#-testes)
+- [Documentações utilizadas](#-documentações-utilizadas)
+- [Autores](#-autores)
+- [Contribuição](#-contribuição)
+- [Agradecimentos](#-agradecimentos)
+- [Licença](#-licença)
+
+---
+
+## 🔗 Links Úteis
+
+- 🌐 **Demo Online:** [Acesse a Aplicação Web](https://fernandoleitepagani-portfolio.vercel.app/)
+  > 💻 **Descrição:** Aplicação em produção, hospedada na **Vercel**.
+- 📄 **Currículo (PDF):** [English](public/resume/fernando-leite-pagani-resume-en.pdf) · [Português](public/resume/fernando-leite-pagani-resume-pt.pdf)
+  > 📚 **Descrição:** Currículo em PDF (gerado automaticamente a partir do próprio site).
+- 🎤 **Apresentação final:** [Slides em PDF](docs/presentation/apresentacao-lab01.pdf) · [Apresentação navegável](docs/presentation/index.html) · [Roteiro](docs/presentation/SCRIPT.md)
+  > 🗣️ **Descrição:** Defesa do Laboratório 01 em português, com notas do apresentador em cada slide.
+- 🐙 **Repositório:** [github.com/fernandoleitepagani/fernandoleitepagani-portfolio](https://github.com/fernandoleitepagani/fernandoleitepagani-portfolio)
+
+---
+
+## 📝 Sobre o Projeto
+
+Este projeto existe para **apresentar a trajetória, as habilidades, os projetos e as formas de
+contato** de um estudante de Ciência da Computação de forma moderna, acessível e — sobretudo —
+autêntica. Em vez de usar um template pronto, o site foi construído do zero para funcionar, ele
+mesmo, como uma **demonstração prática** das competências do autor.
+
+- **Por que existe:** surgiu como o **Laboratório 01** da disciplina de Desenvolvimento de
+  Interfaces Web (DIW), mas foi levado além do mínimo: bilíngue, com três temas e dados reais.
+- **Que problema resolve:** reúne, em um só lugar e de forma organizada, a apresentação pessoal, os
+  projetos (com estudo de caso), as experiências e o contato — reduzindo o esforço de quem quer
+  conhecê-lo profissionalmente.
+- **Contexto:** acadêmico/pessoal.
+- **Onde pode ser usado:** como portfólio profissional para processos seletivos e para a comunidade
+  acadêmica; e como base para outros sites pessoais.
+
+> [!NOTE]
+> O objetivo não foi apenas entregar as seções pedidas, mas construir uma **identidade visual
+> coerente** (estética de terminal), um site **responsivo** e uma arquitetura que **não exponha
+> segredos** e **degrade com elegância**.
+
+---
+
+## ✨ Funcionalidades Principais
+
+- 🌐 **Internacionalização (i18n):** todo o conteúdo em **Português** e **Inglês**, alternável em
+  tempo de execução.
+- 🎨 **Três temas:** **Dark**, **Matrix** e **CRT**, alternáveis e persistidos em `localStorage`.
+- 👤 **Sobre Mim (PT/EN):** apresentação, badge “aberto a estágios”, ferramentas e interesses.
+- 📁 **Projetos:** cards com nome, descrição, tecnologias e link do GitHub, além de uma **página de
+  estudo de caso** por projeto (motivação, como funciona, desafios, aprendizados).
+- 🧑‍🎓 **Experiências / Currículo:** página com resumo, experiência, formação, habilidades e idiomas —
+  e **download do currículo em PDF** (EN/PT).
+- ✉️ **Contato:** ícones clicáveis (e-mail, LinkedIn, GitHub, Instagram, Lattes) e **formulário
+  funcional** com envio de e-mail via **EmailJS** (notificação + resposta automática).
+- 📊 **Dados reais do GitHub:** heatmap de contribuições, linguagens e contadores, servidos por uma
+  **função serverless própria** (`/api/github`).
+- 🔗 **Open Graph:** preview do link (imagem de compartilhamento) ao postar o site em redes sociais.
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+As seguintes ferramentas, frameworks e bibliotecas foram utilizados na construção deste projeto.
+Recomenda-se o uso das versões listadas (ou superiores) para garantir a compatibilidade.
+
+### 💻 Front-end
+
+- **Framework/Biblioteca:** [React v19](https://react.dev/)
+- **Linguagem/Superset:** [TypeScript v5.8](https://www.typescriptlang.org/) (strict)
+- **Build Tool:** [Vite v7](https://vite.dev/)
+- **Biblioteca de UI:** [Mantine v8](https://mantine.dev/) (`@mantine/core`, `@mantine/hooks`)
+- **Roteamento:** [React Router v7](https://reactrouter.com/)
+- **Ícones:** [Tabler Icons](https://tabler.io/icons) (`@tabler/icons-react`)
+- **Tipografia:** [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (`@fontsource/jetbrains-mono`)
+- **Estilização:** CSS com **tokens** (variáveis CSS) e *themes* próprios
+
+### 🖥️ Back-end
+
+- **Runtime:** [Node.js](https://nodejs.org/) v20+ (Vercel Functions)
+- **Função serverless:** [`api/github.ts`](api/github.ts) — única camada que acessa o GitHub
+- **Integrações:** [GitHub GraphQL API](https://docs.github.com/en/graphql) + [REST API](https://docs.github.com/en/rest)
+- **E-mail:** [EmailJS](https://www.emailjs.com/) (no cliente)
+
+> [!NOTE]
+> Não há banco de dados. O “back-end” é uma única **função serverless** que normaliza dados do
+> GitHub e os entrega ao front-end, protegendo o token e aplicando cache.
+
+### ⚙️ Infraestrutura & DevOps
+
+- **Hospedagem:** [Vercel](https://vercel.com/) (front-end + funções serverless)
+- **Qualidade:** [ESLint](https://eslint.org/) v9 (flat config) + `typescript-eslint` + `tsc`
+- **Versionamento:** Git e GitHub (commits semânticos, issues e pull requests)
+
+---
+
+## 🏗 Arquitetura
+
+O sistema é uma **SPA (Single Page Application)** em React que consome uma **função serverless**
+própria. A ideia central é simples: **o navegador nunca fala diretamente com o GitHub** — quem faz
+isso é o endpoint `/api/github`, que guarda o token no servidor, aplica cache e protege a aplicação.
+
+**Principais componentes:**
+
+- **Front-end (SPA):** rotas no cliente, i18n (PT/EN) e temas controlados por *CSS tokens*.
+- **Camada de dados:** `src/data/` concentra todo o conteúdo (i18n, projetos, recomendações,
+  acadêmico, prêmios) — nunca se edita componente para mudar texto.
+- **Endpoint `/api/github`:** faz **uma query GraphQL** + **REST** `GET /users/:u`, calcula
+  estatísticas (contribuições, linguagens, streaks) e devolve os repositórios.
+- **Camada de merge de projetos:** `mergeProjects()` une os dados do GitHub a uma lista curada — o
+  texto em PT, os prints e as categorias sempre vencem.
+
+**Decisões arquiteturais importantes:**
+
+- **Token só no servidor:** `GITHUB_TOKEN` sem prefixo `VITE_`, garantindo que não vá para o bundle.
+- **Cache na CDN:** `s-maxage=300, stale-while-revalidate=3600`.
+- **Degradação graciosa:** se o endpoint falhar (sem token/rate limit), as páginas caem para o
+  conteúdo curado em vez de quebrar.
+- **Guards:** apenas `GET` (405), *whitelist* de usuário (403) e falha upstream (503).
+
+### Exemplos de diagramas
+
+Para melhor visualização, os diagramas principais ficam em [`docs/diagrams/`](docs/diagrams/).
+
+| Arquitetura (visão geral) | Fluxo de dados |
+| :---: | :---: |
+| <img src="docs/diagrams/arquitetura.svg" alt="Visão geral: React → /api/github → GitHub" width="420px"> | <img src="docs/diagrams/fluxo-dados.svg" alt="Fluxo de dados: cache e fallback" width="420px"> |
+
+---
+
+## 🔧 Instalação e Execução
+
+### Pré-requisitos
+
+- **Node.js:** versão **20** ou superior
+- **Gerenciador de Pacotes:** npm (ou pnpm/yarn)
+- **Git**
+
+---
+
+### 🔑 Variáveis de Ambiente
+
+Copie o arquivo de exemplo e preencha os valores:
 
 ```bash
-node -v
-```
-
-### Setup
-
-```bash
-# 1. Clone
-git clone https://github.com/fernandoleitepagani/fernandoleitepagani-portfolio.git
-cd fernandoleitepagani-portfolio
-
-# 2. Install
-npm install
-
-# 3. Configure EmailJS (see below)
 cp .env.example .env.local
-# edit .env.local with your keys
-
-# 4. Run
-npm run dev
 ```
 
-The dev server runs at [http://localhost:5173](http://localhost:5173).
+**Front-end (Vite)** — o prefixo `VITE_` é obrigatório para expor a variável ao navegador:
 
-### Environment variables
-
-The contact form requires four EmailJS values in `.env.local` (or Vercel's env settings in production):
-
-```
+```env
+# EmailJS — https://dashboard.emailjs.com/admin
 VITE_EMAILJS_SERVICE_ID=
-VITE_EMAILJS_TEMPLATE_ID_FOR_ME=
-VITE_EMAILJS_TEMPLATE_ID_FOR_SENDER=
+VITE_EMAILJS_TEMPLATE_ID_FOR_ME=      # notificação (para você)
+VITE_EMAILJS_TEMPLATE_ID_FOR_SENDER=  # resposta automática (para o visitante)
 VITE_EMAILJS_PUBLIC_KEY=
 ```
 
-**How to get them:**
+**Back-end (função serverless)** — **sem** prefixo `VITE_`, lida apenas no servidor:
 
-1. Create a free account at [emailjs.com](https://www.emailjs.com).
-2. Add an email service (SendGrid recommended for deliverability; Gmail/Proton works but auto-replies often land in spam).
-3. Create two templates:
-   - **Notify me** — "To Email" is your inbox, "Reply To" is `{{email}}`, body includes `{{name}}`, `{{email}}`, `{{message}}`, `{{time}}`.
-   - **Auto reply** — "To Email" is `{{email}}`, "Reply To" is your inbox, body includes `{{name}}`, `{{message}}`.
-4. Copy the Service ID, both Template IDs, and the Public Key into `.env.local`.
-
-**Without these variables**, the rest of the site works fine — only the contact form fails.
-
-#### `GITHUB_TOKEN` (optional — GitHub stats & projects)
-
-The About page's stats (contribution heatmap, most used languages and the headline counters) and the live data on the project cards (stars, forks, last push, repository URLs) come from a Vercel Function in `api/github.ts`, the only place that talks to `api.github.com`:
-
-```
-browser ──► /api/github ──► api.github.com
-              │ holds GITHUB_TOKEN (server-only)
-              │ caches the answer for 5 min (CDN)
-              ◄── JSON
-```
-
-```
+```env
+# Token do GitHub (fine-grained, leitura de repositórios públicos)
 GITHUB_TOKEN=
 ```
 
-- **No `VITE_` prefix.** It is read on the server at runtime and must never reach the browser bundle. Verify with `npm run build && grep -r "$GITHUB_TOKEN" dist/` — it must print nothing.
-- Create a **fine-grained** token with **All public repositories** access and the **Metadata: Read-only** permission. No write scopes.
-- Add it in Vercel under **Settings → Environment Variables** for Production, Preview and Development.
-- **Without it**, the site is unaffected: the About page skips the stats section and the project cards fall back to the curated text in `src/data/projects.ts`.
-- **Private work the token cannot see** is not silently dropped: the stats card ends with a `Private contributions · N` line, fed by `restrictedContributionsCount`. It stays dim at `0` and switches to full contrast when there is something hidden.
-
-**Local development** — two ways to run the function next to the app:
-
-| Option | Commands | Notes |
-|---|---|---|
-| Vercel CLI | `export GITHUB_TOKEN="…"` then `npx vercel dev` | functions + app on `http://127.0.0.1:3000`; run `npx vercel link` once |
-| Plain Vite | `npm run dev:api` and `npm run dev:local` in two terminals | app on `http://localhost:5173`, `/api` proxied to the dev function on `:8787`; `dev:api` reads `.env.local` itself |
-
-`npm run check:api` runs the full endpoint contract check (shape, cache header, 405/403 guards, and the project merge) against `http://localhost:3000`. Pass a URL to check a deployment: `npm run check:api -- https://your-preview.vercel.app`.
-
-**Adding a project automatically.** The endpoint returns every public repo. Tag a repository with the topic **`portfolio`** on GitHub and it appears on `/projects` with its description, language and links — no code change. Curated entries in `src/data/projects.ts` (Portuguese copy, screenshots, categories, the `featured` flag) always win and are matched by repository name, so a curated project survives even if its repo is renamed, deleted or made private.
-
-Two behaviours worth knowing:
-
-- **Renamed repositories** — set `repo: 'new-repo-name'` on the curated entry. `name` stays the card title, `repo` is the GitHub repository it reads data from. Example: the card `Portfolio` maps to `repo: 'fernandoleitepagani-portfolio'`.
-- **Hidden languages** — `Assembly`, `HTML` and `CSS` are excluded from the "most used languages" card (they come mostly from forks and small sites and drown out the rest). The list lives in `HIDDEN_LANGUAGES` in `api/github.ts`; percentages are recomputed over what remains.
-
-### Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start dev server with HMR |
-| `npm run dev:api` | Serve `/api/github` locally on `:8787` (reads `.env.local`) |
-| `npm run dev:local` | Vite with `/api` proxied to `dev:api` — run both to browse the full site |
-| `npm run check:api` | Contract check for the GitHub endpoint (optionally pass a deployed URL) |
-| `npm run resume:pdf` | Regenerate the résumé PDFs from `scripts/resume/` (needs a Chromium binary) |
-| `npm run build` | Type-check (`tsc -b`) then build to `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run lint` | Run ESLint |
-
-### Replacing your profile photo
-
-Drop a square-ish JPG into `public/photo.jpg`. It renders on the About page at 300×400. Any aspect ratio works; the image is `object-fit: cover`.
-
-### Adding a recommendation
-
-1. Save the recommender's photo as `public/linkedin/rec-{id}.jpg`.
-2. Append an entry to `src/data/recommendations.ts`:
-
-```ts
-{
-  id: 'rec-jane-doe',
-  name: 'Jane Doe',
-  year: 2025,
-  avatar: '/linkedin/rec-jane-doe.jpg',
-  relationship: { en: '…', pt: '…' },
-  text: { en: '…', pt: '…' },
-  link: 'https://www.linkedin.com/in/jane-doe',
-}
-```
-
-### Adding a project
-
-Two ways, and they compose:
-
-1. **Automatically** — tag the repository with the topic `portfolio` on GitHub. It then appears on `/projects` using its GitHub description, primary language, stars, forks and last push date.
-2. **Curated** — append to the `projects` array in `src/data/projects.ts`. Curated fields (Portuguese description, `category`, `screenshot`, `tags`, `liveUrl`) override whatever the API returns for that repository, and `featured: true` also shows it on the About page.
-
-Curated entries are matched by repository name and stay visible even when the repository is missing from the API.
+> [!IMPORTANT]
+> Sem o `GITHUB_TOKEN` o site funciona normalmente — apenas a seção de estatísticas do GitHub é
+> omitida e os projetos caem para a lista curada.
 
 ---
 
-## Hosting (Vercel)
+### 📦 Instalação de Dependências
 
-The site deploys to Vercel on every push to `main`.
-
-### First-time setup
-
-1. Push the repo to GitHub.
-2. Go to [vercel.com](https://vercel.com), log in with GitHub.
-3. **Add New → Project** → import the repo.
-4. Vercel auto-detects Vite. Accept the defaults:
-   - **Framework:** Vite
-   - **Build command:** `npm run build`
-   - **Output directory:** `dist`
-   - **Install command:** `npm install`
-5. **Before deploying**, add the four EmailJS variables under **Environment Variables** (Production + Preview + Development).
-6. Deploy.
-
-### `vercel.json`
-
-The single rewrite rule sends every path to `/` so React Router handles client-side routing correctly on refresh and direct links:
-
-```json
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
-}
-```
-
-### Updating env vars
-
-Changing a variable in Vercel's dashboard **does not** rebuild existing deployments. After editing, go to **Deployments → ⋯ → Redeploy** on the latest build (uncheck "Use existing build cache").
-
-### Custom domain
-
-Vercel → **Project Settings → Domains**. Add your domain, then point the DNS records at Vercel (the dashboard shows exactly which records to create).
-
----
-
-## Contributing
-
-Contributions are welcome — bug reports, typo fixes, accessibility improvements, or new features that fit the terminal aesthetic. Before opening a PR, please follow the process below.
-
-### Before you start
-
-- **Bug or small fix** — open an issue using the **Bug report** template.
-- **New feature or visual change** — open an issue using the **Feature request** template first. Discussing the idea before coding saves everyone time.
-- **Typo or one-line fix** — you can open a PR directly.
-
-### Local workflow
+#### Front-end (React)
 
 ```bash
-# 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-user>/fernandoleitepagani-portfolio.git
-cd fernandoleitepagani-portfolio
-
-# 2. Add the upstream remote
-git remote add upstream https://github.com/fernandoleitepagani/fernandoleitepagani-portfolio.git
-
-# 3. Create a branch
-git checkout -b fix/sidebar-overflow
-# or: feat/reading-time, chore/bump-deps, docs/readme-typo
-
-# 4. Install and run
 npm install
-npm run dev
-
-# 5. Before committing
-npm run lint
-npm run build     # must pass with zero errors
-
-# 6. Commit and push
-git commit -m "fix(sidebar): prevent overflow on narrow screens"
-git push origin fix/sidebar-overflow
 ```
-
-### Commit style
-
-Conventional Commits, loosely:
-
-```
-feat(projects): add filter by tag
-fix(contact): prevent double submit while sending
-docs(readme): update env var instructions
-chore(deps): bump vite to 7.0.1
-style(sidebar): align active item padding
-refactor(data): split content.ts into modules
-```
-
-Scope is optional but useful. Keep the subject under 72 characters.
-
-### Pull requests
-
-Open a PR against `main` and fill in the template that appears automatically (see [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md)). It will ask for:
-
-- What the change does and why.
-- Which issue it closes (`Closes #12`).
-- How you tested it (dev server, `npm run build`, browser/OS, themes checked).
-- A short note on visual changes (screenshots help).
-
-A PR is ready when:
-
-- `npm run lint` passes with zero warnings.
-- `npm run build` completes without errors.
-- All three themes (Dark, Matrix, CRT) and both languages (PT, EN) still look correct on the affected pages.
-- No `console.log` statements or commented-out code remain.
-
-### Issues
-
-Two templates are provided under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/):
-
-- **Bug report** — reproduction steps, expected vs actual, browser/OS, theme and language in use.
-- **Feature request** — problem being solved, proposed solution, alternatives considered.
-
-If your report doesn't fit either, open a blank issue and describe it clearly.
 
 ---
 
-## License
+### ⚡ Como Executar a Aplicação
 
-Released under the MIT License. See [LICENSE](LICENSE) for details.
+**Front-end:**
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+**Ambiente completo (front-end + endpoint `/api/github` local):**
+
+```bash
+# Terminal 1: sobe o endpoint em :8787 (lê .env.local)
+npm run dev:api
+
+# Terminal 2: Vite com /api encaminhado para :8787
+npm run dev:local
+```
+
+> Alternativa: `npx vercel dev` sobe front-end e função juntos.
+
+---
+
+## 🚀 Deploy
+
+O projeto é implantado na **Vercel**. O deploy é automático a cada `push` na branch `main`.
+
+Passos manuais (se necessário):
+
+```bash
+# 1. Build de produção (type-check + bundle para /dist)
+npm run build
+
+# 2. Deploy (CLI da Vercel)
+npx vercel --prod
+```
+
+> [!IMPORTANT]
+> Configure as variáveis de ambiente na Vercel (**Production** e **Preview**): as quatro
+> `VITE_EMAILJS_*` e o `GITHUB_TOKEN`. Sem o token, as estatísticas do GitHub não aparecem em
+> produção.
+
+---
+
+## 📂 Estrutura de Pastas
+
+```text
+.
+├── api/
+│   └── github.ts               # função serverless: única camada que acessa o GitHub
+├── docs/
+│   ├── diagrams/               # diagramas de arquitetura (seção Arquitetura)
+│   ├── presentation/           # slides, PDF, roteiro e notas do apresentador
+│   └── wireframes/             # wireframes SVG importáveis no Figma
+├── public/
+│   ├── linkedin/               # avatar da recomendação
+│   ├── projects/               # imagens/prints dos projetos
+│   ├── resume/                 # currículos em PDF (EN/PT)
+│   ├── favicon.svg
+│   ├── og.png                  # imagem de compartilhamento (Open Graph)
+│   └── photo.jpg
+├── scripts/
+│   ├── build-og-image.mjs      # gera public/og.png
+│   ├── build-resume-pdf.mjs    # gera os PDFs do currículo
+│   ├── check-github-api.mjs    # teste de contrato do endpoint
+│   ├── dev-api.mjs             # endpoint local para desenvolvimento
+│   ├── og/                     # template HTML do cartão Open Graph
+│   └── resume/                 # templates HTML dos currículos (EN/PT)
+├── src/
+│   ├── api/                    # cliente do endpoint
+│   ├── components/             # componentes reutilizáveis (inclui icons/LattesIcon)
+│   ├── config/                 # configuração do EmailJS
+│   ├── context/                # Language e Theme (React Context)
+│   ├── data/                   # TODO o conteúdo (i18n, projects, academics, awards…)
+│   ├── hooks/                  # useGitHubStats
+│   ├── pages/                  # Sobre, Resume, Projects(+detalhe), Academics, Awards…
+│   ├── styles/                 # tokens, temas e CSS por área
+│   ├── App.tsx                 # rotas
+│   └── main.tsx
+├── .env.example
+├── index.html
+├── package.json
+├── tsconfig*.json
+├── vercel.json
+└── vite.config.ts
+```
+
+---
+
+## 🎥 Demonstração
+
+### 🧩 Protótipos (Wireframes)
+
+Wireframes de **média fidelidade** das páginas principais (*Sobre Mim*, *Projetos*, *Experiências* e
+*Contato*). As prévias PNG abaixo garantem a renderização das imagens no GitHub; cada imagem também
+é clicável e abre o **SVG vetorial importável no Figma**. Cada prancha inclui desktop e uma prévia
+responsiva mobile.
+
+| Sobre Mim | Projetos |
+| :---: | :---: |
+| <a href="docs/wireframes/wireframe-sobre-mim.svg"><img src="docs/wireframes/previews/wireframe-sobre-mim.png" alt="Wireframe — Sobre Mim (SVG para Figma)" width="440px"></a> | <a href="docs/wireframes/wireframe-projetos.svg"><img src="docs/wireframes/previews/wireframe-projetos.png" alt="Wireframe — Projetos (SVG para Figma)" width="440px"></a> |
+| **Experiências (Currículo)** | **Contato** |
+| <a href="docs/wireframes/wireframe-experiencias.svg"><img src="docs/wireframes/previews/wireframe-experiencias.png" alt="Wireframe — Experiências (SVG para Figma)" width="440px"></a> | <a href="docs/wireframes/wireframe-contato.svg"><img src="docs/wireframes/previews/wireframe-contato.png" alt="Wireframe — Contato (SVG para Figma)" width="440px"></a> |
+
+### 🎤 Apresentação Final
+
+- [Slides em PDF](docs/presentation/apresentacao-lab01.pdf)
+- [Apresentação navegável em HTML](docs/presentation/index.html)
+- [Roteiro completo](docs/presentation/SCRIPT.md)
+- [Notas do apresentador](docs/presentation/NOTAS.md)
+
+### 🌐 Aplicação Web
+
+Site publicado: **[fernandoleitepagani-portfolio.vercel.app](https://fernandoleitepagani-portfolio.vercel.app/)**
+
+> **Capturas reais da aplicação:** ainda pendentes. Não usamos imagens geradas para representar
+> software em execução; as capturas serão adicionadas após serem feitas no site real.
+
+---
+
+## 🧪 Testes
+
+- **Verificação de tipos:** `npm run build` (executa `tsc -b` antes do bundle)
+- **Lint:** `npm run lint` (ESLint 9)
+- **Teste de contrato do endpoint:** `npm run check:api`
+  - Valida o formato da resposta, o cabeçalho de cache, os *guards* (405/403/503), o filtro de
+    linguagens e o merge de projetos.
+  - Pode ser executado contra um deploy:
+
+```bash
+npm run check:api -- https://fernandoleitepagani-portfolio.vercel.app
+```
+
+> [!NOTE]
+> O projeto ainda não possui suíte de testes unitários com Vitest; a validação atual cobre tipos,
+> lint e o contrato do endpoint.
+
+---
+
+## 🔗 Documentações utilizadas
+
+- [React](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [Mantine](https://mantine.dev/)
+- [React Router](https://reactrouter.com/)
+- [Tabler Icons](https://tabler.io/icons)
+- [EmailJS](https://www.emailjs.com/docs/)
+- [Vercel Functions](https://vercel.com/docs/functions)
+- [GitHub GraphQL API](https://docs.github.com/en/graphql)
+
+---
+
+## 👥 Autores
+
+- **Fernando Leite Pagani** — [GitHub](https://github.com/fernandoleitepagani) · [LinkedIn](https://www.linkedin.com/in/fernandoleitepagani)
+
+---
+
+## 🤝 Contribuição
+
+Sugestões e correções são bem-vindas! Veja o guia em [`CONTRIBUTING.md`](CONTRIBUTING.md) para
+padrões de commit, fluxo local e pull requests.
+
+---
+
+## 🙏 Agradecimentos
+
+- Ao professor **João Paulo Carneiro Aramuni** (PUC Minas), pelo template de README e pelas
+  orientações da disciplina de Desenvolvimento de Interfaces Web.
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
