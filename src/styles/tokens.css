@@ -31,6 +31,25 @@
   /* Heatmap geometry — theme-independent */
   --heat-cell: 11px;
   --heat-gap: 3px;
+
+  /* Motion — one organic easing and duration scale shared by every transition */
+  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 0.18s;
+  --dur: 0.36s;
+  --dur-slow: 0.7s;
+
+  /* Shape — one restrained radius scale for every surface */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* Surfaces — derived from the theme ink so every theme stays monochrome */
+  --surface: color-mix(in srgb, var(--ink) 4%, transparent);
+  --surface-strong: color-mix(in srgb, var(--ink) 8%, transparent);
+  --hairline: color-mix(in srgb, var(--ink) 14%, transparent);
+  --ring: color-mix(in srgb, var(--ink) 18%, transparent);
 }
 :root[data-theme='matrix'] {
   --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;
