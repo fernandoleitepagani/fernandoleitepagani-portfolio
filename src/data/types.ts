@@ -187,6 +187,9 @@ export interface Content {
     statsLongestStreak: string;
     statsRepos: string;
     statsFollowers: string;
+    githubError: string;
+    githubErrorHint: string;
+    githubRetry: string;
   };
   resume: {
     title: string;
