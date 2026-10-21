@@ -54,6 +54,9 @@ export const content: Record<Lang, Content> = {
       statsLongestStreak: 'Longest streak (days)',
       statsRepos: 'Public repos',
       statsFollowers: 'Followers',
+      githubError: 'GitHub activity is unavailable right now',
+      githubErrorHint: 'The stats endpoint did not answer. The rest of the page still works.',
+      githubRetry: 'Try again',
     },
     resume: {
       title: 'Resume',
@@ -240,6 +243,10 @@ export const content: Record<Lang, Content> = {
       statsLongestStreak: 'Maior sequência (dias)',
       statsRepos: 'Repositórios públicos',
       statsFollowers: 'Seguidores',
+      githubError: 'A atividade no GitHub está indisponível agora',
+      githubErrorHint:
+        'O endpoint de estatísticas não respondeu. O restante da página continua funcionando.',
+      githubRetry: 'Tentar novamente',
     },
     resume: {
       title: 'Currículo',
