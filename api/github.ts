@@ -270,7 +270,8 @@ export default async function handler(request: ServerRequest, response: ServerRe
         name,
         bytes,
         percent: totalBytes > 0 ? Number(((bytes / totalBytes) * 100).toFixed(1)) : 0,
-      })),
+      }))
+      .filter((language) => language.percent > 0),
     repos,
   };
 
