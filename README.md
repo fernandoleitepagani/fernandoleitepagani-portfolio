@@ -141,7 +141,7 @@ Recomenda-se o uso das versões listadas (ou superiores) para garantir a compati
 
 ### 🖥️ Back-end
 
-- **Runtime:** [Node.js](https://nodejs.org/) v20+ (Vercel Functions)
+- **Runtime:** [Node.js](https://nodejs.org/) v22.9+ (Vercel Functions)
 - **Função serverless:** [`api/github.ts`](api/github.ts) — única camada que acessa o GitHub
 - **Integrações:** [GitHub GraphQL API](https://docs.github.com/en/graphql) + [REST API](https://docs.github.com/en/rest)
 - **E-mail:** [EmailJS](https://www.emailjs.com/) (no cliente)
@@ -197,7 +197,7 @@ Para melhor visualização, os diagramas principais ficam em [`docs/diagrams/`](
 
 ### Pré-requisitos
 
-- **Node.js:** versão **20** ou superior
+- **Node.js:** versão **22.9** ou superior
 - **Gerenciador de Pacotes:** npm (ou pnpm/yarn)
 - **Git**
 
