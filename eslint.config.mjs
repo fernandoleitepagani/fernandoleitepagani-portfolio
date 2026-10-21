@@ -49,9 +49,9 @@ export default defineConfig([
     },
   },
 
-  // ─── Node-side config files ───
+  // ─── Node-side config files and scripts ───
   {
-    files: ['vite.config.ts', 'eslint.config.mjs'],
+    files: ['vite.config.ts', 'eslint.config.mjs', 'scripts/**/*.mjs'],
     extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 'latest',

@@ -18,7 +18,8 @@ function isGitHubStats(value: unknown): value is GitHubStats {
 export async function fetchGitHubStats(username: string): Promise<GitHubStats | null> {
   try {
     const response = await fetch(`${ENDPOINT}?username=${encodeURIComponent(username)}`);
-    if (!response.ok) return null;
+    const contentType = response.headers.get('content-type') ?? '';
+    if (!response.ok || !contentType.includes('application/json')) return null;
     const payload: unknown = await response.json();
     return isGitHubStats(payload) ? payload : null;
   } catch {

@@ -184,26 +184,6 @@
   .entry-head { flex-direction: column; align-items: flex-start; gap: 2px; }
 }
 
-/* GitHub activity — collapsed by default, so it never pushes the work down. */
-.activity-summary {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: var(--text-title);
-  letter-spacing: 2px;
-  cursor: pointer;
-  list-style: none;
-}
-.activity-summary::-webkit-details-marker { display: none; }
-.activity-summary::after {
-  content: '+';
-  margin-left: auto;
-  color: var(--ink-dim);
-  font-size: var(--text-sm);
-}
-.activity[open] .activity-summary::after { content: '–'; }
-.activity-body { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
-
 /* Profile photo — a circular avatar, like a LinkedIn / Instagram picture. */
 .photo {
   display: block;

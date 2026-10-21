@@ -92,9 +92,8 @@ p { text-wrap: pretty; }
     animation-timeline: view();
     animation-range: entry 0% entry 60%;
   }
-  /* Panels that live inside a sticky column or a disclosure stay static. */
-  .detail-aside .subcard,
-  .activity .subcard { animation-name: none; }
+  /* Panels that live inside a sticky column stay static. */
+  .detail-aside .subcard { animation-name: none; }
 }
 
 /* ---------- Route cross-fade ----------

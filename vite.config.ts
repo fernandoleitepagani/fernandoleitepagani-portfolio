@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const apiProxy = process.env.DEV_API_PROXY;
+// `/api` always goes to the serverless function in development. `npm run dev`
+// starts it on 8787 and sets DEV_API_PROXY; `npm run dev:web` uses the default.
+const apiTarget = process.env.DEV_API_PROXY ?? 'http://127.0.0.1:8787';
 
 export default defineConfig({
   plugins: [react()],
-  server: apiProxy
-    ? {
-        proxy: {
-          '/api': { target: apiProxy, changeOrigin: true },
-        },
-      }
-    : undefined,
+  server: {
+    proxy: {
+      '/api': { target: apiTarget, changeOrigin: true },
+    },
+  },
 });

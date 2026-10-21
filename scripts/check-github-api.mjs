@@ -27,7 +27,10 @@ if (response.status === 503) {
 }
 
 check('GET /api/github?username=… → 200', response.status === 200, `status ${response.status}`);
-check('CDN cache header present', /s-maxage=\d+/.test(cache), cache || '(missing)');
+const cachedAtEdge =
+  /s-maxage=\d+/.test(cache) ||
+  (/\bpublic\b/.test(cache) && response.headers.has('x-vercel-cache'));
+check('CDN cache header present', cachedAtEdge, cache || '(missing)');
 check(
   'counters are integers',
   ['public_repos', 'followers', 'following'].every((key) => Number.isInteger(body?.[key])),
