@@ -228,54 +228,47 @@ export default function About() {
       </section>
 
       <section id="activity" className="page-section">
-        <details className="activity">
-          <summary className="activity-summary">
-            <span className="section-num" aria-hidden="true">
-              07
-            </span>
-            <span className="activity-title">{about.githubTitle}</span>
-          </summary>
+        <Stack gap="md">
+          <SectionHead index={7} title={about.githubTitle} />
 
-          <div className="activity-body">
-            {state === 'loading' && <Skeleton height={160} radius="md" />}
+          {state === 'loading' && <Skeleton height={160} radius="md" />}
 
-            {state === 'fallback' && (
+          {state === 'fallback' && (
+            <Paper className="subcard" p="md">
+              <Stack gap="xs" align="flex-start">
+                <Text className="stats-block-title">{about.githubError}</Text>
+                <Text c="dimmed" size="sm">
+                  {about.githubErrorHint}
+                </Text>
+                <Button
+                  variant="default"
+                  size="compact-sm"
+                  leftSection={<IconRefresh size={14} stroke={1.6} />}
+                  onClick={reload}
+                >
+                  {about.githubRetry}
+                </Button>
+              </Stack>
+            </Paper>
+          )}
+
+          {state === 'ready' && stats && (
+            <>
               <Paper className="subcard" p="md">
-                <Stack gap="xs" align="flex-start">
-                  <Text className="stats-block-title">{about.githubError}</Text>
-                  <Text c="dimmed" size="sm">
-                    {about.githubErrorHint}
-                  </Text>
-                  <Button
-                    variant="default"
-                    size="compact-sm"
-                    leftSection={<IconRefresh size={14} stroke={1.6} />}
-                    onClick={reload}
-                  >
-                    {about.githubRetry}
-                  </Button>
-                </Stack>
+                <ContributionGrid days={stats.calendar} />
               </Paper>
-            )}
 
-            {state === 'ready' && stats && (
-              <>
+              <SimpleGrid cols={{ base: 1, sm: 2 }}>
                 <Paper className="subcard" p="md">
-                  <ContributionGrid days={stats.calendar} />
+                  <LanguageBars languages={stats.languages} />
                 </Paper>
-
-                <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                  <Paper className="subcard" p="md">
-                    <LanguageBars languages={stats.languages} />
-                  </Paper>
-                  <Paper className="subcard" p="md">
-                    <StatsCard stats={stats} />
-                  </Paper>
-                </SimpleGrid>
-              </>
-            )}
-          </div>
-        </details>
+                <Paper className="subcard" p="md">
+                  <StatsCard stats={stats} />
+                </Paper>
+              </SimpleGrid>
+            </>
+          )}
+        </Stack>
       </section>
     </Stack>
   );
