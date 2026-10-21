@@ -179,7 +179,8 @@ isso é o endpoint `/api/github`, que guarda o token no servidor, aplica cache e
 - **Token só no servidor:** `GITHUB_TOKEN` sem prefixo `VITE_`, garantindo que não vá para o bundle.
 - **Cache na CDN:** `s-maxage=300, stale-while-revalidate=3600`.
 - **Degradação graciosa:** se o endpoint falhar (sem token/rate limit), as páginas caem para o
-  conteúdo curado em vez de quebrar.
+  conteúdo curado em vez de quebrar. A atividade do GitHub continua visível na home, com uma
+  mensagem e um botão de nova tentativa.
 - **Guards:** apenas `GET` (405), *whitelist* de usuário (403) e falha upstream (503).
 
 ### Exemplos de diagramas
@@ -228,8 +229,8 @@ GITHUB_TOKEN=
 ```
 
 > [!IMPORTANT]
-> Sem o `GITHUB_TOKEN` o site funciona normalmente — apenas a seção de estatísticas do GitHub é
-> omitida e os projetos caem para a lista curada.
+> Sem o `GITHUB_TOKEN` o site funciona normalmente — a seção de estatísticas do GitHub mostra um
+> aviso com opção de tentar novamente e os projetos caem para a lista curada.
 
 ---
 
@@ -245,22 +246,20 @@ npm install
 
 ### ⚡ Como Executar a Aplicação
 
-**Front-end:**
+**Ambiente completo (front-end + endpoint `/api/github`):**
 
 ```bash
 npm run dev
 ```
 
-A aplicação estará disponível em `http://localhost:5173`.
+Sobe o Vite em `http://localhost:5173` e o endpoint em `http://127.0.0.1:8787` ao mesmo tempo
+(o Vite encaminha `/api` para a função local e lê `.env.local`).
 
-**Ambiente completo (front-end + endpoint `/api/github` local):**
+Para rodar apenas uma parte:
 
 ```bash
-# Terminal 1: sobe o endpoint em :8787 (lê .env.local)
-npm run dev:api
-
-# Terminal 2: Vite com /api encaminhado para :8787
-npm run dev:local
+npm run dev:web  # só o front-end (espera o endpoint já em :8787)
+npm run dev:api  # só o endpoint, em :8787
 ```
 
 > Alternativa: `npx vercel dev` sobe front-end e função juntos.
