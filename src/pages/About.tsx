@@ -1,5 +1,6 @@
 import {
   Anchor,
+  Button,
   Flex,
   Group,
   List,
@@ -10,7 +11,12 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { IconBrandGithub, IconFileCv, IconMail } from '@tabler/icons-react';
+import {
+  IconBrandGithub,
+  IconFileCv,
+  IconMail,
+  IconRefresh,
+} from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import Clamped from '../components/Clamped';
 import ContributionGrid from '../components/ContributionGrid';
@@ -35,14 +41,13 @@ import {
 export default function About() {
   const { t } = useLanguage();
   const { about, projects: text, interests, resume, recommendations: recText } = t;
-  const { state, data } = useGitHubStats(profile.githubUser);
+  const { state, data, reload } = useGitHubStats(profile.githubUser);
 
   const liveProjects = state === 'ready' && data ? mergeProjects(data.repos) : [];
   const featured = (liveProjects.length > 0 ? liveProjects : curatedProjects).filter(
     (project) => project.featured,
   );
   const stats = state === 'ready' ? data : null;
-  const showActivity = state !== 'fallback';
 
   const sections: PageIndexItem[] = [
     { id: 'experience', label: resume.experienceTitle },
@@ -51,8 +56,8 @@ export default function About() {
     { id: 'skills', label: t.skills.title },
     { id: 'recommendations', label: recText.title },
     { id: 'interests', label: interests.title },
+    { id: 'activity', label: about.githubTitle },
   ];
-  if (showActivity) sections.push({ id: 'activity', label: about.githubTitle });
 
   return (
     <Stack gap="xl">
@@ -222,39 +227,56 @@ export default function About() {
         </Stack>
       </section>
 
-      {showActivity && (
-        <section id="activity" className="page-section">
-          <details className="activity">
-            <summary className="activity-summary">
-              <span className="section-num" aria-hidden="true">
-                07
-              </span>
-              <span className="activity-title">{about.githubTitle}</span>
-            </summary>
+      <section id="activity" className="page-section">
+        <details className="activity">
+          <summary className="activity-summary">
+            <span className="section-num" aria-hidden="true">
+              07
+            </span>
+            <span className="activity-title">{about.githubTitle}</span>
+          </summary>
 
-            <div className="activity-body">
-              {state === 'loading' && <Skeleton height={160} radius="md" />}
+          <div className="activity-body">
+            {state === 'loading' && <Skeleton height={160} radius="md" />}
 
-              {state === 'ready' && stats && (
-                <>
+            {state === 'fallback' && (
+              <Paper className="subcard" p="md">
+                <Stack gap="xs" align="flex-start">
+                  <Text className="stats-block-title">{about.githubError}</Text>
+                  <Text c="dimmed" size="sm">
+                    {about.githubErrorHint}
+                  </Text>
+                  <Button
+                    variant="default"
+                    size="compact-sm"
+                    leftSection={<IconRefresh size={14} stroke={1.6} />}
+                    onClick={reload}
+                  >
+                    {about.githubRetry}
+                  </Button>
+                </Stack>
+              </Paper>
+            )}
+
+            {state === 'ready' && stats && (
+              <>
+                <Paper className="subcard" p="md">
+                  <ContributionGrid days={stats.calendar} />
+                </Paper>
+
+                <SimpleGrid cols={{ base: 1, sm: 2 }}>
                   <Paper className="subcard" p="md">
-                    <ContributionGrid days={stats.calendar} />
+                    <LanguageBars languages={stats.languages} />
                   </Paper>
-
-                  <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                    <Paper className="subcard" p="md">
-                      <LanguageBars languages={stats.languages} />
-                    </Paper>
-                    <Paper className="subcard" p="md">
-                      <StatsCard stats={stats} />
-                    </Paper>
-                  </SimpleGrid>
-                </>
-              )}
-            </div>
-          </details>
-        </section>
-      )}
+                  <Paper className="subcard" p="md">
+                    <StatsCard stats={stats} />
+                  </Paper>
+                </SimpleGrid>
+              </>
+            )}
+          </div>
+        </details>
+      </section>
     </Stack>
   );
 }
