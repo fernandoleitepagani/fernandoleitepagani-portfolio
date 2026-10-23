@@ -4,121 +4,223 @@
     <meta charset="utf-8" />
     <title>Fernando Leite Pagani — Currículo</title>
     <style>
-      @page { size: A4; margin: 15mm 16mm; }
+      @page { size: A4; margin: 12mm 14mm; }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #111;
-        font-size: 10.5pt;
-        line-height: 1.4;
+        font-family: Georgia, 'Times New Roman', serif;
+        color: #17181c;
+        font-size: 9.5pt;
+        line-height: 1.3;
       }
-      header { text-align: center; }
-      h1 { font-size: 24pt; margin: 0; letter-spacing: 0.5px; }
-      .role { font-weight: bold; color: #333; margin: 4px 0 0; font-size: 11pt; }
-      .contact { margin: 6px 0 0; font-size: 9.5pt; }
-      .contact a { color: #1a4fd6; text-decoration: underline; }
-      .contact span + span::before { content: ' | '; color: #555; }
+      a { color: inherit; text-decoration: none; }
+
+      header { text-align: center; padding-bottom: 7pt; border-bottom: 1.5px solid #536477; }
+      h1 {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20.7pt;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #172a41;
+      }
+      .role {
+        margin: 2pt 0 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.35pt;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        color: #172a41;
+      }
+      .contact { margin: 4pt 0 0; font-size: 9pt; line-height: 1.41; }
+      .contact + .contact { margin-top: 0; }
+      .sep { color: #333b45; }
 
       h2 {
-        font-size: 10.5pt;
+        margin: 11pt 0 4pt;
+        padding-bottom: 2pt;
+        border-bottom: 1px solid #aab2bc;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+        font-weight: 700;
+        letter-spacing: 0.25px;
+        line-height: 1.2;
         text-transform: uppercase;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        margin: 18px 0 8px;
-        padding-bottom: 3px;
-        border-bottom: 1.6px solid #111;
+        color: #172a41;
       }
 
-      p { margin: 6px 0; }
-      .entry { padding: 9px 0; border-bottom: 1px solid #e3e3e3; break-inside: avoid; }
-      .entry:last-of-type { border-bottom: none; padding-bottom: 0; }
-      .entry-head { display: flex; justify-content: space-between; gap: 12px; }
-      .entry-title { font-weight: bold; }
-      .entry-type { font-weight: normal; color: #555; }
-      .entry-period { color: #555; white-space: nowrap; }
-      .entry-org { font-style: italic; color: #555; margin: 2px 0 0; }
+      p { margin: 2pt 0; }
+      .entry + .entry { margin-top: 6pt; }
+      .entry-line {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9pt;
+        line-height: 1.25;
+      }
+      .entry-meta { color: #333b45; }
+      .entry p:last-child { margin: 0; }
 
-      .skills p, .langs p { margin: 4px 0; }
-      .skills b, .langs b { display: inline; }
+      .line { margin: 0; }
+      .line.small { margin-top: 2pt; font-size: 8.67pt; }
     </style>
   </head>
   <body>
     <header>
-      <h1>Fernando Leite Pagani</h1>
-      <p class="role">Estudante de Ciência da Computação | Belo Horizonte, Brasil</p>
+      <h1>FERNANDO LEITE PAGANI</h1>
+      <p class="role">Estágio em Tecnologia</p>
       <p class="contact">
-        <span><a href="mailto:fernandolp.work@protonmail.com">fernandolp.work@protonmail.com</a></span>
-        <span><a href="https://www.linkedin.com/in/fernandoleitepagani">LinkedIn</a></span>
-        <span><a href="https://github.com/fernandoleitepagani">GitHub</a></span>
-        <span><a href="https://fernandoleitepagani-portfolio.vercel.app/">Portfólio</a></span>
+        Belo Horizonte, MG <span class="sep">·</span>
+        <a href="mailto:fernandolp.work@protonmail.com">fernandolp.work@protonmail.com</a>
+      </p>
+      <p class="contact">
+        <a href="https://www.linkedin.com/in/fernandoleitepagani">linkedin.com/in/fernandoleitepagani</a>
+        <span class="sep">·</span>
+        <a href="https://github.com/fernandoleitepagani">github.com/fernandoleitepagani</a>
+        <span class="sep">·</span>
+        <a href="https://fernandoleitepagani.dev">fernandoleitepagani.dev</a>
       </p>
     </header>
 
-    <h2>Resumo</h2>
+    <h2>Resumo Profissional</h2>
     <p>
-      Estudante de Ciência da Computação na PUC Minas com forte foco em <b>Linux</b>,
-      <b>sistemas</b> e <b>DevOps</b>. Uso Linux como sistema principal desde os 13 anos,
-      desenvolvo e mantenho <b>14 repositórios públicos</b> com <b>mais de 100 contribuições</b> no
-      último ano, e mantenho serviços self-hosted no meu próprio hardware. Prezo por ambientes
-      rápidos, reprodutíveis e eficientes e gosto de entender como as coisas funcionam por baixo dos
-      panos.
+      Estudante de Ciência da Computação na PUC Minas, com atuação em liderança voluntária,
+      extensão universitária, automação e administração Linux e desenvolvimento web. Dois mandatos
+      de presidência no Interact e participação no projeto de extensão WebTech. Objetivo: estágio em
+      tecnologia.
     </p>
 
-    <h2>Experiência Profissional</h2>
-
-    <div class="entry">
-      <div class="entry-head">
-        <span class="entry-title">Desenvolvedor open-source <span class="entry-type">| Projetos pessoais · Open source</span></span>
-        <span class="entry-period">2026 – Atualmente</span>
-      </div>
-      <p class="entry-org">Ferramentas open-source para o desktop Linux.</p>
-      <p>
-        Desenvolvimento e manutenção de ferramentas open-source, com <b>3 projetos</b>,
-        <b>14 repositórios públicos</b> e <b>mais de 100 contribuições</b> no último ano.
-        <b>MangoMod</b> — interface visual e interativa de configuração para o compositor Wayland
-        MangoWM (GTK4/libadwaita), adaptada a partir do NiriMod. <b>Simple-Nvim</b> — configuração
-        modular e performática do Neovim com lazy.nvim (LSP, completion, debugging).
-        <b>Rofi-Scripts</b> — scripts de launcher que tornam o fluxo no desktop mais rápido e simples.
-      </p>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head">
-        <span class="entry-title">Estudante de intercâmbio <span class="entry-type">| Rotary Youth Exchange · AVTEC</span></span>
-        <span class="entry-period">Anteriormente</span>
-      </div>
-      <p class="entry-org">Intercâmbio cultural nos Estados Unidos.</p>
-      <p>
-        Morei e estudei no <b>Alaska</b>, alcançando <b>inglês avançado</b>, e tive o primeiro
-        contato com infraestrutura de TI na <b>AVTEC</b>, uma escola técnica.
-      </p>
-    </div>
-
     <h2>Formação Acadêmica</h2>
-    <div class="entry" style="border-bottom: none;">
-      <div class="entry-head">
-        <span class="entry-title">Bacharelado em Ciência da Computação</span>
-        <span class="entry-period">2025 – Atualmente (2º período)</span>
-      </div>
-      <p class="entry-org" style="font-style: normal;">PUC Minas — Belo Horizonte, MG</p>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Ciência da Computação</b>
+        <span class="entry-meta"> | PUC Minas, Belo Horizonte | 2026–atual · 2º período</span>
+      </p>
       <p>
-        Disciplinas: Algoritmos e Estruturas de Dados, Matemática Discreta, Banco de Dados,
-        Desenvolvimento de Interfaces Web, Engenharia de Software.
+        Disciplinas relevantes: Algoritmos e Estruturas de Dados, Matemática Discreta, Banco de Dados
+        e Engenharia de Software.
+      </p>
+    </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Ensino Médio</b>
+        <span class="entry-meta"> | Colégio Santo Antônio, Belo Horizonte | concluído em 2025</span>
       </p>
     </div>
 
-    <h2>Habilidades Técnicas</h2>
-    <div class="skills">
-      <p><b>Linguagens:</b> C, C++, Python, Java, Lua, Bash, HTML e CSS</p>
-      <p><b>Sistemas e infra:</b> Linux (Fedora, Arch, Debian), Docker, Git, Tailscale, Syncthing</p>
-      <p><b>Ferramentas:</b> Neovim, Wayland, Jellyfin, homelab / self-hosting</p>
+    <h2>Pesquisa, Extensão e Liderança</h2>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Iniciação científica</b>
+        <span class="entry-meta"> | PUC Minas | 2026–atual · orientação do Prof. Matheus Barros</span>
+      </p>
+      <p>
+        Estudo exploratório de IA preditiva e deep learning para filtragem e categorização de imagens.
+        Etapa atual: fundamentos de deep learning.
+      </p>
+    </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Membro do projeto de extensão WebTech</b>
+        <span class="entry-meta"> | 2026–atual</span>
+      </p>
+      <p>
+        Redesign de páginas e demonstrações do WebTech Journey; padronização de componentes e tokens
+        visuais; documentação do processo de build.
+      </p>
+    </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Presidente do Interact, Rotary</b>
+        <span class="entry-meta"> | 2022–2023 e 2024–2025</span>
+      </p>
+      <p>
+        Planejamento de ações sociais, distribuição de tarefas, coordenação de voluntários e campanhas
+        de arrecadação nos dois mandatos. Ações para ampliar a participação no clube.
+      </p>
+    </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Rotary Youth Exchange</b>
+        <span class="entry-meta"> | Alasca, EUA | 2023–2024</span>
+      </p>
+      <p>
+        Intercâmbio com aulas de programação e visitas a empresas de engenharia e manutenção naval e à
+        AVTEC, centro técnico vocacional do Alasca.
+      </p>
     </div>
 
-    <h2>Idiomas</h2>
-    <div class="langs">
-      <p><b>Português:</b> Nativo</p>
-      <p><b>Inglês:</b> Avançado</p>
+    <h2>Projetos e Automações</h2>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Homelab Linux</b>
+        <span class="entry-meta"> | Fedora, Docker Compose, Nextcloud, Jellyfin, Syncthing</span>
+      </p>
+      <p>
+        Servidor Fedora com stacks Docker Compose para Nextcloud, Jellyfin e Syncthing. Monitoramento de
+        quatro serviços pelo Uptime Kuma e acesso remoto via Tailscale. Replicação de dados entre
+        servidor e máquina de backup com rclone e Syncthing; serviços usados por quatro dispositivos.
+        Experimentos com DuckDNS, encaminhamento de portas, proxy reverso Nginx e TLS.
+      </p>
     </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Automação Linux</b>
+        <span class="entry-meta"> | Bash, systemd, Wayland</span>
+      </p>
+      <p>
+        Scripts Bash para consultar escopos systemd, listar e encerrar aplicativos em segundo plano,
+        pausar swayidle durante o modo foco e capturar telas com OCR via Tesseract. Gravação de tela com
+        recuperação de sessões interrompidas e fallback MP4/WebM. Cache de clima de 20 minutos com
+        último resultado disponível offline.
+      </p>
+    </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>visualize_it</b>
+        <span class="entry-meta"> | React, TypeScript, Vite</span>
+      </p>
+      <p>
+        Aplicação com 20 lições interativas de algoritmos e estruturas de dados, execução passo a passo,
+        código em C ou Java e análise de complexidade.
+      </p>
+    </div>
+    <div class="entry">
+      <p class="entry-line">
+        <b>Portfólio profissional</b>
+        <span class="entry-meta"> | React, TypeScript, Vite, Vercel</span>
+      </p>
+      <p>
+        Site bilíngue com função serverless para consulta à API do GitHub. Token mantido no servidor e
+        cache para reduzir chamadas.
+      </p>
+    </div>
+
+    <h2>Competências e Idiomas</h2>
+    <p class="line">
+      <b>Linguagens:</b> C, C++, Python, Java, TypeScript e Bash <span class="sep">·</span>
+      <b>Desenvolvimento:</b> React, Vite <span class="sep">·</span>
+      <b>Linux:</b> Fedora Silverblue, Debian, Ubuntu, Mint, Arch, CentOS, Rocky Linux e Alpine;
+      systemd, permissões e shell scripts.
+    </p>
+    <p class="line">
+      <b>Containers e ambiente:</b> Docker Compose, Toolbox, tmux e Neovim <span class="sep">·</span>
+      <b>Serviços:</b> Tailscale, rclone, Syncthing e Uptime Kuma.
+    </p>
+    <p class="line">
+      <b>Liderança e gestão:</b> coordenação de voluntários, planejamento de ações e arrecadação de
+      recursos <span class="sep">·</span>
+      <b>Eficiência:</b> automação de tarefas e administração de serviços self-hosted.
+    </p>
+    <p class="line">
+      <b>Português:</b> nativo <span class="sep">·</span>
+      <b>Inglês:</b> C1, Cambridge English B2 First, Grade A (2026).
+    </p>
+    <p class="line small">
+      <b>Disponibilidade:</b> estágio presencial ou híbrido em Belo Horizonte, ou remoto no Brasil.
+    </p>
   </body>
 </html>

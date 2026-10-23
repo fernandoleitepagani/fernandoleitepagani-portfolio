@@ -82,19 +82,20 @@ export interface Recommendation {
 }
 
 export interface ResumeEntry {
-  role: string;
-  org: string;
-  period: string;
-  location: string;
-  summary: string;
+  title: string;
+  meta: string;
   body: string;
 }
 
 export interface ResumeEducation {
   degree: string;
-  school: string;
-  period: string;
-  summary: string;
+  meta: string;
+  details: string;
+}
+
+export interface ResumeSkill {
+  name: string;
+  items: string;
 }
 
 export interface Course {
@@ -197,13 +198,16 @@ export interface Content {
     download: string;
     summaryTitle: string;
     summary: string;
-    experienceTitle: string;
-    experience: ResumeEntry[];
     educationTitle: string;
     education: ResumeEducation[];
+    researchTitle: string;
+    research: ResumeEntry[];
+    projectsTitle: string;
+    projects: ResumeEntry[];
     skillsTitle: string;
-    languagesTitle: string;
+    skillLines: ResumeSkill[][];
     languages: { name: string; level: string }[];
+    availability: { label: string; text: string };
   };
   projects: {
     title: string;

@@ -50,7 +50,7 @@ export default function About() {
   const stats = state === 'ready' ? data : null;
 
   const sections: PageIndexItem[] = [
-    { id: 'experience', label: resume.experienceTitle },
+    { id: 'research', label: resume.researchTitle },
     { id: 'education', label: resume.educationTitle },
     { id: 'projects', label: text.title },
     { id: 'skills', label: t.skills.title },
@@ -100,11 +100,11 @@ export default function About() {
 
       <PageIndex items={sections} />
 
-      <section id="experience" className="page-section">
+      <section id="research" className="page-section">
         <Stack gap="md">
           <SectionHead
             index={1}
-            title={resume.experienceTitle}
+            title={resume.researchTitle}
             action={
               <Link to="/resume" viewTransition className="link">
                 {t.nav.resume} →
@@ -112,18 +112,14 @@ export default function About() {
             }
           />
           <div className="entry-list">
-            {resume.experience.map((entry) => (
-              <article className="entry" key={entry.role}>
+            {resume.research.map((entry) => (
+              <article className="entry" key={entry.title}>
                 <div className="entry-head">
                   <Title order={3} className="entry-title">
-                    {entry.role}
+                    {entry.title}
                   </Title>
-                  <span className="entry-period">{entry.period}</span>
                 </div>
-                <Text className="entry-meta">
-                  {[entry.org, entry.location].filter(Boolean).join(' · ')}
-                </Text>
-                <Text className="entry-summary">{entry.summary}</Text>
+                <Text className="entry-meta">{entry.meta}</Text>
                 <Clamped lines={3} className="entry-body">
                   <Rich text={entry.body} />
                 </Clamped>
@@ -151,10 +147,9 @@ export default function About() {
                   <Title order={3} className="entry-title">
                     {entry.degree}
                   </Title>
-                  <span className="entry-period">{entry.period}</span>
                 </div>
-                <Text className="entry-meta">{entry.school}</Text>
-                <Text className="entry-summary">{entry.summary}</Text>
+                <Text className="entry-meta">{entry.meta}</Text>
+                {entry.details && <Text className="entry-summary">{entry.details}</Text>}
               </article>
             ))}
           </div>

@@ -60,46 +60,105 @@ export const content: Record<Lang, Content> = {
     },
     resume: {
       title: 'Resume',
-      role: 'Computer Science Student · Belo Horizonte, Brazil',
+      role: 'Technology Internship',
       download: 'Download PDF',
-      summaryTitle: 'Summary',
+      summaryTitle: 'Professional Summary',
       summary:
-        'Computer Science student at PUC Minas with a strong focus on **Linux**, **systems** and **DevOps**. I have used Linux as my daily driver since I was 13, build and maintain **14 public repositories** with **100+ contributions** in the last year, and self-host services on my own hardware. I care about fast, reproducible and efficient environments, and I prefer understanding how things work under the hood.',
-      experienceTitle: 'Professional Experience',
-      experience: [
-        {
-          role: 'Open-source developer',
-          org: 'Personal projects',
-          period: '2026 – Present',
-          location: 'Open source',
-          summary: 'Open-source tools for the Linux desktop.',
-          body: 'Building and maintaining open-source tooling, with **3 projects**, **14 public repositories** and **100+ contributions** in the last year. **MangoMod** — visual, interactive configuration interface for the MangoWM Wayland compositor (GTK4/libadwaita), forked and adapted from NiriMod. **Simple-Nvim** — modular, performant Neovim configuration built on lazy.nvim (LSP, completion, debugging). **Rofi-Scripts** — launcher scripts that make desktop workflows faster and simpler.',
-        },
-        {
-          role: 'Youth exchange student',
-          org: 'Rotary Youth Exchange · AVTEC',
-          period: 'Previously',
-          location: 'Alaska, USA',
-          summary: 'Cultural exchange in the United States.',
-          body: 'Lived and studied in Alaska, reaching **advanced English**, and had first contact with IT infrastructure at **AVTEC**, a technical college.',
-        },
-      ],
+        'Computer Science student at PUC Minas, involved in volunteer leadership, university extension, Linux automation and administration, and web development. Two terms as Interact president and participation in the WebTech extension project. Objective: technology internship.',
       educationTitle: 'Academic Background',
       education: [
         {
-          degree: 'B.Sc. Computer Science',
-          school: 'PUC Minas — Belo Horizonte, MG',
-          period: '2025 – Present (2nd semester)',
-          summary:
-            'Coursework: Algorithms and Data Structures, Discrete Mathematics, Databases, Web Interface Development, Software Engineering.',
+          degree: 'Computer Science',
+          meta: 'PUC Minas, Belo Horizonte | 2026–present · 2nd semester',
+          details:
+            'Relevant coursework: Algorithms and Data Structures, Discrete Mathematics, Databases and Software Engineering.',
+        },
+        {
+          degree: 'High School',
+          meta: 'Colégio Santo Antônio, Belo Horizonte | completed in 2025',
+          details: '',
         },
       ],
-      skillsTitle: 'Technical Skills',
-      languagesTitle: 'Languages',
-      languages: [
-        { name: 'Portuguese', level: 'Native' },
-        { name: 'English', level: 'Advanced' },
+      researchTitle: 'Research, Extension and Leadership',
+      research: [
+        {
+          title: 'Undergraduate research',
+          meta: 'PUC Minas | 2026–present · supervised by Prof. Matheus Barros',
+          body: 'Exploratory study of predictive AI and deep learning for image filtering and categorization. Current stage: deep learning fundamentals.',
+        },
+        {
+          title: 'WebTech extension project member',
+          meta: '2026–present',
+          body: 'Redesign of WebTech Journey pages and demos; standardization of components and visual tokens; documentation of the build process.',
+        },
+        {
+          title: 'Interact President, Rotary',
+          meta: '2022–2023 and 2024–2025',
+          body: 'Planning social actions, task distribution, volunteer coordination and fundraising campaigns across both terms. Actions to broaden participation in the club.',
+        },
+        {
+          title: 'Rotary Youth Exchange',
+          meta: 'Alaska, USA | 2023–2024',
+          body: 'Exchange program with programming classes and visits to naval engineering and maintenance companies and to AVTEC, Alaska’s vocational technical center.',
+        },
       ],
+      projectsTitle: 'Projects and Automations',
+      projects: [
+        {
+          title: 'Homelab Linux',
+          meta: 'Fedora, Docker Compose, Nextcloud, Jellyfin, Syncthing',
+          body: 'Fedora server with Docker Compose stacks for Nextcloud, Jellyfin and Syncthing. Monitoring of four services via Uptime Kuma and remote access via Tailscale. Data replication between the server and a backup machine with rclone and Syncthing; services used by four devices. Experiments with DuckDNS, port forwarding, Nginx reverse proxy and TLS.',
+        },
+        {
+          title: 'Linux automation',
+          meta: 'Bash, systemd, Wayland',
+          body: 'Bash scripts to query systemd scopes, list and terminate background applications, pause swayidle during focus mode and capture screenshots with OCR via Tesseract. Screen recording with interrupted-session recovery and MP4/WebM fallback. 20-minute weather cache with the last result available offline.',
+        },
+        {
+          title: 'visualize_it',
+          meta: 'React, TypeScript, Vite',
+          body: 'Application with 20 interactive lessons on algorithms and data structures, step-by-step execution, code in C or Java and complexity analysis.',
+        },
+        {
+          title: 'Professional portfolio',
+          meta: 'React, TypeScript, Vite, Vercel',
+          body: 'Bilingual site with a serverless function that queries the GitHub API. Token kept on the server and caching to reduce calls.',
+        },
+      ],
+      skillsTitle: 'Skills and Languages',
+      skillLines: [
+        [
+          { name: 'Languages', items: 'C, C++, Python, Java, TypeScript and Bash' },
+          { name: 'Development', items: 'React, Vite' },
+          {
+            name: 'Linux',
+            items:
+              'Fedora Silverblue, Debian, Ubuntu, Mint, Arch, CentOS, Rocky Linux and Alpine; systemd, permissions and shell scripts.',
+          },
+        ],
+        [
+          { name: 'Containers and environment', items: 'Docker Compose, Toolbox, tmux and Neovim' },
+          { name: 'Services', items: 'Tailscale, rclone, Syncthing and Uptime Kuma.' },
+        ],
+        [
+          {
+            name: 'Leadership and management',
+            items: 'volunteer coordination, action planning and fundraising',
+          },
+          {
+            name: 'Efficiency',
+            items: 'task automation and self-hosted service administration.',
+          },
+        ],
+      ],
+      languages: [
+        { name: 'Portuguese', level: 'native' },
+        { name: 'English', level: 'C1, Cambridge English B2 First, Grade A (2026).' },
+      ],
+      availability: {
+        label: 'Availability',
+        text: 'on-site or hybrid internship in Belo Horizonte, or remote within Brazil.',
+      },
     },
     projects: {
       title: 'Projects',
@@ -250,46 +309,105 @@ export const content: Record<Lang, Content> = {
     },
     resume: {
       title: 'Currículo',
-      role: 'Estudante de Ciência da Computação · Belo Horizonte, Brasil',
+      role: 'Estágio em Tecnologia',
       download: 'Baixar PDF',
-      summaryTitle: 'Resumo',
+      summaryTitle: 'Resumo Profissional',
       summary:
-        'Estudante de Ciência da Computação na PUC Minas com forte foco em **Linux**, **sistemas** e **DevOps**. Uso Linux como sistema principal desde os 13 anos, desenvolvo e mantenho **14 repositórios públicos** com **mais de 100 contribuições** no último ano, e mantenho serviços self-hosted no meu próprio hardware. Prezo por ambientes rápidos, reprodutíveis e eficientes e gosto de entender como as coisas funcionam por baixo dos panos.',
-      experienceTitle: 'Experiência Profissional',
-      experience: [
-        {
-          role: 'Desenvolvedor open-source',
-          org: 'Projetos pessoais',
-          period: '2026 – Atualmente',
-          location: 'Open source',
-          summary: 'Ferramentas open-source para o desktop Linux.',
-          body: 'Desenvolvimento e manutenção de ferramentas open-source, com **3 projetos**, **14 repositórios públicos** e **mais de 100 contribuições** no último ano. **MangoMod** — interface visual e interativa de configuração para o compositor Wayland MangoWM (GTK4/libadwaita), adaptada a partir do NiriMod. **Simple-Nvim** — configuração modular e performática do Neovim com lazy.nvim (LSP, completion, debugging). **Rofi-Scripts** — scripts de launcher que tornam o fluxo no desktop mais rápido e simples.',
-        },
-        {
-          role: 'Estudante de intercâmbio',
-          org: 'Rotary Youth Exchange · AVTEC',
-          period: 'Anteriormente',
-          location: 'Alaska, EUA',
-          summary: 'Intercâmbio cultural nos Estados Unidos.',
-          body: 'Morei e estudei no **Alaska**, alcançando **inglês avançado**, e tive o primeiro contato com infraestrutura de TI na **AVTEC**, uma escola técnica.',
-        },
-      ],
+        'Estudante de Ciência da Computação na PUC Minas, com atuação em liderança voluntária, extensão universitária, automação e administração Linux e desenvolvimento web. Dois mandatos de presidência no Interact e participação no projeto de extensão WebTech. Objetivo: estágio em tecnologia.',
       educationTitle: 'Formação Acadêmica',
       education: [
         {
-          degree: 'Bacharelado em Ciência da Computação',
-          school: 'PUC Minas — Belo Horizonte, MG',
-          period: '2025 – Atualmente (2º período)',
-          summary:
-            'Disciplinas: Algoritmos e Estruturas de Dados, Matemática Discreta, Banco de Dados, Desenvolvimento de Interfaces Web, Engenharia de Software.',
+          degree: 'Ciência da Computação',
+          meta: 'PUC Minas, Belo Horizonte | 2026–atual · 2º período',
+          details:
+            'Disciplinas relevantes: Algoritmos e Estruturas de Dados, Matemática Discreta, Banco de Dados e Engenharia de Software.',
+        },
+        {
+          degree: 'Ensino Médio',
+          meta: 'Colégio Santo Antônio, Belo Horizonte | concluído em 2025',
+          details: '',
         },
       ],
-      skillsTitle: 'Habilidades Técnicas',
-      languagesTitle: 'Idiomas',
-      languages: [
-        { name: 'Português', level: 'Nativo' },
-        { name: 'Inglês', level: 'Avançado' },
+      researchTitle: 'Pesquisa, Extensão e Liderança',
+      research: [
+        {
+          title: 'Iniciação científica',
+          meta: 'PUC Minas | 2026–atual · orientação do Prof. Matheus Barros',
+          body: 'Estudo exploratório de IA preditiva e deep learning para filtragem e categorização de imagens. Etapa atual: fundamentos de deep learning.',
+        },
+        {
+          title: 'Membro do projeto de extensão WebTech',
+          meta: '2026–atual',
+          body: 'Redesign de páginas e demonstrações do WebTech Journey; padronização de componentes e tokens visuais; documentação do processo de build.',
+        },
+        {
+          title: 'Presidente do Interact, Rotary',
+          meta: '2022–2023 e 2024–2025',
+          body: 'Planejamento de ações sociais, distribuição de tarefas, coordenação de voluntários e campanhas de arrecadação nos dois mandatos. Ações para ampliar a participação no clube.',
+        },
+        {
+          title: 'Rotary Youth Exchange',
+          meta: 'Alasca, EUA | 2023–2024',
+          body: 'Intercâmbio com aulas de programação e visitas a empresas de engenharia e manutenção naval e à AVTEC, centro técnico vocacional do Alasca.',
+        },
       ],
+      projectsTitle: 'Projetos e Automações',
+      projects: [
+        {
+          title: 'Homelab Linux',
+          meta: 'Fedora, Docker Compose, Nextcloud, Jellyfin, Syncthing',
+          body: 'Servidor Fedora com stacks Docker Compose para Nextcloud, Jellyfin e Syncthing. Monitoramento de quatro serviços pelo Uptime Kuma e acesso remoto via Tailscale. Replicação de dados entre servidor e máquina de backup com rclone e Syncthing; serviços usados por quatro dispositivos. Experimentos com DuckDNS, encaminhamento de portas, proxy reverso Nginx e TLS.',
+        },
+        {
+          title: 'Automação Linux',
+          meta: 'Bash, systemd, Wayland',
+          body: 'Scripts Bash para consultar escopos systemd, listar e encerrar aplicativos em segundo plano, pausar swayidle durante o modo foco e capturar telas com OCR via Tesseract. Gravação de tela com recuperação de sessões interrompidas e fallback MP4/WebM. Cache de clima de 20 minutos com último resultado disponível offline.',
+        },
+        {
+          title: 'visualize_it',
+          meta: 'React, TypeScript, Vite',
+          body: 'Aplicação com 20 lições interativas de algoritmos e estruturas de dados, execução passo a passo, código em C ou Java e análise de complexidade.',
+        },
+        {
+          title: 'Portfólio profissional',
+          meta: 'React, TypeScript, Vite, Vercel',
+          body: 'Site bilíngue com função serverless para consulta à API do GitHub. Token mantido no servidor e cache para reduzir chamadas.',
+        },
+      ],
+      skillsTitle: 'Competências e Idiomas',
+      skillLines: [
+        [
+          { name: 'Linguagens', items: 'C, C++, Python, Java, TypeScript e Bash' },
+          { name: 'Desenvolvimento', items: 'React, Vite' },
+          {
+            name: 'Linux',
+            items:
+              'Fedora Silverblue, Debian, Ubuntu, Mint, Arch, CentOS, Rocky Linux e Alpine; systemd, permissões e shell scripts.',
+          },
+        ],
+        [
+          { name: 'Containers e ambiente', items: 'Docker Compose, Toolbox, tmux e Neovim' },
+          { name: 'Serviços', items: 'Tailscale, rclone, Syncthing e Uptime Kuma.' },
+        ],
+        [
+          {
+            name: 'Liderança e gestão',
+            items: 'coordenação de voluntários, planejamento de ações e arrecadação de recursos',
+          },
+          {
+            name: 'Eficiência',
+            items: 'automação de tarefas e administração de serviços self-hosted.',
+          },
+        ],
+      ],
+      languages: [
+        { name: 'Português', level: 'nativo' },
+        { name: 'Inglês', level: 'C1, Cambridge English B2 First, Grade A (2026).' },
+      ],
+      availability: {
+        label: 'Disponibilidade',
+        text: 'estágio presencial ou híbrido em Belo Horizonte, ou remoto no Brasil.',
+      },
     },
     projects: {
       title: 'Projetos',

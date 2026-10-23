@@ -3,6 +3,7 @@ export const profile = {
   displayName: 'Fernando Pagani',
   github: 'https://github.com/fernandoleitepagani',
   linkedin: 'https://www.linkedin.com/in/fernandoleitepagani',
+  website: 'https://fernandoleitepagani.dev',
   email: 'fernando.leite@sga.pucminas.br',
   emailWork: 'fernandolp.work@protonmail.com',
   instagram: 'https://www.instagram.com/fernandoleitepagani/',
