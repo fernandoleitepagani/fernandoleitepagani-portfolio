@@ -12,7 +12,7 @@ export default function Recommendations() {
     <Stack gap="xl">
       <PageCard accent>
         <Stack gap="xs">
-          <Title order={1} className="page-title">
+          <Title order={1} className="page-title page-display">
             {recText.title}
           </Title>
           <Text c="dimmed" maw={640}>

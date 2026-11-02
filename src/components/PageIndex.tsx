@@ -24,6 +24,7 @@ export default function PageIndex({
           href={`#${item.id}`}
           className="page-index-link"
           data-active={active === item.id || undefined}
+          aria-current={active === item.id ? 'location' : undefined}
         >
           {item.label}
         </a>

@@ -1,36 +1,85 @@
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
+  font-family: var(--font-mono);
   font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color var(--dur) var(--ease-soft), color var(--dur) var(--ease-soft);
 }
 
 ::selection {
-  background: var(--button-hover-bg);
-  color: var(--button-hover-text);
+  background: var(--accent);
+  color: #000;
 }
 
-/* Fluid type: balance headings, avoid orphans in body copy. */
-h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
-p { text-wrap: pretty; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
 
-/* One shared entrance motion for page surfaces. */
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: none; }
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
 }
 
 .link {
   color: var(--ink);
   text-decoration: underline;
+  text-decoration-color: var(--line-strong);
   text-underline-offset: 3px;
-  transition: color var(--dur-fast) var(--ease-soft);
+  transition: color var(--dur-fast) var(--ease-soft),
+    text-decoration-color var(--dur-fast) var(--ease-soft);
 }
-.link:hover { color: var(--link-hover); }
+.link:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* Keyboard users can jump straight past the floating chrome. */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10000;
+  padding: 8px 14px;
+  color: #000;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform var(--dur) var(--ease-soft);
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+#main-content {
+  scroll-margin-top: 16px;
+}
 
 /* Long prose stays collapsed until the reader asks for the rest of it. */
 .clamp > [data-clamped] {
@@ -39,35 +88,49 @@ p { text-wrap: pretty; }
   overflow: hidden;
 }
 .clamp-toggle {
-  margin-top: 2px;
+  margin-top: 4px;
   padding: 0;
   border: 0;
   background: none;
   width: fit-content;
-  color: var(--ink-dim);
-  font-family: inherit;
-  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
   cursor: pointer;
   transition: color var(--dur-fast) var(--ease-soft);
 }
-.clamp-toggle:hover { color: var(--link-hover); }
+.clamp-toggle:hover {
+  color: var(--accent);
+}
 
 /* Slim, monochrome scrollbars. */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--hairline) transparent;
+  scrollbar-color: var(--line-strong) transparent;
 }
-*::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
 *::-webkit-scrollbar-thumb {
-  background: var(--hairline);
+  background: var(--line-strong);
   background-clip: padding-box;
   border: 2px solid transparent;
   border-radius: var(--radius-pill);
 }
-*::-webkit-scrollbar-thumb:hover { background: var(--surface-strong); background-clip: padding-box; }
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-ghost);
+  background-clip: padding-box;
+}
 
-/* Every transition/animation on the site honours the OS setting. */
+:where(a, button, [role='button'], input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -79,40 +142,18 @@ p { text-wrap: pretty; }
   }
 }
 
-/* ---------- Scroll-driven reveal ----------
-   Below-the-fold blocks fade in as they enter the viewport. The range ends
-   early, so anything already on screen renders fully opaque. Pure CSS, and a
-   no-op wherever scroll timelines are unsupported. */
-@supports (animation-timeline: view()) {
-  .page-container :is(.project, .subcard, .entry) {
-    animation-name: rise-in;
-    animation-duration: auto;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
-  }
-  /* Panels that live inside a sticky column stay static. */
-  .detail-aside .subcard { animation-name: none; }
-}
-
-/* ---------- Route cross-fade ----------
-   Links carry `viewTransition`, so the browser snapshots the page and
-   cross-fades it. Everything else (sidebar, header) is untouched. */
-@keyframes page-out { to { opacity: 0; } }
-@keyframes page-in { from { opacity: 0; } }
-::view-transition-old(root) { animation: page-out var(--dur-fast) var(--ease-soft) both; }
-::view-transition-new(root) { animation: page-in var(--dur) var(--ease-organic) both; }
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) { animation: none !important; }
-}
-
-/* Printing falls back to paper colours, with no chrome. */
 @media print {
   .app-navbar,
   .app-header,
-  .page-index { display: none !important; }
-  .app-main { padding: 0 !important; }
-  body { background: #fff; color: #000; }
+  .page-index,
+  .skip-link {
+    display: none !important;
+  }
+  .app-main {
+    padding: 0 !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
 }

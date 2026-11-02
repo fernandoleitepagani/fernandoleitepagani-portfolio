@@ -28,11 +28,15 @@ export default function Layout() {
   }, [opened, close]);
 
   return (
-    <AppShell
-      header={{ height: { base: 56, sm: 0 } }}
-      navbar={{ width: compact ? 64 : 190, breakpoint: 'sm' }}
-      padding="md"
-    >
+    <>
+      <a className="skip-link" href="#main-content">
+        {t.a11y.skipToContent}
+      </a>
+      <AppShell
+        header={{ height: { base: 58, sm: 0 } }}
+        navbar={{ width: compact ? 72 : 224, breakpoint: 'sm' }}
+        padding="md"
+      >
       <AppShell.Header ref={headerRef} hiddenFrom="sm" className="app-header">
         <div className="mobile-bar">
           <Burger
@@ -61,11 +65,12 @@ export default function Layout() {
         />
       </AppShell.Navbar>
 
-      <AppShell.Main className="app-main">
-        <Container size={1000} className="page-container">
+      <AppShell.Main id="main-content" tabIndex={-1} className="app-main">
+        <Container size={1080} className="page-container">
           <Outlet />
         </Container>
       </AppShell.Main>
-    </AppShell>
+      </AppShell>
+    </>
   );
 }

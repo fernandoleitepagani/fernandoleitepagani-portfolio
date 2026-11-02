@@ -5,12 +5,6 @@ import { SKILL_CATEGORIES, skills, type SkillCategoryId } from '../../data/skill
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
 
-const themeInk: Record<string, string> = {
-  dark: '#ffffff',
-  matrix: '#00ff41',
-  crt: '#52ff2f',
-};
-
 interface SkillsSectionProps {
   compact?: boolean;
 }
@@ -28,7 +22,7 @@ export default function SkillsSection({ compact = false }: SkillsSectionProps) {
 
   return (
     <Stack gap="md">
-      <Group gap={6}>
+      <Group gap={6} className="skills-filters">
         {categories.map((cat) => (
           <Badge
             key={cat}
@@ -36,6 +30,7 @@ export default function SkillsSection({ compact = false }: SkillsSectionProps) {
             type="button"
             variant={cat === category ? 'filled' : 'outline'}
             className="tag skills-chip"
+            data-active={cat === category || undefined}
             aria-pressed={cat === category}
             onClick={() => setCategory(cat)}
           >
@@ -46,9 +41,9 @@ export default function SkillsSection({ compact = false }: SkillsSectionProps) {
 
       <Stack gap={6}>
         <SkillsGlobe
-          key={category}
+          key={`${category}-${theme}`}
           skills={filtered}
-          color={themeInk[theme]}
+          color="var(--ink)"
           label={t.skills.title}
           compact={compact}
         />

@@ -25,7 +25,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
-    document.documentElement.dataset.theme = theme;
+    const root = document.documentElement;
+    root.dataset.theme = theme;
+    const background = getComputedStyle(root).getPropertyValue('--bg').trim();
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', background || '#08090a');
   }, [theme]);
 
   return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;

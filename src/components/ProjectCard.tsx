@@ -91,11 +91,6 @@ export default function ProjectCard({ project, variant = 'showcase' }: ProjectCa
         {project.screenshot && (
           <div className="project-media">
             <div className="project-window">
-              <div className="project-window-bar" aria-hidden="true">
-                <span className="project-dot" data-dot="red" />
-                <span className="project-dot" data-dot="yellow" />
-                <span className="project-dot" data-dot="green" />
-              </div>
               <img
                 className="project-image"
                 src={project.screenshot}

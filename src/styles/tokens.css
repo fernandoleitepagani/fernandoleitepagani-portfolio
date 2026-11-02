@@ -1,72 +1,155 @@
-/* ---------- Theme tokens (switched by <html data-theme="...">) ---------- */
+/* ---------- Theme tokens (switched by <html data-theme="...">) ----------
+   A small, flat system: black panels, hairlines, mono type and one green. */
 :root {
-  --ink: #fff;
-  --ink-dim: #8a8368;
-  --bg: #000;
-  --border: #fff;
-  --separator: #2a2a2a;
-  --online: #39d353;
-  --link-hover: #fff;
-  --button-hover-bg: #fff;
-  --button-hover-text: #000;
-  --window-bar: #171717;
-  --dot-red: #ff5f56;
-  --dot-yellow: #ffbd2e;
-  --dot-green: #27c93f;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  /* Contribution heatmap — five levels, one per theme */
-  --heat-0: #1e1e1e;
-  --heat-1: #555555;
-  --heat-2: #8a8a8a;
-  --heat-3: #bcbcbc;
-  --heat-4: #ffffff;
+  /* Ground */
+  --bg: #000000;
+  --bg-deep: #000000;
+  --bg-elev: #080808;
+  --panel: #080808;
+  --panel-strong: #0e0e0e;
 
-  /* Type scale — theme-independent, shared by all three themes */
-  --text-title: 22px;
-  --text-body: 15px;
-  --text-sm: 14px;
-  --text-xs: 13px;
-  --text-2xs: 12px;
+  /* Ink */
+  --ink: #ededed;
+  --ink-dim: #a3a3a3;
+  --ink-faint: #8a8a8a;
+  --ink-ghost: #4a4a4a;
 
-  /* Heatmap geometry — theme-independent */
-  --heat-cell: 11px;
+  /* Lines and surfaces */
+  --border: #ededed;
+  --separator: #1b1b1b;
+  --line: #1b1b1b;
+  --line-strong: #2b2b2b;
+  --hairline: #1b1b1b;
+  --ring: #2b2b2b;
+  --surface: #080808;
+  --surface-strong: #0e0e0e;
+  --surface-deep: #050505;
+
+  /* One accent, used for state and emphasis only */
+  --accent: #00d95a;
+  --accent-soft: rgba(0, 217, 90, 0.12);
+  --online: #00d95a;
+  --link-hover: #00d95a;
+  --button-hover-bg: #ededed;
+  --button-hover-text: #000000;
+
+  /* Contribution heatmap — green scale */
+  --heat-0: #111111;
+  --heat-1: #0b3d1c;
+  --heat-2: #0f7a32;
+  --heat-3: #00b84a;
+  --heat-4: #00d95a;
+
+  /* Type */
+  --text-display: clamp(2rem, 4.2vw, 3.2rem);
+  --text-title: clamp(1.15rem, 1.8vw, 1.4rem);
+  --text-body: 14px;
+  --text-sm: 13px;
+  --text-xs: 12px;
+  --text-2xs: 11px;
+  --text-label: 10.5px;
+  --leading-tight: 1.15;
+  --leading-body: 1.6;
+  --tracking-display: -0.04em;
+  --tracking-label: 0.12em;
+
+  /* Layout */
+  --container: 1080px;
+  --rail: 220px;
+  --rail-collapsed: 68px;
+  --gutter: clamp(20px, 4vw, 40px);
+  --section-gap: clamp(28px, 4vw, 44px);
+
+  /* Heatmap geometry */
+  --heat-cell: 10px;
   --heat-gap: 3px;
 
-  /* Motion — one organic easing and duration scale shared by every transition */
-  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-fast: 0.18s;
-  --dur: 0.36s;
-  --dur-slow: 0.5s;
+  /* Motion — short state changes only */
+  --ease-soft: ease;
+  --dur-fast: 0.12s;
+  --dur: 0.18s;
+  --dur-slow: 0.24s;
 
-  /* Shape — one restrained radius scale for every surface */
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-lg: 12px;
+  /* Shape */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 8px;
   --radius-pill: 999px;
 
-  /* Surfaces — derived from the theme ink so every theme stays monochrome */
-  --surface: color-mix(in srgb, var(--ink) 4%, transparent);
-  --surface-strong: color-mix(in srgb, var(--ink) 8%, transparent);
-  --hairline: color-mix(in srgb, var(--ink) 14%, transparent);
-  --ring: color-mix(in srgb, var(--ink) 18%, transparent);
+  color-scheme: dark;
 }
+
 :root[data-theme='matrix'] {
-  --ink: #00ff41; --ink-dim: #008f11; --bg: #000; --border: #00ff41;
-  --separator: #003b00; --link-hover: #39ff14; --button-hover-bg: #00ff41; --button-hover-text: #000;
-  --heat-0: #003b00; --heat-1: #006d00; --heat-2: #00a200; --heat-3: #00db00; --heat-4: #c0ffc0;
+  --bg: #000000;
+  --bg-deep: #000000;
+  --bg-elev: #050805;
+  --panel: #050805;
+  --panel-strong: #081008;
+  --surface: #050805;
+  --surface-strong: #081008;
+  --surface-deep: #020402;
+  --ink: #00ff41;
+  --ink-dim: #00a82b;
+  --ink-faint: #0f9c2c;
+  --ink-ghost: #005c17;
+  --border: #00ff41;
+  --separator: #0c3a12;
+  --line: #0c3a12;
+  --line-strong: #135a1d;
+  --link-hover: #a8ffb8;
+  --button-hover-bg: #00ff41;
+  --button-hover-text: #000000;
+  --accent: #00ff41;
+  --accent-soft: rgba(0, 255, 65, 0.12);
+  --online: #39ff14;
+  --heat-0: #071a0b;
+  --heat-1: #0a5317;
+  --heat-2: #0d8a24;
+  --heat-3: #12c534;
+  --heat-4: #c0ffc0;
 }
+
 :root[data-theme='crt'] {
-  --ink: #52ff2f; --ink-dim: #35921f; --bg: #031003; --border: #52ff2f;
-  --separator: #0b350b; --link-hover: #baffaa; --button-hover-bg: #52ff2f; --button-hover-text: #031003;
-  --heat-0: #0b350b; --heat-1: #1c6b12; --heat-2: #2f9d20; --heat-3: #5ccc35; --heat-4: #d4ffcb;
+  --bg: #031003;
+  --bg-deep: #020702;
+  --bg-elev: #061506;
+  --panel: #061506;
+  --panel-strong: #091d09;
+  --surface: #061506;
+  --surface-strong: #091d09;
+  --surface-deep: #020802;
+  --ink: #52ff2f;
+  --ink-dim: #35921f;
+  --ink-faint: #339122;
+  --ink-ghost: #1b5012;
+  --border: #52ff2f;
+  --separator: #0b350b;
+  --line: #0b350b;
+  --line-strong: #145214;
+  --link-hover: #baffaa;
+  --button-hover-bg: #52ff2f;
+  --button-hover-text: #031003;
+  --accent: #52ff2f;
+  --accent-soft: rgba(82, 255, 47, 0.12);
+  --online: #7cff5e;
+  --heat-0: #0b350b;
+  --heat-1: #1c6b12;
+  --heat-2: #2f9d20;
+  --heat-3: #5ccc35;
+  --heat-4: #d4ffcb;
 }
 
 /* Point Mantine's own variables at our tokens */
 :root[data-mantine-color-scheme] {
+  --mantine-font-family: var(--font-mono);
+  --mantine-font-family-monospace: var(--font-mono);
   --mantine-color-body: var(--bg);
   --mantine-color-text: var(--ink);
   --mantine-color-dimmed: var(--ink-dim);
   --mantine-color-anchor: var(--ink);
-  --mantine-color-default-border: var(--separator);
+  --mantine-color-default-border: var(--line);
+  --mantine-color-default: var(--surface);
+  --mantine-radius-md: var(--radius);
 }

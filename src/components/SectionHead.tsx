@@ -10,9 +10,9 @@ interface SectionHeadProps {
 export default function SectionHead({ index, title, action }: SectionHeadProps) {
   return (
     <div className="section-head">
-      <Title order={2} className="page-title">
+      <Title order={2} className="page-title section-title">
         <span className="section-num" aria-hidden="true">
-          {String(index).padStart(2, '0')}
+          [{String(index).padStart(2, '0')}]
         </span>
         {title}
       </Title>

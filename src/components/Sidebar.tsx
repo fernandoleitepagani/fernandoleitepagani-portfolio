@@ -60,6 +60,7 @@ export default function Sidebar({ collapsed, onNavigate, onToggle }: SidebarProp
                 viewTransition
                 className="nav-item"
                 data-active={pathname === path || undefined}
+                aria-current={pathname === path ? 'page' : undefined}
                 aria-label={label}
                 onClick={onNavigate}
               >

@@ -112,14 +112,14 @@ export default function Contact() {
   };
 
   return (
-    <Stack gap="xl">
-      <PageCard accent>
+    <div className="contact-layout">
+      <PageCard accent className="contact-hero-card">
         <Stack gap="md">
           <span className="availability">
             <span className="availability-dot" aria-hidden="true" />
             {about.available}
           </span>
-          <Title order={1} className="page-title">
+          <Title order={1} className="page-title contact-title">
             {contact.title}
           </Title>
           <Text className="contact-intro">{contact.subtitle}</Text>
@@ -142,7 +142,7 @@ export default function Contact() {
         </Stack>
       </PageCard>
 
-      <PageCard>
+      <PageCard className="contact-form-card">
         {status === 'sent' || status === 'partial' ? (
           <div className="contact-success" role="status" aria-live="polite">
             <div className="contact-success-icon">
@@ -166,8 +166,8 @@ export default function Contact() {
             </UnstyledButton>
           </div>
         ) : (
-          <Stack gap="md" align="stretch">
-            <Title order={2} className="page-title" ta="center">
+          <Stack gap="md" align="stretch" className="contact-form-body">
+            <Title order={2} className="page-title contact-form-title">
               {contact.formTitle}
             </Title>
 
@@ -182,7 +182,7 @@ export default function Contact() {
             )}
 
             {(status === 'idle' || status === 'sending') && (
-              <Text c="dimmed" ta="center" size="sm">
+              <Text c="dimmed" size="sm" className="contact-form-subtitle">
                 {status === 'sending' ? contact.formSending : contact.formSubtitle}
               </Text>
             )}
@@ -195,6 +195,7 @@ export default function Contact() {
                 required
                 autoComplete="name"
                 placeholder={contact.formName}
+                aria-label={contact.formName}
                 disabled={status === 'sending'}
               />
               <input
@@ -204,6 +205,7 @@ export default function Contact() {
                 required
                 autoComplete="email"
                 placeholder={contact.formEmail}
+                aria-label={contact.formEmail}
                 disabled={status === 'sending'}
               />
               <textarea
@@ -212,6 +214,7 @@ export default function Contact() {
                 required
                 rows={5}
                 placeholder={contact.formMessage}
+                aria-label={contact.formMessage}
                 disabled={status === 'sending'}
               />
               <UnstyledButton type="submit" className="contact-submit" disabled={status === 'sending'}>
@@ -219,7 +222,7 @@ export default function Contact() {
               </UnstyledButton>
             </form>
 
-            <Group justify="center" gap={6}>
+            <Group gap={6} className="contact-note">
               <IconCheck size={14} stroke={2} style={{ color: 'var(--online)' }} />
               <Text c="dimmed" size="xs">
                 {contact.replyNote}
@@ -228,6 +231,6 @@ export default function Contact() {
           </Stack>
         )}
       </PageCard>
-    </Stack>
+    </div>
   );
 }

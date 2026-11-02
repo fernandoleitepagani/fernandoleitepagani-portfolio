@@ -9,7 +9,7 @@ export default function RecommendationCard({ rec }: { rec: Recommendation }) {
   const initial = rec.name.trim().charAt(0).toUpperCase();
 
   return (
-    <Paper className="subcard" p="md">
+    <Paper className="subcard recommendation-card" p="md">
       <Group align="flex-start" wrap="nowrap" gap="md">
         <Avatar
           src={rec.avatar}

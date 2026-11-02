@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { Stack, Text, Title } from '@mantine/core';
 import ProjectCard from '../components/ProjectCard';
 import { useGitHubStats } from '../hooks/useGitHubStats';
+import { useLanguage } from '../context/LanguageContext';
 import {
   mergeProjects,
   profile,
@@ -15,6 +17,8 @@ function projectTime(project: Project): number {
 }
 
 export default function Projects() {
+  const { t } = useLanguage();
+  const text = t.projects;
   const { state, data } = useGitHubStats(profile.githubUser);
   const listRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
@@ -69,16 +73,25 @@ export default function Projects() {
   }, [ordered.length, state]);
 
   return (
-    <div className="projects-timeline" ref={listRef}>
-      {ordered.map((p, index) => (
-        <div
-          key={p.name}
-          className="projects-timeline-item"
-          data-active={index === active ? 'true' : undefined}
-        >
-          <ProjectCard project={p} />
-        </div>
-      ))}
-    </div>
+    <Stack gap="xl" className="projects-page">
+      <header className="page-head">
+        <Title order={1} className="page-title page-display">
+          {text.title}
+        </Title>
+        <Text className="page-subtitle">{text.subtitle}</Text>
+      </header>
+
+      <div className="projects-timeline" ref={listRef}>
+        {ordered.map((p, index) => (
+          <div
+            key={p.name}
+            className="projects-timeline-item"
+            data-active={index === active ? 'true' : undefined}
+          >
+            <ProjectCard project={p} />
+          </div>
+        ))}
+      </div>
+    </Stack>
   );
 }

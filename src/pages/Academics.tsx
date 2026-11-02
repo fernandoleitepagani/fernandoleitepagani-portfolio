@@ -24,7 +24,7 @@ export default function Academics() {
     <Stack gap="md">
       <PageCard accent>
         <Stack gap="xs">
-          <Title order={2} className="page-title">
+          <Title order={1} className="page-title">
             {content.degree}
           </Title>
           <Text c="dimmed">{content.school}</Text>

@@ -161,6 +161,7 @@ export interface Content {
     collapseSidebar: string;
     github: string;
     menu: string;
+    skipToContent: string;
   };
   about: {
     title: string;

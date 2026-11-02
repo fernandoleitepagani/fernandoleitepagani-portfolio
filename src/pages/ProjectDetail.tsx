@@ -42,11 +42,6 @@ export default function ProjectDetail() {
             <div className="detail-main">
               {project.images?.[0] && (
                 <div className="project-window">
-                  <div className="project-window-bar" aria-hidden="true">
-                    <span className="project-dot" data-dot="red" />
-                    <span className="project-dot" data-dot="yellow" />
-                    <span className="project-dot" data-dot="green" />
-                  </div>
                   <img
                     className="project-image"
                     src={project.images[0]}

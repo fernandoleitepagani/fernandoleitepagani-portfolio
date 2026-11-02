@@ -23,7 +23,8 @@ export default function Resume() {
         </Anchor>
       </div>
 
-      <article className="resume-sheet">
+      <div className="resume-desk">
+        <article className="resume-sheet">
         <header className="resume-head">
           <h1>{profile.name}</h1>
           <p className="resume-role">{resume.role}</p>
@@ -115,7 +116,8 @@ export default function Resume() {
             <strong>{resume.availability.label}:</strong> {resume.availability.text}
           </p>
         </section>
-      </article>
+        </article>
+      </div>
     </div>
   );
 }

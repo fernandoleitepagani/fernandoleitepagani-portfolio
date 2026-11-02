@@ -1,7 +1,6 @@
 import {
   Anchor,
   Button,
-  Flex,
   Group,
   List,
   Paper,
@@ -61,41 +60,49 @@ export default function About() {
 
   return (
     <Stack gap="xl">
-      <PageCard accent>
-        <Stack gap="lg">
-          <Flex gap="xl" justify="space-between" direction={{ base: 'column-reverse', sm: 'row' }}>
-            <Stack gap="md" maw={560}>
+      <PageCard accent className="hero-card">
+        <div className="hero">
+          <div className="hero-copy">
+            <div className="hero-eyebrow">
               <span className="availability">
                 <span className="availability-dot" aria-hidden="true" />
                 {about.available}
               </span>
-              <Title order={1} className="page-title">
-                {about.title}
-              </Title>
-              <div>
-                {about.tagline.map((line) => (
-                  <Text key={line}>{line}</Text>
-                ))}
-              </div>
-              <Text>{about.description}</Text>
-            </Stack>
+              <span className="hero-location">{profile.location}</span>
+            </div>
+
+            <Title order={1} className="hero-title">
+              {about.title}
+            </Title>
+
+            <div className="hero-lead">
+              {about.tagline.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+
+            <Text className="hero-description">{about.description}</Text>
+
+            <Group gap="sm" className="cta-row">
+              <Link to="/resume" viewTransition className="cta cta-primary">
+                <IconFileCv size={15} stroke={1.6} />
+                {about.ctaResume}
+              </Link>
+              <Link to="/contact" viewTransition className="cta">
+                <IconMail size={15} stroke={1.6} />
+                {about.ctaContact}
+              </Link>
+              <Anchor href={profile.github} target="_blank" rel="noreferrer" className="cta">
+                <IconBrandGithub size={15} stroke={1.6} />
+                {t.a11y.github}
+              </Anchor>
+            </Group>
+          </div>
+
+          <div className="hero-portrait">
             <img src="/photo.jpg" alt={profile.name} className="photo" width={280} height={280} />
-          </Flex>
-          <Group gap="sm" className="cta-row">
-            <Link to="/resume" viewTransition className="cta">
-              <IconFileCv size={15} stroke={1.6} />
-              {about.ctaResume}
-            </Link>
-            <Link to="/contact" viewTransition className="cta">
-              <IconMail size={15} stroke={1.6} />
-              {about.ctaContact}
-            </Link>
-            <Anchor href={profile.github} target="_blank" rel="noreferrer" className="cta">
-              <IconBrandGithub size={15} stroke={1.6} />
-              {t.a11y.github}
-            </Anchor>
-          </Group>
-        </Stack>
+          </div>
+        </div>
       </PageCard>
 
       <PageIndex items={sections} />

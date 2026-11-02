@@ -98,6 +98,10 @@ export default function SkillsGlobe({ skills, speed = 0.15, color = '#fff', labe
     if (!stage || !canvas) return undefined;
     const ctx = canvas.getContext('2d');
     if (!ctx) return undefined;
+    /* Resolve a CSS token (e.g. `var(--ink)`) to a concrete colour for canvas. */
+    const resolvedColor = color.trim().startsWith('var(')
+      ? getComputedStyle(stage).getPropertyValue(color.trim().slice(4, -1)).trim() || '#fff'
+      : color;
     const reduced = prefersReducedMotion();
     const m = motion.current;
     let frame = 0;
@@ -144,21 +148,13 @@ export default function SkillsGlobe({ skills, speed = 0.15, color = '#fff', labe
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
 
-      const halo = ctx.createRadialGradient(cx, cy, radius * 0.2, cx, cy, radius * 1.25);
-      halo.addColorStop(0, `${color}14`);
-      halo.addColorStop(1, `${color}00`);
-      ctx.fillStyle = halo;
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius * 1.25, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = color;
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = resolvedColor;
       for (const line of GRID) {
         let prev = project(line[0]);
         for (let i = 1; i < line.length; i += 1) {
           const cur = project(line[i]);
-          ctx.globalAlpha = (prev.z + cur.z) / 2 > 0 ? 0.28 : 0.07;
+          ctx.globalAlpha = (prev.z + cur.z) / 2 > 0 ? 0.2 : 0.04;
           ctx.beginPath();
           ctx.moveTo(prev.x, prev.y);
           ctx.lineTo(cur.x, cur.y);

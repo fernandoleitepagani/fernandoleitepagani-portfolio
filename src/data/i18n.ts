@@ -23,6 +23,7 @@ export const content: Record<Lang, Content> = {
       collapseSidebar: 'Collapse sidebar',
       github: 'GitHub',
       menu: 'Menu',
+      skipToContent: 'Skip to content',
     },
     about: {
       title: 'About Me',
@@ -271,6 +272,7 @@ export const content: Record<Lang, Content> = {
       collapseSidebar: 'Recolher barra lateral',
       github: 'GitHub',
       menu: 'Menu',
+      skipToContent: 'Pular para o conteúdo',
     },
     about: {
       title: 'Sobre Mim',

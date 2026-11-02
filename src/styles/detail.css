@@ -1,56 +1,84 @@
-/* Project case study */
+/* ---------- Project case study ---------- */
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   width: fit-content;
+  padding: 6px 10px;
   color: var(--ink-dim);
-  font-size: var(--text-xs);
-  transition: color var(--dur-fast) var(--ease-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-2xs);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
 }
-.back-link:hover { color: var(--link-hover); }
+.back-link:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
 
 .detail-summary {
   max-width: 62ch;
+  color: var(--ink-dim);
   font-size: var(--text-body);
 }
-
 .detail-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 232px;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 30px;
   align-items: start;
 }
 @media (max-width: 48em) {
-  .detail-body { grid-template-columns: 1fr; }
+  .detail-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
-
 .detail-main {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 26px;
   min-width: 0;
 }
 .detail-section-title {
-  font-size: var(--text-sm);
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--ink-dim);
 }
-.detail-section { scroll-margin-top: 24px; }
-.detail-section-body { font-size: var(--text-body); }
-
+.detail-section-title .section-num {
+  margin-right: 6px;
+  color: var(--accent);
+}
+.detail-section {
+  scroll-margin-top: 20px;
+}
+.detail-section-body {
+  color: var(--ink-dim);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
 .detail-aside {
   position: sticky;
   top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 @media (max-width: 48em) {
-  .detail-aside { position: static; }
-  .page-index-aside { display: none; }
+  .detail-aside {
+    position: static;
+  }
+  .page-index-aside {
+    display: none;
+  }
 }
 .detail-meta {
   display: flex;
@@ -59,22 +87,51 @@
   padding: 14px;
 }
 .detail-meta-label {
-  font-size: var(--text-2xs);
-  letter-spacing: 2px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
+}
+.resume-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
   color: var(--ink-dim);
+  font-size: var(--text-xs);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+.resume-link:hover {
+  color: var(--accent);
 }
 
-/* Academics & awards */
+/* ---------- Academics & awards ---------- */
+.grades-table {
+  --table-border-color: var(--line);
+}
+.grades-table thead tr {
+  border-bottom: 1px solid var(--line-strong);
+}
 .grades-table th {
-  font-size: var(--text-2xs);
+  padding: 7px 8px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
+}
+.grades-table td {
+  padding: 10px 8px;
   color: var(--ink-dim);
+  font-size: var(--text-sm);
+}
+.grades-table tbody tr:hover {
+  background: var(--surface-deep);
 }
 .award-title {
   font-size: var(--text-body);
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: -0.01em;
 }

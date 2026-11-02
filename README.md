@@ -5,7 +5,7 @@
 # 🏷️ Portfólio Profissional — Fernando Leite Pagani 👨‍💻
 
 > [!NOTE]
-> Portfólio pessoal bilíngue (PT/EN), com estética de terminal, três temas e dados reais do GitHub.
+> Portfólio pessoal bilíngue (PT/EN), com estética editorial de terminal, acento verde, três temas e dados reais do GitHub.
 > **Foque no valor:** um site que apresenta trajetória, habilidades, projetos e contato de forma
 > moderna, rápida e acessível.
 
@@ -16,7 +16,7 @@
         Este repositório contém o <b>portfólio profissional</b> de <b>Fernando Leite Pagani</b>,
         estudante de Ciência da Computação na PUC Minas. O site reúne as quatro seções pedidas no
         <i>Laboratório 01</i> — <b>Sobre Mim</b> (PT/EN), <b>Projetos</b>, <b>Experiências</b> e
-        <b>Contato</b> — com uma identidade visual própria inspirada em <i>terminais</i>, três temas
+        <b>Contato</b> — com uma identidade visual própria de terminal, com acento verde, três temas
         alternáveis (Dark, Matrix e CRT) e suporte a dois idiomas. Todo o conteúdo é dirigido por
         dados (<code>src/data/</code>) e o site consome a API do GitHub por meio de uma
         <b>função serverless própria</b>, sem expor o token no navegador.
@@ -137,6 +137,7 @@ Recomenda-se o uso das versões listadas (ou superiores) para garantir a compati
 - **Roteamento:** [React Router v7](https://reactrouter.com/)
 - **Ícones:** [Tabler Icons](https://tabler.io/icons) (`@tabler/icons-react`)
 - **Tipografia:** [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (`@fontsource/jetbrains-mono`)
+  em todo o site, com uma escala de texto fluida
 - **Estilização:** CSS com **tokens** (variáveis CSS) e *themes* próprios
 
 ### 🖥️ Back-end
@@ -358,7 +359,7 @@ responsiva mobile.
 
 Site publicado: **[fernandoleitepagani-portfolio.vercel.app](https://fernandoleitepagani-portfolio.vercel.app/)**
 
-Capturas reais do site **em produção**, no tema escuro (1400×900):
+Capturas do site atual, no tema escuro (1400×900):
 
 | Sobre Mim | Experiência e Formação |
 | :---: | :---: |
@@ -385,7 +386,7 @@ Capturas reais do site **em produção**, no tema escuro (1400×900):
 | <img src="docs/screenshots/12-mobile-sobre.png" alt="Site no celular — Sobre Mim" height="340px"> | <img src="docs/screenshots/13-mobile-menu.png" alt="Site no celular — menu aberto" height="340px"> | <img src="docs/screenshots/14-mobile-projeto.png" alt="Site no celular — projeto" height="340px"> |
 
 > [!NOTE]
-> As capturas acima são do site publicado. Em *Projetos*, o portfólio, o `visualize_it` e o
+> As capturas acima são do site atual. Em *Projetos*, o portfólio, o `visualize_it` e o
 > `Prototipo-Login-PUC` já usam capturas reais das aplicações em execução; `MangoMod`, `Simple-Nvim`
 > e `Rofi-Scripts` ainda usam pranchas de substituição (`public/projects/*.svg`), por dependerem de
 > sessão gráfica (GTK4/Wayland/terminal) para serem gravados.
